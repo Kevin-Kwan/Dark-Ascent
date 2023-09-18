@@ -831,11 +831,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3202918795354553273, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000018988336
+      value: -0.000000018988336
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795354553273, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000030850345
+      value: 0.0000000030850345
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795698466886, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_Name
