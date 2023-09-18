@@ -8,6 +8,9 @@ public class ThirdPController : MonoBehaviour
     // the Main Camera in the scene
     public Transform camera;
     public float speed = 6.0f;
+    public float runSpeed = 12.0f;
+
+    private float currentSpeed = 0.0f;
 
     // parameters for smooth turning
     public float turnSmoothingTime = 0.1f;
@@ -69,8 +72,15 @@ public class ThirdPController : MonoBehaviour
                         Jump();
                     }
                 }
+                // player cannot "run" while in the air
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
+                    currentSpeed = runSpeed;
+                } else {
+                    currentSpeed = speed;
+                }
             }
-            controller.Move(moveDirection * speed * Time.deltaTime);
+            // current speed is preserved while in the air
+            controller.Move(moveDirection * currentSpeed * Time.deltaTime);
         } else if (controller.isGrounded) {
             // jumping in place
                 if (bhopEnabled) {
