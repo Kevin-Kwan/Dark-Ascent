@@ -21,7 +21,8 @@ public class ThirdPController : MonoBehaviour
     public float jumpHeight = 1.0f;
     public float jumpAdjustment = -2.0f;
     public float gravity = -9.81f;
-
+    private int jumpCount = 0;
+    public int maxJumps = 2;
     public Vector3 playerVelocity;
 
     public bool bhopEnabled = false;
@@ -41,6 +42,7 @@ public class ThirdPController : MonoBehaviour
         // Not tested yet.
         if (controller.isGrounded && playerVelocity.y < 0) {
             playerVelocity.y = 0f;
+            jumpCount = 0;
         }
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
@@ -62,14 +64,21 @@ public class ThirdPController : MonoBehaviour
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             // if Jumping while moving
-            if (controller.isGrounded) {
+            if (controller.isGrounded || jumpCount < maxJumps) {
+                Debug.Log(jumpCount);
                 if (bhopEnabled) {
-                    if (Input.GetButton("Jump")) {
+                    if (Input.GetButton("Jump") && controller.isGrounded) {
                         Jump();
+                        jumpCount++;
+                    }
+                    else if (Input.GetButtonDown("Jump") && jumpCount < maxJumps) {
+                        Jump();
+                        jumpCount++;
                     }
                 } else {
                     if (Input.GetButtonDown("Jump")) {
                         Jump();
+                        jumpCount++;
                     }
                 }
                 // player cannot "run" while in the air
@@ -81,15 +90,25 @@ public class ThirdPController : MonoBehaviour
             }
             // current speed is preserved while in the air
             controller.Move(moveDirection * currentSpeed * Time.deltaTime);
-        } else if (controller.isGrounded) {
+        } else if (controller.isGrounded || jumpCount < maxJumps) {
             // jumping in place
-                if (bhopEnabled) {
-                    if (Input.GetButton("Jump")) {
+            Debug.Log(jumpCount);
+
+            if (bhopEnabled) {
+                    if (Input.GetButton("Jump") && controller.isGrounded) {
                         Jump();
+                        jumpCount++;
                     }
-                } else {
+                    else if (Input.GetButtonDown("Jump") && jumpCount < maxJumps)
+                    {
+                        Jump();
+                        jumpCount++;
+                    }
+            } else {
                     if (Input.GetButtonDown("Jump")) {
                         Jump();
+                        jumpCount++;
+
                     }
                 }
             }
@@ -115,6 +134,7 @@ public class ThirdPController : MonoBehaviour
         // Debug.Log("Controller collision detected");
     }
     void Jump() {
+        Debug.Log("JUMPED");
         playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpAdjustment * gravity);
     }
 }
