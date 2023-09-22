@@ -719,8 +719,12 @@ MonoBehaviour:
   jumpHeight: 1
   jumpAdjustment: -2
   gravity: -9.81
+  maxJumps: 2
   playerVelocity: {x: 0, y: 0, z: 0}
   bhopEnabled: 1
+  jumpHeightScale: 1
+  maxDrift: 12
+  driftDecay: 0.02
 --- !u!54 &3202918795698466907
 Rigidbody:
   m_ObjectHideFlags: 0

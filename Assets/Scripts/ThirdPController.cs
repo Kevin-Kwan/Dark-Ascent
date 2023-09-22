@@ -32,12 +32,20 @@ public class ThirdPController : MonoBehaviour
     private Vector3 wallNormal;
     public float jumpHeightScale = 1.0f;
 
+    // parameters for sliding
+    public float maxDrift = 4f;
+    public float driftDecay = 0.02f;
+    public float crouchedHeight = 1.0f;
+    private float standingHeight;
+    private Vector3 moveDirection;
+
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen.
+        standingHeight = controller.height;
     }
 
     // Update is called once per frame
@@ -70,7 +78,7 @@ public class ThirdPController : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothingVelocity, turnSmoothingTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             // if Jumping while moving
             if (controller.isGrounded || jumpCount < maxJumps) {
@@ -91,14 +99,15 @@ public class ThirdPController : MonoBehaviour
                     }
                 }
                 // player cannot "run" while in the air
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
-                    currentSpeed = runSpeed;
-                } else {
-                    currentSpeed = speed;
+                if (!Input.GetButton("Slide")) {
+                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
+                        currentSpeed = runSpeed;
+                    } else {
+                        currentSpeed = speed;
+                    }
                 }
             }
             // current speed is preserved while in the air
-            controller.Move(moveDirection * currentSpeed * Time.deltaTime);
         } else if (controller.isGrounded || jumpCount < maxJumps) {
             // jumping in place
             Debug.Log(jumpCount);
@@ -120,11 +129,33 @@ public class ThirdPController : MonoBehaviour
 
                     }
                 }
+            if (!Input.GetButton("Slide"))
+                currentSpeed = 0;
+        }
+
+        if (controller.isGrounded && Input.GetButtonDown("Slide") && (currentSpeed <= runSpeed))
+        {
+            Debug.Log("slid");
+            currentSpeed += maxDrift;
+        }
+
+        if (Input.GetButton("Slide"))
+        {
+            controller.height = crouchedHeight;
+            if (currentSpeed > 0)
+            {
+                currentSpeed -= driftDecay;
+                Debug.Log(currentSpeed);
+            }
+        } else
+        {
+            controller.height = standingHeight;
         }
 
         if (canWallJump && Input.GetButtonDown("Jump")) {
             WallJump();
         }
+        controller.Move(moveDirection * currentSpeed * Time.deltaTime);
         playerVelocity.y += Physics.gravity.y * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
