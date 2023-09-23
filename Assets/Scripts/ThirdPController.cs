@@ -5,6 +5,10 @@ using UnityEngine;
 public class ThirdPController : MonoBehaviour
 {
     public CharacterController controller;
+
+    // for moving platforms
+    private Transform currentPlatform = null;
+
     // the Main Camera in the scene
     public Transform camera;
     public float speed = 6.0f;
@@ -151,6 +155,30 @@ public class ThirdPController : MonoBehaviour
             Debug.Log("Can Wall Jump!");
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        // Check if the character enters the trigger zone of the platform
+        if (other.CompareTag("MovingPlatform"))
+        {
+            // Set the platform as the parent of the character
+            currentPlatform = other.transform;
+            controller.gameObject.transform.SetParent(currentPlatform);
+            Debug.Log("parent: " + controller.transform.parent);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Check if the character exits the trigger zone of the platform
+        if (other.transform == currentPlatform)
+        {
+            // Reset the parent of the character
+            controller.gameObject.transform.SetParent(null);
+            currentPlatform = null;
+        }
+    }
+
+
     void Jump() {
         Debug.Log("JUMPED");
         playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpAdjustment * gravity);
