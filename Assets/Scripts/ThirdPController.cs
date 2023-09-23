@@ -88,7 +88,7 @@ public class ThirdPController : MonoBehaviour
 
             // if Jumping while moving
             if (controller.isGrounded || jumpCount < maxJumps) {
-                // Debug.Log(jumpCount);
+                Debug.Log(jumpCount);
                 if (bhopEnabled) {
                     if (Input.GetButton("Jump") && controller.isGrounded) {
                         Jump();
@@ -115,7 +115,7 @@ public class ThirdPController : MonoBehaviour
             controller.Move(moveDirection * currentSpeed * Time.deltaTime);
         } else if (controller.isGrounded || jumpCount < maxJumps) {
             // jumping in place
-            // Debug.Log(jumpCount);
+            Debug.Log(jumpCount);
 
             if (bhopEnabled) {
                     if (Input.GetButton("Jump") && controller.isGrounded) {
@@ -190,7 +190,7 @@ public class ThirdPController : MonoBehaviour
 
 
     void Jump() {
-        // Debug.Log("JUMPED");
+        Debug.Log("JUMPED");
         playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpAdjustment * gravity);
     }
     void WallJump() {
