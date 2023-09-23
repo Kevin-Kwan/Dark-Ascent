@@ -168,7 +168,7 @@ public class ThirdPController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         // Check if the character enters the trigger zone of the platform
-        if (other.CompareTag("MovingPlatform"))
+        if (other.CompareTag("Elevator"))
         {
             // Set the platform as the parent of the character
             currentPlatform = other.transform;
