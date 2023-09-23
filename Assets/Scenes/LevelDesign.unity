@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 186340302}
   - component: {fileID: 186340306}
   - component: {fileID: 186340307}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Moving Floor
   m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
@@ -2781,6 +2781,10 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3202918795916568098, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3202918795916568120, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_Size.y
       value: 2
@@ -2799,7 +2803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795916568121, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3202918796349368375, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalPosition.x

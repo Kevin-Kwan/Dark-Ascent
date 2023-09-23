@@ -162,7 +162,7 @@ public class ThirdPController : MonoBehaviour
         {
             // Set the platform as the parent of the character
             currentPlatform = other.transform;
-            controller.gameObject.transform.SetParent(currentPlatform);
+            controller.transform.SetParent(currentPlatform);
             Debug.Log("parent: " + controller.transform.parent);
         }
     }
@@ -173,7 +173,7 @@ public class ThirdPController : MonoBehaviour
         if (other.transform == currentPlatform)
         {
             // Reset the parent of the character
-            controller.gameObject.transform.SetParent(null);
+            controller.transform.SetParent(null);
             currentPlatform = null;
         }
     }
