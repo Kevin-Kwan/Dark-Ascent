@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 // This script is used to control the player's game object in the third-person perspective.
 public class ThirdPController : MonoBehaviour
@@ -7,6 +8,7 @@ public class ThirdPController : MonoBehaviour
     public CharacterController controller;
     // the Main Camera in the scene
     public Transform camera;
+    public CinemachineFreeLook freeLookCamera;
     public float speed = 6.0f;
     public float runSpeed = 12.0f;
 
@@ -46,6 +48,14 @@ public class ThirdPController : MonoBehaviour
         // Debug.Log(controller.isGrounded);
         // We are using GetAxisRaw in case the player is using a controller.
         // Not tested yet.
+        // if holding right click
+        if (Input.GetMouseButton(1)) {
+            freeLookCamera.m_XAxis.m_InputAxisName = "Mouse X";
+            freeLookCamera.m_YAxis.m_InputAxisName = "Mouse Y";
+        } else {
+            freeLookCamera.m_XAxis.m_InputAxisName = "";
+            freeLookCamera.m_YAxis.m_InputAxisName = "";
+        }
         if (controller.isGrounded && playerVelocity.y < 0) {
             playerVelocity.y = 0f;
             jumpCount = 0;
