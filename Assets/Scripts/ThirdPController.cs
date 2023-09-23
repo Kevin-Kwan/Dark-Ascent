@@ -21,10 +21,17 @@ public class ThirdPController : MonoBehaviour
     public float jumpHeight = 1.0f;
     public float jumpAdjustment = -2.0f;
     public float gravity = -9.81f;
-
+    private int jumpCount = 0;
+    public int maxJumps = 2;
     public Vector3 playerVelocity;
 
     public bool bhopEnabled = false;
+
+    // parameters for wall jumping
+    private bool canWallJump;
+    private Vector3 wallNormal;
+    public float jumpHeightScale = 1.0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +48,10 @@ public class ThirdPController : MonoBehaviour
         // Not tested yet.
         if (controller.isGrounded && playerVelocity.y < 0) {
             playerVelocity.y = 0f;
+            jumpCount = 0;
+            canWallJump = false;
+            playerVelocity.x = 0f;
+            playerVelocity.z = 0f;
         }
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
@@ -62,14 +73,21 @@ public class ThirdPController : MonoBehaviour
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             // if Jumping while moving
-            if (controller.isGrounded) {
+            if (controller.isGrounded || jumpCount < maxJumps) {
+                Debug.Log(jumpCount);
                 if (bhopEnabled) {
-                    if (Input.GetButton("Jump")) {
+                    if (Input.GetButton("Jump") && controller.isGrounded) {
                         Jump();
+                        jumpCount++;
+                    }
+                    else if (Input.GetButtonDown("Jump") && jumpCount < maxJumps) {
+                        Jump();
+                        jumpCount++;
                     }
                 } else {
                     if (Input.GetButtonDown("Jump")) {
                         Jump();
+                        jumpCount++;
                     }
                 }
                 // player cannot "run" while in the air
@@ -81,18 +99,32 @@ public class ThirdPController : MonoBehaviour
             }
             // current speed is preserved while in the air
             controller.Move(moveDirection * currentSpeed * Time.deltaTime);
-        } else if (controller.isGrounded) {
+        } else if (controller.isGrounded || jumpCount < maxJumps) {
             // jumping in place
-                if (bhopEnabled) {
-                    if (Input.GetButton("Jump")) {
+            Debug.Log(jumpCount);
+
+            if (bhopEnabled) {
+                    if (Input.GetButton("Jump") && controller.isGrounded) {
                         Jump();
+                        jumpCount++;
                     }
-                } else {
+                    else if (Input.GetButtonDown("Jump") && jumpCount < maxJumps)
+                    {
+                        Jump();
+                        jumpCount++;
+                    }
+            } else {
                     if (Input.GetButtonDown("Jump")) {
                         Jump();
+                        jumpCount++;
+
                     }
                 }
-            }
+        }
+
+        if (canWallJump && Input.GetButtonDown("Jump")) {
+            WallJump();
+        }
         playerVelocity.y += Physics.gravity.y * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
@@ -113,8 +145,41 @@ public class ThirdPController : MonoBehaviour
     // }
     private void OnControllerColliderHit(ControllerColliderHit hit) {
         // Debug.Log("Controller collision detected");
+        if (!controller.isGrounded && hit.collider.CompareTag("Wall")) {
+            wallNormal = hit.normal;
+            canWallJump = true;
+            Debug.Log("Can Wall Jump!");
+        }
     }
     void Jump() {
+        Debug.Log("JUMPED");
         playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpAdjustment * gravity);
     }
+    void WallJump() {
+        // Calculate the jump direction based on the wall normal and desired jump characteristics.
+        Vector3 jumpDirection = (Vector3.up + wallNormal).normalized;
+
+        // Scale only the vertical component of the jump (adjust jumpHeightScale as needed).
+        float wallJumpHeight = jumpHeight * jumpHeightScale;
+        Vector3 scaledJump = jumpDirection * wallJumpHeight;
+        
+        // Keep the horizontal component the same.
+        scaledJump += transform.forward * 3; //* playerVelocity.magnitude;
+
+        // Apply the scaled jump force.
+        playerVelocity = scaledJump;
+
+        // Optionally, add a forward force to make the player move away from the wall.
+        playerVelocity += transform.forward * jumpAdjustment;
+
+        // Calculate the new forward direction after the wall jump.
+        Vector3 newForward = Vector3.ProjectOnPlane(-wallNormal, Vector3.up).normalized;
+
+        // Rotate the player's character to face the new forward direction.
+        transform.forward = newForward;
+        
+        // Disable wall-jumping until the player lands on the ground or another wall.
+        canWallJump = false;
+    }
+
 }
