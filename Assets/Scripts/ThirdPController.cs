@@ -98,15 +98,20 @@ public class ThirdPController : MonoBehaviour
                         jumpCount++;
                     }
                 }
-                // player cannot "run" while in the air
-                if (!Input.GetButton("Slide")) {
-                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
-                        currentSpeed = runSpeed;
-                    } else {
-                        currentSpeed = speed;
-                    }
+            }
+            // player cannot "run" while in the air
+            if (!Input.GetButton("Slide"))
+            {
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                {
+                    currentSpeed = runSpeed;
+                }
+                else
+                {
+                    currentSpeed = speed;
                 }
             }
+
             // current speed is preserved while in the air
         } else if (controller.isGrounded || jumpCount < maxJumps) {
             // jumping in place
@@ -152,10 +157,12 @@ public class ThirdPController : MonoBehaviour
             controller.height = standingHeight;
         }
 
+        controller.Move(moveDirection * currentSpeed * Time.deltaTime);
+
         if (canWallJump && Input.GetButtonDown("Jump")) {
             WallJump();
         }
-        controller.Move(moveDirection * currentSpeed * Time.deltaTime);
+
         playerVelocity.y += Physics.gravity.y * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
@@ -187,6 +194,7 @@ public class ThirdPController : MonoBehaviour
         playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpAdjustment * gravity);
     }
     void WallJump() {
+        Debug.Log("WALL JUMPED");
         // Calculate the jump direction based on the wall normal and desired jump characteristics.
         Vector3 jumpDirection = (Vector3.up + wallNormal).normalized;
 

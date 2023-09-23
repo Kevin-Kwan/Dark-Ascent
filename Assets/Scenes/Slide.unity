@@ -1304,6 +1304,10 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 1204448932}
+    - target: {fileID: 3202918795698466904, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+      propertyPath: jumpHeightScale
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3202918796349368375, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0000076293945
