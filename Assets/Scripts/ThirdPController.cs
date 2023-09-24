@@ -90,6 +90,9 @@ public class ThirdPController : MonoBehaviour
             if (controller.isGrounded || jumpCount < maxJumps) {
                 Debug.Log(jumpCount);
                 if (bhopEnabled) {
+                    if (Input.GetButton("Jump") && controller.transform.parent != null) {
+                        controller.transform.SetParent(null);
+                    }
                     if (Input.GetButton("Jump") && controller.isGrounded) {
                         Jump();
                         jumpCount++;
@@ -171,10 +174,10 @@ public class ThirdPController : MonoBehaviour
         if (other.CompareTag("Elevator"))
         {
             // Set the platform as the parent of the character
+            Debug.Log("trigger entered");
             currentPlatform = other.transform;
             controller.transform.SetParent(currentPlatform);
-            Debug.Log("parent: " + controller.transform.parent);
-        }
+          }
     }
 
     private void OnTriggerExit(Collider other)
