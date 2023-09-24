@@ -6,6 +6,10 @@ using Cinemachine;
 public class ThirdPController : MonoBehaviour
 {
     public CharacterController controller;
+
+    // for moving platforms
+    private Transform currentPlatform = null;
+
     // the Main Camera in the scene
     public Transform camera;
     public CinemachineFreeLook freeLookCamera;
@@ -86,6 +90,9 @@ public class ThirdPController : MonoBehaviour
             if (controller.isGrounded || jumpCount < maxJumps) {
                 Debug.Log(jumpCount);
                 if (bhopEnabled) {
+                    if (Input.GetButton("Jump") && controller.transform.parent != null) {
+                        controller.transform.SetParent(null);
+                    }
                     if (Input.GetButton("Jump") && controller.isGrounded) {
                         Jump();
                         jumpCount++;
@@ -161,6 +168,30 @@ public class ThirdPController : MonoBehaviour
             Debug.Log("Can Wall Jump!");
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        // Check if the character enters the trigger zone of the platform
+        if (other.CompareTag("Elevator"))
+        {
+            // Set the platform as the parent of the character
+            Debug.Log("trigger entered");
+            currentPlatform = other.transform;
+            controller.transform.SetParent(currentPlatform);
+          }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Check if the character exits the trigger zone of the platform
+        if (other.transform == currentPlatform)
+        {
+            // Reset the parent of the character
+            controller.transform.SetParent(null);
+            currentPlatform = null;
+        }
+    }
+
+
     void Jump() {
         Debug.Log("JUMPED");
         playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpAdjustment * gravity);
