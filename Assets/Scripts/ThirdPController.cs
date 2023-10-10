@@ -36,7 +36,14 @@ public class ThirdPController : MonoBehaviour
     // parameters for wall jumping
     private bool canWallJump;
     private Vector3 wallNormal;
-    public float jumpHeightScale = 1.0f;
+    public float jumpHeightScale = 4.5f;
+
+    // parameters for sliding
+    public float maxWalkDrift = 4f;
+    public float maxSprintDrift = 1f;
+    public float driftDecay = 0.02f;
+    public float crouchedHeight = 1.0f;
+    private float standingHeight;
 
 
     // Start is called before the first frame update
@@ -44,6 +51,7 @@ public class ThirdPController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen.
+        standingHeight = controller.height;
     }
 
     // Update is called once per frame
@@ -88,7 +96,7 @@ public class ThirdPController : MonoBehaviour
 
             // if Jumping while moving
             if (controller.isGrounded || jumpCount < maxJumps) {
-                Debug.Log(jumpCount);
+                //Debug.Log(jumpCount);
                 if (bhopEnabled) {
                     if (Input.GetButton("Jump") && controller.transform.parent != null) {
                         controller.transform.SetParent(null);
@@ -108,17 +116,23 @@ public class ThirdPController : MonoBehaviour
                     }
                 }
                 // player cannot "run" while in the air
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
-                    currentSpeed = runSpeed;
-                } else {
-                    currentSpeed = speed;
+                if (!Input.GetButton("Slide"))
+                {
+                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                    {
+                        currentSpeed = runSpeed;
+                    }
+                    else
+                    {
+                        currentSpeed = speed;
+                    }
                 }
             }
             // current speed is preserved while in the air
             controller.Move(moveDirection * currentSpeed * Time.deltaTime);
         } else if (controller.isGrounded || jumpCount < maxJumps) {
             // jumping in place
-            Debug.Log(jumpCount);
+            //Debug.Log(jumpCount);
 
             if (bhopEnabled) {
                     if (Input.GetButton("Jump") && controller.isGrounded) {
@@ -137,6 +151,32 @@ public class ThirdPController : MonoBehaviour
 
                     }
                 }
+        }
+
+        if (Input.GetButtonDown("Slide") && (currentSpeed == speed))
+        {
+            Debug.Log("slid from walk");
+            currentSpeed += maxWalkDrift;
+        }
+
+        if (Input.GetButtonDown("Slide") && (currentSpeed == runSpeed))
+        {
+            Debug.Log("slid from sprint");
+            currentSpeed += maxSprintDrift;
+        }
+
+
+        if (Input.GetButton("Slide"))
+        {
+            controller.height = crouchedHeight;
+            if (currentSpeed > 0)
+            {
+                currentSpeed -= driftDecay;
+            }
+        }
+        else
+        {
+            controller.height = standingHeight;
         }
 
         if (canWallJump && Input.GetButtonDown("Jump")) {
