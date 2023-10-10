@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Wall
+  - MovingPlatform
+  - Elevator
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,7 @@ TagManager:
   - 
   - Ground
   - Player
-  - 
+  - Trigger
   - 
   - 
   - 

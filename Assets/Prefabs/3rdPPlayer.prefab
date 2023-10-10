@@ -713,7 +713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 3202918795698466905}
   camera: {fileID: 0}
-  freeLookCamera: {fileID: 0}
+  freeLookCamera: {fileID: 3202918794709557853}
   speed: 6
   runSpeed: 12
   turnSmoothingTime: 0.1
