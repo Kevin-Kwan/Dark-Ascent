@@ -1,12 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 // This script is used to control the player's game object in the third-person perspective.
 public class ThirdPController : MonoBehaviour
 {
     public CharacterController controller;
+
+    // for moving platforms
+    private Transform currentPlatform = null;
+
     // the Main Camera in the scene
     public Transform camera;
+    public CinemachineFreeLook freeLookCamera;
     public float speed = 6.0f;
     public float runSpeed = 12.0f;
 
@@ -30,14 +36,14 @@ public class ThirdPController : MonoBehaviour
     // parameters for wall jumping
     private bool canWallJump;
     private Vector3 wallNormal;
-    public float jumpHeightScale = 1.0f;
+    public float jumpHeightScale = 4.5f;
 
     // parameters for sliding
-    public float maxDrift = 4f;
+    public float maxWalkDrift = 4f;
+    public float maxSprintDrift = 1f;
     public float driftDecay = 0.02f;
     public float crouchedHeight = 1.0f;
     private float standingHeight;
-    private Vector3 moveDirection;
 
 
     // Start is called before the first frame update
@@ -54,6 +60,14 @@ public class ThirdPController : MonoBehaviour
         // Debug.Log(controller.isGrounded);
         // We are using GetAxisRaw in case the player is using a controller.
         // Not tested yet.
+        // if holding right click
+        if (Input.GetMouseButton(1)) {
+            freeLookCamera.m_XAxis.m_InputAxisName = "Mouse X";
+            freeLookCamera.m_YAxis.m_InputAxisName = "Mouse Y";
+        } else {
+            freeLookCamera.m_XAxis.m_InputAxisName = "";
+            freeLookCamera.m_YAxis.m_InputAxisName = "";
+        }
         if (controller.isGrounded && playerVelocity.y < 0) {
             playerVelocity.y = 0f;
             jumpCount = 0;
@@ -78,12 +92,15 @@ public class ThirdPController : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothingVelocity, turnSmoothingTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             // if Jumping while moving
             if (controller.isGrounded || jumpCount < maxJumps) {
-                Debug.Log(jumpCount);
+                //Debug.Log(jumpCount);
                 if (bhopEnabled) {
+                    if (Input.GetButton("Jump") && controller.transform.parent != null) {
+                        controller.transform.SetParent(null);
+                    }
                     if (Input.GetButton("Jump") && controller.isGrounded) {
                         Jump();
                         jumpCount++;
@@ -98,24 +115,24 @@ public class ThirdPController : MonoBehaviour
                         jumpCount++;
                     }
                 }
-            }
-            // player cannot "run" while in the air
-            if (!Input.GetButton("Slide"))
-            {
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                // player cannot "run" while in the air
+                if (!Input.GetButton("Slide"))
                 {
-                    currentSpeed = runSpeed;
-                }
-                else
-                {
-                    currentSpeed = speed;
+                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                    {
+                        currentSpeed = runSpeed;
+                    }
+                    else
+                    {
+                        currentSpeed = speed;
+                    }
                 }
             }
-
             // current speed is preserved while in the air
+            controller.Move(moveDirection * currentSpeed * Time.deltaTime);
         } else if (controller.isGrounded || jumpCount < maxJumps) {
             // jumping in place
-            Debug.Log(jumpCount);
+            //Debug.Log(jumpCount);
 
             if (bhopEnabled) {
                     if (Input.GetButton("Jump") && controller.isGrounded) {
@@ -134,15 +151,20 @@ public class ThirdPController : MonoBehaviour
 
                     }
                 }
-            if (!Input.GetButton("Slide"))
-                currentSpeed = 0;
         }
 
-        if (controller.isGrounded && Input.GetButtonDown("Slide") && (currentSpeed <= runSpeed))
+        if (Input.GetButtonDown("Slide") && (currentSpeed == speed))
         {
-            Debug.Log("slid");
-            currentSpeed += maxDrift;
+            Debug.Log("slid from walk");
+            currentSpeed += maxWalkDrift;
         }
+
+        if (Input.GetButtonDown("Slide") && (currentSpeed == runSpeed))
+        {
+            Debug.Log("slid from sprint");
+            currentSpeed += maxSprintDrift;
+        }
+
 
         if (Input.GetButton("Slide"))
         {
@@ -150,19 +172,16 @@ public class ThirdPController : MonoBehaviour
             if (currentSpeed > 0)
             {
                 currentSpeed -= driftDecay;
-                Debug.Log(currentSpeed);
             }
-        } else
+        }
+        else
         {
             controller.height = standingHeight;
         }
 
-        controller.Move(moveDirection * currentSpeed * Time.deltaTime);
-
         if (canWallJump && Input.GetButtonDown("Jump")) {
             WallJump();
         }
-
         playerVelocity.y += Physics.gravity.y * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
@@ -189,12 +208,35 @@ public class ThirdPController : MonoBehaviour
             Debug.Log("Can Wall Jump!");
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        // Check if the character enters the trigger zone of the platform
+        if (other.CompareTag("Elevator"))
+        {
+            // Set the platform as the parent of the character
+            Debug.Log("trigger entered");
+            currentPlatform = other.transform;
+            controller.transform.SetParent(currentPlatform);
+          }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // Check if the character exits the trigger zone of the platform
+        if (other.transform == currentPlatform)
+        {
+            // Reset the parent of the character
+            controller.transform.SetParent(null);
+            currentPlatform = null;
+        }
+    }
+
+
     void Jump() {
         Debug.Log("JUMPED");
         playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpAdjustment * gravity);
     }
     void WallJump() {
-        Debug.Log("WALL JUMPED");
         // Calculate the jump direction based on the wall normal and desired jump characteristics.
         Vector3 jumpDirection = (Vector3.up + wallNormal).normalized;
 

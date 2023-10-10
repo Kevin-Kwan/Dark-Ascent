@@ -652,6 +652,17 @@ CharacterController:
   m_CorrespondingSourceObject: {fileID: 3202918795698466905, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
   m_PrefabInstance: {fileID: 3202918796461632520}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1398209245 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3202918794709557853, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+  m_PrefabInstance: {fileID: 3202918796461632520}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319d2fe34a804e245819465c9505ea59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1619300203
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,8 +1316,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1204448932}
     - target: {fileID: 3202918795698466904, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+      propertyPath: freeLookCamera
+      value: 
+      objectReference: {fileID: 1398209245}
+    - target: {fileID: 3202918795698466904, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: jumpHeightScale
-      value: 3
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 3202918796349368375, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalPosition.x
