@@ -45,6 +45,12 @@ public class ThirdPController : MonoBehaviour
     public float crouchedHeight = 1.0f;
     private float standingHeight;
 
+    // animator
+    public Animator animator;
+    private CharacterInputController cinput;
+    float _inputForward = 0f;
+    float _inputTurn = 0f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +58,9 @@ public class ThirdPController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen.
         standingHeight = controller.height;
+        cinput = GetComponent<CharacterInputController>();
+        if (cinput == null)
+            Debug.Log("CharacterInput could not be found");
     }
 
     // Update is called once per frame
@@ -75,8 +84,32 @@ public class ThirdPController : MonoBehaviour
             playerVelocity.x = 0f;
             playerVelocity.z = 0f;
         }
+        if (cinput.enabled) {
+            _inputForward = cinput.Forward;
+            _inputTurn = cinput.Turn;
+        }
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
+
+        if (horizontal != 0 && vertical != 0) {
+            animator.SetBool("isMoving", true);
+        } else {
+            animator.SetBool("isMoving", false);
+        }
+
+        var animState = animator.GetCurrentAnimatorStateInfo(0);
+        // animator.SetFloat("velX", _inputTurn);
+
+        // absolute value of _inputForward and _inputTurn
+        if (_inputForward < 0f) {
+            _inputForward = - _inputForward;
+        }
+        if (_inputTurn < 0f) {
+            _inputTurn = - _inputTurn;
+        }
+        // set velY to forward to max of _inputForward and _inputTurn
+        // because fly animation is used in all directions
+        animator.SetFloat("velY", Mathf.Max(_inputForward, _inputTurn));
 
         Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
         if (direction.magnitude >= 0.1f) // if no input, stop applying movement
@@ -235,6 +268,7 @@ public class ThirdPController : MonoBehaviour
     void Jump() {
         Debug.Log("JUMPED");
         playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpAdjustment * gravity);
+
     }
     void WallJump() {
         // Calculate the jump direction based on the wall normal and desired jump characteristics.
