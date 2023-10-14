@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - MovingPlatform
   - Elevator
+  - Hazard
   layers:
   - Default
   - TransparentFX

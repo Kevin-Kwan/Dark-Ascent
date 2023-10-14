@@ -23,7 +23,6 @@ public class ThirdPController : MonoBehaviour
     float turnSmoothingVelocity;
 
     // parameters for jumping
-    bool isGrounded;
     public float jumpHeight = 1.0f;
     public float jumpAdjustment = -2.0f;
     public float gravity = -9.81f;
@@ -45,6 +44,31 @@ public class ThirdPController : MonoBehaviour
     public float crouchedHeight = 1.0f;
     private float standingHeight;
 
+    // animator
+    public Animator animator;
+    private CharacterInputController cinput;
+    float _inputForward = 0f;
+    float _inputTurn = 0f;
+    public float speedChangeRate = 0.01f;
+    private float currentVelY = 0f;
+    private float targetVelY = 0f;
+
+    // death animation (temporary)
+    public GameObject ghostBody;
+    public float floatingSpeed = 0.25f;
+
+    // player stats
+    public float health = 100f;
+    public float previousHealth = 100f;
+    public float maxHealth = 100f;
+    // not used atm
+    public float stamina = 100f;
+    public float maxStamina = 100f;
+    public float attackDamage = 10f;
+    public GameObject weapon;
+    public float invincibilityTime = 1f;
+    public float previousDamageTime = 0f;
+    public bool tookDamage = false;
 
     // Start is called before the first frame update
     void Start()
@@ -52,10 +76,55 @@ public class ThirdPController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen.
         standingHeight = controller.height;
+        cinput = GetComponent<CharacterInputController>();
+        if (cinput == null)
+            Debug.Log("CharacterInput could not be found");
+        weapon.SetActive(false);
+        animator.SetBool("isDead", false);
+
     }
 
     // Update is called once per frame
     void Update() {
+        // death animation
+        if (health <=0) {
+            Debug.Log("Player is dead");
+            animator.SetLayerWeight(1, 0);
+            animator.SetLayerWeight(2, 0);
+            animator.SetBool("isDead", true);
+            // floating animation
+            ghostBody.transform.position = new Vector3(ghostBody.transform.position.x, ghostBody.transform.position.y + floatingSpeed * Time.deltaTime, ghostBody.transform.position.z);
+            controller.enabled = false;
+            // handle case if player clicks a menu item or hits restart before this return
+            // we prevent the player from moving after death
+            return;
+        }
+        // attacking animation
+        if (Input.GetMouseButtonDown(0)) {
+                // enable the weapon
+                weapon.SetActive(true);
+                // weapon.GetComponent<Weapon>().Attack();
+                animator.SetBool("isAttacking", true);
+            } else {
+                AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(1);
+                // Check if the attack animation is done playing
+                if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1 && !animator.IsInTransition(1)) {
+                    animator.SetBool("isAttacking", false);
+                    weapon.SetActive(false);
+                }
+            }
+        // taking damage animation
+        if (tookDamage) {
+            animator.SetBool("tookDamage", true);
+            animator.SetLayerWeight(2, 1);
+        } else {
+            AnimatorStateInfo damageStateInfo = animator.GetCurrentAnimatorStateInfo(2); 
+            // Check if the damage animation is done playing
+            if (damageStateInfo.IsName("TakeDamage") && damageStateInfo.normalizedTime >= 1 && !animator.IsInTransition(2)) {
+                animator.SetBool("tookDamage", false);
+                animator.SetLayerWeight(2, 0);
+            }
+        }
         // Debug.Log(isGrounded);
         // Debug.Log(controller.isGrounded);
         // We are using GetAxisRaw in case the player is using a controller.
@@ -69,14 +138,43 @@ public class ThirdPController : MonoBehaviour
             freeLookCamera.m_YAxis.m_InputAxisName = "";
         }
         if (controller.isGrounded && playerVelocity.y < 0) {
+            animator.SetBool("isGrounded", true);
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isFalling", false);
             playerVelocity.y = 0f;
             jumpCount = 0;
             canWallJump = false;
             playerVelocity.x = 0f;
             playerVelocity.z = 0f;
+        } else {
+            animator.SetBool("isGrounded", false);
+            if (playerVelocity.y < 0) {
+                animator.SetBool("isFalling", true);
+                animator.SetBool("isJumping", false);
+            } else if (playerVelocity.y > 0) {
+                animator.SetBool("isJumping", true);
+                animator.SetBool("isFalling", false);
+            }
+        }
+        if (cinput.enabled) {
+            _inputForward = cinput.Forward;
+            _inputTurn = cinput.Turn;
         }
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
+
+        var animState = animator.GetCurrentAnimatorStateInfo(0);
+        // animator.SetFloat("velX", _inputTurn);
+
+        // absolute value of _inputForward and _inputTurn
+        if (_inputForward < 0f) {
+            _inputForward = - _inputForward;
+        }
+        if (_inputTurn < 0f) {
+            _inputTurn = - _inputTurn;
+        }
+
+        targetVelY = Mathf.Max(_inputForward, _inputTurn);
 
         Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
         if (direction.magnitude >= 0.1f) // if no input, stop applying movement
@@ -118,14 +216,17 @@ public class ThirdPController : MonoBehaviour
                 // player cannot "run" while in the air
                 if (!Input.GetButton("Slide"))
                 {
+                    // for running, added slight speedup and slowdown
                     if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                     {
-                        currentSpeed = runSpeed;
+                        currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, speedChangeRate);
+                        targetVelY = Mathf.Max(_inputForward, _inputTurn) * 2f;
                     }
                     else
                     {
-                        currentSpeed = speed;
+                        currentSpeed = Mathf.Lerp(currentSpeed, speed, speedChangeRate);
                     }
+                    // Debug.Log(currentSpeed);
                 }
             }
             // current speed is preserved while in the air
@@ -157,12 +258,14 @@ public class ThirdPController : MonoBehaviour
         {
             Debug.Log("slid from walk");
             currentSpeed += maxWalkDrift;
+            animator.SetBool("isSliding", true);
         }
 
         if (Input.GetButtonDown("Slide") && (currentSpeed == runSpeed))
         {
             Debug.Log("slid from sprint");
             currentSpeed += maxSprintDrift;
+            animator.SetBool("isSliding", true);
         }
 
 
@@ -173,15 +276,29 @@ public class ThirdPController : MonoBehaviour
             {
                 currentSpeed -= driftDecay;
             }
+            animator.SetBool("isSliding", true);
+            // force the player to stand back up once they stop moving
+            // else {
+            //     currentSpeed = 0;
+            //     controller.height = standingHeight;
+            // }
+            
         }
         else
         {
+            animator.SetBool("isSliding", false);
             controller.height = standingHeight;
         }
 
         if (canWallJump && Input.GetButtonDown("Jump")) {
             WallJump();
         }
+        // set velY to forward to max of _inputForward and _inputTurn
+        // because fly animation is used in all directions
+        // this plays the movement animations
+        currentVelY = Mathf.Lerp(currentVelY, targetVelY, speedChangeRate);
+        animator.SetFloat("velY", currentVelY);
+
         playerVelocity.y += Physics.gravity.y * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
@@ -206,6 +323,10 @@ public class ThirdPController : MonoBehaviour
             wallNormal = hit.normal;
             canWallJump = true;
             Debug.Log("Can Wall Jump!");
+        }
+        if (hit.gameObject.tag == "Hazard") {
+            // can be modified to take in an enemy object and get the damage from that
+            takeDamage(10f);
         }
     }
 
@@ -234,7 +355,12 @@ public class ThirdPController : MonoBehaviour
 
     void Jump() {
         Debug.Log("JUMPED");
+        if (playerVelocity.y < 0) {
+            playerVelocity.y = 0f;
+        }
         playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpAdjustment * gravity);
+        animator.SetBool("isJumping", true);
+
     }
     void WallJump() {
         // Calculate the jump direction based on the wall normal and desired jump characteristics.
@@ -263,4 +389,14 @@ public class ThirdPController : MonoBehaviour
         canWallJump = false;
     }
 
+    void takeDamage(float damage) {
+        if (Time.time - previousDamageTime > invincibilityTime) {
+            health -= damage;
+            previousDamageTime = Time.time;
+            Debug.Log(health);
+            tookDamage = true;
+        } else {
+            tookDamage = false;
+        }
+    }
 }
