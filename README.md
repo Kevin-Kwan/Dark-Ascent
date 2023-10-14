@@ -1,2 +1,3 @@
-# GameProject
-Temporary Project Name
+# Dark Descent
+
+A Platformer :)
