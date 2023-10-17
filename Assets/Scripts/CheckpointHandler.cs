@@ -22,6 +22,8 @@ public class CheckpointHandler : MonoBehaviour
     public GameObject endCheckpoint;
     public GameObject[] checkpoints;
     public GameObject player;
+    // boolean flag not implemented because i don't think it's a good idea to force the player to touch all checkpoints
+    // if the player finds a creative way to skip a checkpoint, they should be able to do so
     public bool mustTouchAllCheckpoints;
     public string nextSceneName;
     public bool loadFromStoredData;
