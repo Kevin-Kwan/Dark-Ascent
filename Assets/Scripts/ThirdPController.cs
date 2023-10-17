@@ -1,3 +1,34 @@
+/*
+ * File: ThirdPController.cs
+ * Authors: Kevin Kwan, Akhilesh Sivaganesan, Mehar Johal, Connor Sugasawa, Amal Chaudry
+ * Created: 09/18/2022
+ * Modified: 10/16/2023
+ * Description: This script handles the movement of the player's game object in the third-person perspective.
+ * Camera movement is also handled here as well as player animations.
+ * Contributions:
+ *   Kevin Kwan:
+ *     - Created basic character controller featuring walking, running, and jumping allowing for smooth, responsible input
+ *     - Implemented 3rd Person Camera control similar to Roblox's 
+ *     - Using Scripting, Mechanim, and Animator Layers, Blend Trees, States, and Transitions:
+ *       - Implemented animations for walking, running, sliding, jumping, and falling
+ *       - Implemented animations for attacking, taking damage, and death
+ *   Akhilesh Sivaganesan:
+ *     - Implemented wall jumping
+ *     - Character switches direction when wall jumping
+ *   Mehar Johal:
+ *     - Implemented double jumping
+ *     - Player can jump multiple times in the air based on maxJumps
+ *     - Player jumps reset when they land on the ground
+ *   Connor Sugasawa:
+ *     - Implemented sliding
+ *     - Sliding speed decays over time
+ *     - Sliding makes hitbox smaller
+ *   Amal Chaudry:
+ *    - Implemented elevator interaction with the player controller
+ *    - Player can now stand on moving platforms and move with them
+ *    - Player can jump off of moving platforms
+ */ 
+
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
@@ -97,6 +128,10 @@ public class ThirdPController : MonoBehaviour
             controller.enabled = false;
             // handle case if player clicks a menu item or hits restart before this return
             // we prevent the player from moving after death
+            // unlock the cursor
+            Cursor.lockState = CursorLockMode.None;
+            // disable this script
+            this.enabled = false;
             return;
         }
         // attacking animation
