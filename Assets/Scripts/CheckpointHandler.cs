@@ -50,14 +50,22 @@ public class CheckpointHandler : MonoBehaviour
         {
             PlayerPrefs.SetInt("CurrentLevelIndex", currentLevelIndex);
             PlayerPrefs.SetInt("CurrentCheckpointIndex", 0);
+        } else {
+            if (loadFromStoredData)
+            {
+                // check if there is a mismatch between the current level and the stored level
+                // this means corruption or the cheated the level
+                if (PlayerPrefs.GetInt("CurrentLevelIndex", 1) != currentLevelIndex)
+                {
+                    // if there is a mismatch, reset the level and checkpoint
+                    PlayerPrefs.SetInt("CurrentLevelIndex", currentLevelIndex);
+                    PlayerPrefs.SetInt("CurrentCheckpointIndex", 0);
+                }
+                currentCheckpointIndex = PlayerPrefs.GetInt("CurrentCheckpointIndex", 0);
+                currentLevelIndex = PlayerPrefs.GetInt("CurrentLevelIndex", 1);
+            }
         }
 
-        if (loadFromStoredData)
-        {
-            // Load the current checkpoint index and scene index from stored data
-            currentCheckpointIndex = PlayerPrefs.GetInt("CurrentCheckpointIndex", 0);
-            SceneManager.LoadScene(PlayerPrefs.GetInt("CurrentLevelIndex", 1));
-        }
         RespawnPlayer();
     }
 
@@ -80,6 +88,7 @@ public class CheckpointHandler : MonoBehaviour
 
         if (currentCheckpointIndex == checkpoints.Length - 1)
         {
+            Debug.Log("checking");
             // The player has reached the end checkpoint
             PlayerPrefs.SetInt("CurrentLevelIndex", currentLevelIndex + 1);
             // Reset the current checkpoint index
@@ -102,6 +111,13 @@ public class CheckpointHandler : MonoBehaviour
         {
             PlayerPrefs.SetInt("CurrentLevelIndex", currentLevelIndex);
             PlayerPrefs.SetInt("CurrentCheckpointIndex", 0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        // clear all playerprefs, debugging purposes only
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            PlayerPrefs.DeleteAll();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
