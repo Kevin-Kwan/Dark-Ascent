@@ -217,7 +217,7 @@ public class ThirdPController : MonoBehaviour
                 if (!Input.GetButton("Slide"))
                 {
                     // for running, added slight speedup and slowdown
-                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                    if (Input.GetButton("Sprint"))
                     {
                         currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, speedChangeRate);
                         targetVelY = Mathf.Max(_inputForward, _inputTurn) * 2f;
