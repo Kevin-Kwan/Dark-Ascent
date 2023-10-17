@@ -62,8 +62,11 @@ public class ThirdPController : MonoBehaviour
     public float previousHealth = 100f;
     public float maxHealth = 100f;
 
+    // grounded animation
+    private bool grounded = false;
     // attack animation
     private bool inAttack = false;
+
     // not used atm
     public float stamina = 100f;
     public float maxStamina = 100f;
@@ -75,6 +78,7 @@ public class ThirdPController : MonoBehaviour
 
     // audio
     public AudioSource walkAudio;
+    public AudioSource sprintAudio;
     public AudioSource slideAudio;
     public float slideAudioFactor = 12f;
     public AudioSource jumpAudio;
@@ -122,9 +126,9 @@ public class ThirdPController : MonoBehaviour
         }
         if (inAttack)
         {
-            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(1);
+            AnimatorStateInfo attackStateInfo = animator.GetCurrentAnimatorStateInfo(1);
             // Check if the attack animation is done playing
-            if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1 && !animator.IsInTransition(1)) {
+            if (attackStateInfo.IsName("Attack") && attackStateInfo.normalizedTime >= 1 && !animator.IsInTransition(1)) {
                 animator.SetBool("isAttacking", false);
                 weapon.SetActive(false);
                 inAttack = false;
@@ -155,6 +159,7 @@ public class ThirdPController : MonoBehaviour
             freeLookCamera.m_YAxis.m_InputAxisName = "";
         }
         if (controller.isGrounded && playerVelocity.y < 0) {
+            grounded = true;
             animator.SetBool("isGrounded", true);
             animator.SetBool("isJumping", false);
             animator.SetBool("isFalling", false);
@@ -164,6 +169,7 @@ public class ThirdPController : MonoBehaviour
             playerVelocity.x = 0f;
             playerVelocity.z = 0f;
         } else {
+            grounded = false;
             animator.SetBool("isGrounded", false);
             if (playerVelocity.y < 0) {
                 animator.SetBool("isFalling", true);
@@ -248,6 +254,7 @@ public class ThirdPController : MonoBehaviour
             }
             // current speed is preserved while in the air
             controller.Move(moveDirection * currentSpeed * Time.deltaTime);
+
         } else if (controller.isGrounded || jumpCount < maxJumps) {
             // jumping in place
             //Debug.Log(jumpCount);
@@ -271,24 +278,6 @@ public class ThirdPController : MonoBehaviour
                 }
         }
 
-        //currentSpeed = 0.0f;
-        //walkAudio.mute = direction.magnitude < 0.1f;
-
-        if (Input.GetButtonDown("Slide"))
-        {
-            if (currentSpeed == speed)
-            {
-                Debug.Log("slid from walk");
-                currentSpeed += maxWalkDrift;
-            }
-            else if (currentSpeed == runSpeed)
-            {
-                Debug.Log("slid from sprint");
-                currentSpeed += maxSprintDrift;
-            }
-            slideAudio.Play();
-        }
-
         if (Input.GetButton("Slide"))
         {
             controller.height = crouchedHeight;
@@ -302,13 +291,41 @@ public class ThirdPController : MonoBehaviour
             //     currentSpeed = 0;
             //     controller.height = standingHeight;
             // }
-            slideAudio.volume = Mathf.Clamp(currentSpeed * currentSpeed / slideAudioFactor / slideAudioFactor, 0.0f, 1.0f);
+
+            if (animState.IsName("sliding"))
+            {
+                slideAudio.volume = Mathf.Clamp(currentSpeed * currentSpeed / slideAudioFactor / slideAudioFactor, 0.0f, 1.0f);
+            }
+            else
+            {
+                slideAudio.volume = 0;
+            }
         }
         else
         {
             animator.SetBool("isSliding", false);
             controller.height = standingHeight;
-            slideAudio.Stop();
+            slideAudio.volume = 0;
+        }
+
+        if (!Input.GetButton("Slide") && grounded && direction.magnitude >= 0.1f)
+        {
+            
+            if (Input.GetButton("Sprint"))
+            {
+                sprintAudio.mute = false;
+                walkAudio.mute = true;
+            }
+            else
+            {
+                walkAudio.mute = false;
+                sprintAudio.mute = true;
+            }
+        }
+        else
+        {
+            walkAudio.mute = true;
+            sprintAudio.mute = true;
         }
 
         if (canWallJump && Input.GetButtonDown("Jump")) {
