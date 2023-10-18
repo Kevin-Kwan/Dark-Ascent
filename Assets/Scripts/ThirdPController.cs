@@ -92,6 +92,12 @@ public class ThirdPController : MonoBehaviour
     public float health = 100f;
     public float previousHealth = 100f;
     public float maxHealth = 100f;
+
+    // grounded animation
+    private bool grounded = false;
+    // attack animation
+    private bool inAttack = false;
+
     // not used atm
     public float stamina = 100f;
     public float maxStamina = 100f;
@@ -100,6 +106,15 @@ public class ThirdPController : MonoBehaviour
     public float invincibilityTime = 1f;
     public float previousDamageTime = 0f;
     public bool tookDamage = false;
+
+    // audio
+    public AudioSource walkAudio;
+    public AudioSource sprintAudio;
+    public AudioSource slideAudio;
+    public float slideAudioFactor = 12f;
+    public AudioSource jumpAudio;
+    public AudioSource wallJumpAudio;
+    public AudioSource swingAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -135,19 +150,25 @@ public class ThirdPController : MonoBehaviour
             return;
         }
         // attacking animation
-        if (Input.GetMouseButtonDown(0)) {
-                // enable the weapon
-                weapon.SetActive(true);
-                // weapon.GetComponent<Weapon>().Attack();
-                animator.SetBool("isAttacking", true);
-            } else {
-                AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(1);
-                // Check if the attack animation is done playing
-                if (stateInfo.IsName("Attack") && stateInfo.normalizedTime >= 1 && !animator.IsInTransition(1)) {
-                    animator.SetBool("isAttacking", false);
-                    weapon.SetActive(false);
-                }
+        if (Input.GetButtonDown("Fire1") && !inAttack) 
+        {
+            inAttack = true;
+            // enable the weapon
+            weapon.SetActive(true);
+            // weapon.GetComponent<Weapon>().Attack();
+            animator.SetBool("isAttacking", true);
+            swingAudio.Play();
+        }
+        if (inAttack)
+        {
+            AnimatorStateInfo attackStateInfo = animator.GetCurrentAnimatorStateInfo(1);
+            // Check if the attack animation is done playing
+            if (attackStateInfo.IsName("Attack") && attackStateInfo.normalizedTime >= 1 && !animator.IsInTransition(1)) {
+                animator.SetBool("isAttacking", false);
+                weapon.SetActive(false);
+                inAttack = false;
             }
+        }
         // taking damage animation
         if (tookDamage) {
             animator.SetBool("tookDamage", true);
@@ -165,7 +186,7 @@ public class ThirdPController : MonoBehaviour
         // We are using GetAxisRaw in case the player is using a controller.
         // Not tested yet.
         // if holding right click
-        if (Input.GetMouseButton(1)) {
+        if (Input.GetButton("Fire2")) {
             freeLookCamera.m_XAxis.m_InputAxisName = "Mouse X";
             freeLookCamera.m_YAxis.m_InputAxisName = "Mouse Y";
         } else {
@@ -173,6 +194,7 @@ public class ThirdPController : MonoBehaviour
             freeLookCamera.m_YAxis.m_InputAxisName = "";
         }
         if (controller.isGrounded && playerVelocity.y < 0) {
+            grounded = true;
             animator.SetBool("isGrounded", true);
             animator.SetBool("isJumping", false);
             animator.SetBool("isFalling", false);
@@ -182,6 +204,7 @@ public class ThirdPController : MonoBehaviour
             playerVelocity.x = 0f;
             playerVelocity.z = 0f;
         } else {
+            grounded = false;
             animator.SetBool("isGrounded", false);
             if (playerVelocity.y < 0) {
                 animator.SetBool("isFalling", true);
@@ -252,7 +275,7 @@ public class ThirdPController : MonoBehaviour
                 if (!Input.GetButton("Slide"))
                 {
                     // for running, added slight speedup and slowdown
-                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+                    if (Input.GetButton("Sprint"))
                     {
                         currentSpeed = Mathf.Lerp(currentSpeed, runSpeed, speedChangeRate);
                         targetVelY = Mathf.Max(_inputForward, _inputTurn) * 2f;
@@ -266,6 +289,7 @@ public class ThirdPController : MonoBehaviour
             }
             // current speed is preserved while in the air
             controller.Move(moveDirection * currentSpeed * Time.deltaTime);
+
         } else if (controller.isGrounded || jumpCount < maxJumps) {
             // jumping in place
             //Debug.Log(jumpCount);
@@ -289,21 +313,6 @@ public class ThirdPController : MonoBehaviour
                 }
         }
 
-        if (Input.GetButtonDown("Slide") && (currentSpeed == speed))
-        {
-            Debug.Log("slid from walk");
-            currentSpeed += maxWalkDrift;
-            animator.SetBool("isSliding", true);
-        }
-
-        if (Input.GetButtonDown("Slide") && (currentSpeed == runSpeed))
-        {
-            Debug.Log("slid from sprint");
-            currentSpeed += maxSprintDrift;
-            animator.SetBool("isSliding", true);
-        }
-
-
         if (Input.GetButton("Slide"))
         {
             controller.height = crouchedHeight;
@@ -317,12 +326,41 @@ public class ThirdPController : MonoBehaviour
             //     currentSpeed = 0;
             //     controller.height = standingHeight;
             // }
-            
+
+            if (animState.IsName("sliding"))
+            {
+                slideAudio.volume = Mathf.Clamp(currentSpeed * currentSpeed / slideAudioFactor / slideAudioFactor, 0.0f, 1.0f);
+            }
+            else
+            {
+                slideAudio.volume = 0;
+            }
         }
         else
         {
             animator.SetBool("isSliding", false);
             controller.height = standingHeight;
+            slideAudio.volume = 0;
+        }
+
+        if (!Input.GetButton("Slide") && grounded && direction.magnitude >= 0.1f)
+        {
+            
+            if (Input.GetButton("Sprint"))
+            {
+                sprintAudio.mute = false;
+                walkAudio.mute = true;
+            }
+            else
+            {
+                walkAudio.mute = false;
+                sprintAudio.mute = true;
+            }
+        }
+        else
+        {
+            walkAudio.mute = true;
+            sprintAudio.mute = true;
         }
 
         if (canWallJump && Input.GetButtonDown("Jump")) {
@@ -395,7 +433,7 @@ public class ThirdPController : MonoBehaviour
         }
         playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpAdjustment * gravity);
         animator.SetBool("isJumping", true);
-
+        jumpAudio.Play();
     }
     void WallJump() {
         // Calculate the jump direction based on the wall normal and desired jump characteristics.
@@ -422,6 +460,8 @@ public class ThirdPController : MonoBehaviour
         
         // Disable wall-jumping until the player lands on the ground or another wall.
         canWallJump = false;
+
+        wallJumpAudio.Play();
     }
 
     void takeDamage(float damage) {
