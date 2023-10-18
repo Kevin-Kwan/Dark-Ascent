@@ -1258,8 +1258,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 345685260}
-  maxSpeed: 5
-  maxForce: 10
+  maxSpeed: 30
+  maxForce: 60
   heightTolerance: 1
   rotationSpeed: 2
 --- !u!54 &959375932
