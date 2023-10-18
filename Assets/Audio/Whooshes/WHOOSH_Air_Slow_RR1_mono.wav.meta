@@ -1,31 +1,3 @@
-fileFormatVersion: 2
-guid: d3c598914439a5a4f8f1e4ccc1ffb2d1
-labels:
-- usfx
-- imphenzia
-- mono
-- whoosh
-- swoosh
-- air
-- blade
-- swing
-AudioImporter:
-  externalObjects: {}
-  serializedVersion: 6
-  defaultSettings:
-    loadType: 0
-    sampleRateSetting: 0
-    sampleRateOverride: 0
-    compressionFormat: 0
-    quality: 0
-    conversionMode: 0
-  platformSettingOverrides: {}
-  forceToMono: 0
-  normalize: 1
-  preloadAudioData: 1
-  loadInBackground: 0
-  ambisonic: 0
-  3D: 1
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+version https://git-lfs.github.com/spec/v1
+oid sha256:568617cbd4504cf85de20af6de64ddaa7ce9c94841d26cb2ecca917350fdc242
+size 559

@@ -1,30 +1,3 @@
-fileFormatVersion: 2
-guid: a8f70440ad45fdd479fb65cb0fbfa92c
-labels:
-- usfx
-- imphenzia
-- water
-- waterfall
-- nature
-- stereo
-- mono
-AudioImporter:
-  externalObjects: {}
-  serializedVersion: 6
-  defaultSettings:
-    loadType: 0
-    sampleRateSetting: 0
-    sampleRateOverride: 0
-    compressionFormat: 0
-    quality: 0
-    conversionMode: 0
-  platformSettingOverrides: {}
-  forceToMono: 0
-  normalize: 1
-  preloadAudioData: 1
-  loadInBackground: 0
-  ambisonic: 0
-  3D: 1
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+version https://git-lfs.github.com/spec/v1
+oid sha256:1f2a8978da1a3710f53d3a252a963c501ecb0305a258445e5b50c31dd5dac247
+size 556
