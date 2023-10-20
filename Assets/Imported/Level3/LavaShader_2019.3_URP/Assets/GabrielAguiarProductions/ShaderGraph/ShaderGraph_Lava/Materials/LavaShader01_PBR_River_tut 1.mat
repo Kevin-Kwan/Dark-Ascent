@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LavaShader01_PBR_River_tut 1
+  m_Shader: {fileID: -6465566751694194690, guid: fdaa18ef52c5e3244a8116d5519665b5, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_B5C9D148:
+        m_Texture: {fileID: 2800000, guid: d56565e1bd649d84dba854c8c9d5d354, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_F0134D1C:
+        m_Texture: {fileID: 2800000, guid: b1768ab61a310304da1e3fe35ae960bf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Vector1_34B5821F: 3
+    - Vector1_560C5D8B: 1.5
+    - Vector1_5DF8696C: 1.5
+    - Vector1_6A647988: 20
+    - Vector1_7380A523: 0.7
+    - Vector1_8B3DB2F5: 0.05
+    - Vector1_98451CF1: 50
+    - Vector1_9F7C1821: 0.5
+    - Vector1_A56B7958: -0.75
+    - Vector1_B7BD4F85: 0
+    - Vector1_DE43C794: 0
+    m_Colors:
+    - Color_43922951: {r: 49.10583, g: 13.672626, b: 9.033622, a: 1}
+    - Color_7C7DA218: {r: 4.867144, g: 1.4524984, b: 0.40771887, a: 1}
+    - Vector2_22380FC7: {r: 0, g: 0.05, b: 0, a: 0}
+    - Vector2_2905F3B5: {r: 0.69, g: 1.85, b: 0, a: 0}
+    - Vector2_4411282E: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_7F654457: {r: 0, g: 0.08, b: 0, a: 0}
+    - Vector2_9217BD26: {r: -0.07, g: 1.9, b: 0, a: 0}
+    - Vector2_A7034385: {r: 0, g: 0.03, b: 0, a: 0}
+    - Vector2_AC4E5D53: {r: 0.5, g: 3, b: 0, a: 0}
+    - Vector2_C790F9BA: {r: 0, g: 0.075, b: 0, a: 0}
+  m_BuildTextureStacks: []
+--- !u!114 &4519469070375229212
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
