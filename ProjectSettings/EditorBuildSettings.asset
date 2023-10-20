@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Slide.unity
     guid: 03866de4d65c4844d815e024015f2020
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: 6593da9d54d41e940bfced9c4c2e245c
+  - enabled: 1
+    path: Assets/Scenes/Level2Placeholder.unity
+    guid: e24de0536566de14abd96c82cbba7013
+  - enabled: 1
+    path: Assets/Scenes/Level4Placeholder.unity
+    guid: 791a7dc43eefcc549a8610d93904ebbd
   m_configObjects: {}
