@@ -9,6 +9,8 @@ TagManager:
   - MovingPlatform
   - Elevator
   - Hazard
+  - Water
+  - Void
   layers:
   - Default
   - TransparentFX

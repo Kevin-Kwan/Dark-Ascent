@@ -2,7 +2,7 @@
  * File: CheckpointHandler.cs
  * Author: Kevin Kwan
  * Created: 10/16/2023
- * Modified: 10/16/2023
+ * Modified: 10/20/2023
  * Description: This script handles the loading and storage of player's checkpoints in the game.
  * The last checkpoint that the player has reached is stored in PlayerPrefs to be loaded whenever the player continues the game.
  * The last level that the player has reached is also stored in PlayerPrefs to be loaded whenever the player continues the game.
@@ -127,11 +127,13 @@ public class CheckpointHandler : MonoBehaviour
         // Respawn the player at the current checkpoint's TriggerArea
         GameObject currentCheckpoint = checkpoints[currentCheckpointIndex];
         GameObject triggerArea = currentCheckpoint.transform.Find("TriggerArea").gameObject;
+        player.GetComponent<ThirdPController>().health = player.GetComponent<ThirdPController>().maxHealth;
 
         // Disable the player's CharacterController component to allow for position updates
         player.GetComponent<CharacterController>().enabled = false;
         player.transform.position = triggerArea.transform.position;
+        player.GetComponent<ThirdPController>().ghostBody.transform.localPosition = new Vector3(0, -0.75f, 0); // reset the body due to death anim
         player.GetComponent<CharacterController>().enabled = true;
-
+        player.GetComponent<ThirdPController>().tookDamage = false; // reset the damage flag
     }
 }

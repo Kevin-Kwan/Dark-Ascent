@@ -2,7 +2,7 @@
  * File: ThirdPController.cs
  * Authors: Kevin Kwan, Akhilesh Sivaganesan, Mehar Johal, Connor Sugasawa, Amal Chaudry
  * Created: 09/18/2022
- * Modified: 10/16/2023
+ * Modified: 10/20/2023
  * Description: This script handles the movement of the player's game object in the third-person perspective.
  * Camera movement is also handled here as well as player animations.
  * Contributions:
@@ -148,6 +148,9 @@ public class ThirdPController : MonoBehaviour
             // disable this script
             // this.enabled = false;
             return;
+        } else {
+            animator.SetLayerWeight(1, 1);
+            animator.SetBool("isDead", false);
         }
         // attacking animation
         if (Input.GetButtonDown("Fire1") && !inAttack) 
