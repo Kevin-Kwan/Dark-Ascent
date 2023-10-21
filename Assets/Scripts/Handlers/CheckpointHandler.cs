@@ -136,5 +136,6 @@ public class CheckpointHandler : MonoBehaviour
         player.GetComponent<ThirdPController>().ghostBody.transform.localPosition = new Vector3(0, -0.75f, 0); // reset the body due to death anim
         player.GetComponent<CharacterController>().enabled = true;
         player.GetComponent<ThirdPController>().tookDamage = false; // reset the damage flag
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
