@@ -1,3 +1,13 @@
+/*
+ * File: LavaHitbox.cs
+ * Author: Kevin Kwan
+ * Created: 10/20/2023
+ * Modified: 10/20/2023
+ * Description: This script adds functionality to the lava pool/void:
+ *   - If the player touches the lava, they die.
+ *   - If a pushable object touches the lava, it respawns back to its original position.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,6 +42,19 @@ public class LavaHitbox : MonoBehaviour
             else
             {
                 Debug.Log("ThirdPController component not found on player");
+            }
+        }
+        if (other.gameObject.CompareTag("Pushable"))
+        {
+            Pushable pushable = other.gameObject.GetComponent<Pushable>();
+            if (pushable != null)
+            {
+                pushable.Respawn();
+                Debug.Log("Pushable entered lava, respawned");
+            }
+            else
+            {
+                Debug.Log("Pushable component not found on pushable object");
             }
         }
     }

@@ -92,6 +92,7 @@ public class ThirdPController : MonoBehaviour
     public float health = 100f;
     public float previousHealth = 100f;
     public float maxHealth = 100f;
+    public float pushPower = 3.0f;
 
     // grounded animation
     private bool grounded = false;
@@ -404,6 +405,19 @@ public class ThirdPController : MonoBehaviour
             // can be modified to take in an enemy object and get the damage from that
             takeDamage(10f);
         }
+        // handle pushable objects
+        if (hit.gameObject.tag == "Pushable") 
+        {
+            Rigidbody rb = hit.collider.attachedRigidbody;
+            if (rb != null && !rb.isKinematic)
+            {
+                Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+                float effectivePushPower = pushPower / rb.mass;
+                // moving faster = more force
+                effectivePushPower = currentSpeed/speed * effectivePushPower;
+                rb.velocity = pushDirection * effectivePushPower;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -414,7 +428,7 @@ public class ThirdPController : MonoBehaviour
             Debug.Log("trigger entered");
             currentPlatform = other.transform;
             controller.transform.SetParent(currentPlatform);
-          }
+        }
     }
 
     private void OnTriggerExit(Collider other)
