@@ -316,7 +316,7 @@ public class ThirdPController : MonoBehaviour
                     }
                 }
         }
-
+        
         if (Input.GetButton("Slide"))
         {
             controller.height = crouchedHeight;
@@ -413,7 +413,6 @@ public class ThirdPController : MonoBehaviour
             {
                 Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
                 float effectivePushPower = pushPower / rb.mass;
-                // moving faster = more force
                 effectivePushPower = currentSpeed/speed * effectivePushPower;
                 rb.velocity = pushDirection * effectivePushPower;
             }
