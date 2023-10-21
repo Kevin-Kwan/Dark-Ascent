@@ -196,7 +196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3202918794709557852}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -11.999999}
+  m_LocalPosition: {x: 0, y: 1, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -618,7 +618,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3202918795091146906}
-  m_LocalRotation: {x: 0.04155865, y: -6.653665e-16, z: 2.3033706e-17, w: 0.9991361}
+  m_LocalRotation: {x: 0.041558646, y: -1e-45, z: -0, w: 0.9991361}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -696,7 +696,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3202918795354553255}
-  m_LocalRotation: {x: 0.0052376487, y: 2.6884603e-10, z: -1.4081405e-12, w: 0.9999863}
+  m_LocalRotation: {x: 0.0052376487, y: 0.0000000013442298, z: -7.0407e-12, w: 0.9999863}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -877,6 +877,7 @@ MonoBehaviour:
   health: 100
   previousHealth: 100
   maxHealth: 100
+  pushPower: 3
   stamina: 100
   maxStamina: 100
   attackDamage: 10
@@ -1253,7 +1254,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3202918796349368373}
-  m_LocalRotation: {x: 0.023377998, y: 0.000000017235235, z: -4.0303547e-10, w: 0.9997267}
+  m_LocalRotation: {x: 0.023377996, y: -0.000000017168148, z: 4.014666e-10, w: 0.9997267}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

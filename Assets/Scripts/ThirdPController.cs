@@ -122,6 +122,7 @@ public class ThirdPController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen.
+        camera = GameObject.Find("Main Camera").transform;
         standingHeight = controller.height;
         cinput = GetComponent<CharacterInputController>();
         if (cinput == null)

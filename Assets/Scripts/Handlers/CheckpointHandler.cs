@@ -36,6 +36,7 @@ public class CheckpointHandler : MonoBehaviour
         Debug.Log(PlayerPrefs.GetInt("CurrentLevelIndex", 1));
         Debug.Log(PlayerPrefs.GetInt("CurrentCheckpointIndex", 0));
         // player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.Find("3rdPPlayer");
 
         // Add the start and end checkpoints to the checkpoints array
         GameObject[] tempArray = new GameObject[checkpoints.Length + 2];
