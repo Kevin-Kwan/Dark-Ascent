@@ -146,7 +146,7 @@ public class ThirdPController : MonoBehaviour
             // unlock the cursor
             Cursor.lockState = CursorLockMode.None;
             // disable this script
-            this.enabled = false;
+            // this.enabled = false;
             return;
         }
         // attacking animation
