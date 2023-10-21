@@ -1114,7 +1114,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3753e17737f10e247a5250763cdf3d00, type: 2}
+  - {fileID: 2100000, guid: ae03b5e36dfe72540945cff5daedd140, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1201,7 +1201,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3753e17737f10e247a5250763cdf3d00, type: 2}
+  - {fileID: 2100000, guid: ae03b5e36dfe72540945cff5daedd140, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1519,8 +1519,9 @@ GameObject:
   - component: {fileID: 1857013018}
   - component: {fileID: 1857013017}
   - component: {fileID: 1857013016}
-  m_Layer: 0
-  m_Name: Cube
+  - component: {fileID: 1857013021}
+  m_Layer: 7
+  m_Name: PushableBox
   m_TagString: Pushable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1549,7 +1550,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857013015}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9a3cc829f0e83f04e95252035affd320, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1620,6 +1621,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1857013021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857013015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab2576878c13cb42876fd5150935633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1875632502
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,23 +2172,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3202918795091146908, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.04155865
+      value: 0.041558646
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795091146908, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -6.653665e-16
+      value: 0.0000000037220718
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795091146908, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 2.3033706e-17
+      value: -1.54818e-10
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795354553273, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -2.6884597e-10
+      value: 2.6884603e-10
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795354553273, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.4081402e-12
+      value: -1.4081405e-12
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795698466886, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_Name
@@ -2390,6 +2403,6 @@ PrefabInstance:
     - target: {fileID: 7823035533880106352, guid: ad6b2a76ca151544fb44c3405c608087, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3753e17737f10e247a5250763cdf3d00, type: 2}
+      objectReference: {fileID: 2100000, guid: ae03b5e36dfe72540945cff5daedd140, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad6b2a76ca151544fb44c3405c608087, type: 3}
