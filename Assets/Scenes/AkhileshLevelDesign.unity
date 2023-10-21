@@ -263,7 +263,7 @@ MonoBehaviour:
   endCheckpoint: {fileID: 1044415454}
   checkpoints: []
   player: {fileID: 345685253}
-  deathScreenPanel: {fileID: 868499769}
+  deathScreenPanel: {fileID: 0}
   mustTouchAllCheckpoints: 0
   nextSceneName: 
   loadFromStoredData: 0
@@ -3476,7 +3476,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 818056231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b5d6e9edf783a14099ec961d3161ad3, type: 3}
+  m_Script: {fileID: 11500000, guid: 33e06cb688e321c4c8ecf031e2a7c6e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 345685253}
@@ -6288,7 +6288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795354553273, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.0037035774
+      value: -0.0037035767
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795354553273, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.y
@@ -6296,7 +6296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795354553273, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0037035774
+      value: 0.0037035767
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795698466886, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_Name
