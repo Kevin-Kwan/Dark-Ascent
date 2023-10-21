@@ -47,6 +47,9 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0;
 
         isPaused = true;
+
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     public void ResumeGame()
@@ -64,5 +67,7 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1;
 
         isPaused = false;
+
+        Cursor.lockState = CursorLockMode.None;
     }
 }

@@ -2,7 +2,7 @@
  * File: CheckpointHandler.cs
  * Author: Kevin Kwan
  * Created: 10/16/2023
- * Modified: 10/16/2023
+ * Modified: 10/20/2023
  * Description: This script handles the loading and storage of player's checkpoints in the game.
  * The last checkpoint that the player has reached is stored in PlayerPrefs to be loaded whenever the player continues the game.
  * The last level that the player has reached is also stored in PlayerPrefs to be loaded whenever the player continues the game.
@@ -22,6 +22,8 @@ public class CheckpointHandler : MonoBehaviour
     public GameObject endCheckpoint;
     public GameObject[] checkpoints;
     public GameObject player;
+    public GameObject deathScreenPanel;
+
     // boolean flag not implemented because i don't think it's a good idea to force the player to touch all checkpoints
     // if the player finds a creative way to skip a checkpoint, they should be able to do so
     public bool mustTouchAllCheckpoints;
@@ -36,6 +38,7 @@ public class CheckpointHandler : MonoBehaviour
         Debug.Log(PlayerPrefs.GetInt("CurrentLevelIndex", 1));
         Debug.Log(PlayerPrefs.GetInt("CurrentCheckpointIndex", 0));
         // player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.Find("3rdPPlayer");
 
         // Add the start and end checkpoints to the checkpoints array
         GameObject[] tempArray = new GameObject[checkpoints.Length + 2];
@@ -127,11 +130,17 @@ public class CheckpointHandler : MonoBehaviour
         // Respawn the player at the current checkpoint's TriggerArea
         GameObject currentCheckpoint = checkpoints[currentCheckpointIndex];
         GameObject triggerArea = currentCheckpoint.transform.Find("TriggerArea").gameObject;
+        player.GetComponent<ThirdPController>().health = player.GetComponent<ThirdPController>().maxHealth;
 
         // Disable the player's CharacterController component to allow for position updates
         player.GetComponent<CharacterController>().enabled = false;
         player.transform.position = triggerArea.transform.position;
+        player.GetComponent<ThirdPController>().ghostBody.transform.localPosition = new Vector3(0, -0.75f, 0); // reset the body due to death anim
         player.GetComponent<CharacterController>().enabled = true;
+        player.GetComponent<ThirdPController>().tookDamage = false; // reset the damage flag
+        Cursor.lockState = CursorLockMode.Locked;
+
+        deathScreenPanel.SetActive(false);
 
     }
 }
