@@ -18,6 +18,9 @@ public class FrogGrunt : MonoBehaviour
     private Rigidbody rb;
     private GameObject player;
     private bool isGrounded = false;
+    public float attackCooldown = 1f;  // Set a cooldown duration of 1 second (adjust as needed)
+    private float lastAttackTime;  // Variable to store the timestamp of the last attack
+
 
     void Start()
     {
@@ -26,6 +29,7 @@ public class FrogGrunt : MonoBehaviour
         animation = GetComponent<Animation>();  // Get the Animation component
                                                 // Optionally add a check if player or animation is null, and log an error
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        lastAttackTime = -attackCooldown;
     }
 
     void Update()
@@ -46,7 +50,10 @@ public class FrogGrunt : MonoBehaviour
             }
             else
             {
-                AttackPlayer();
+                if (Time.time >= lastAttackTime + attackCooldown)
+                {
+                    AttackPlayer();
+                }
             }
         }
         else
@@ -67,6 +74,7 @@ public class FrogGrunt : MonoBehaviour
         {
             //Vector3 force = new Vector3();
             rb.AddForce(Vector3.up * hopForce + direction * forwardHopForce, ForceMode.Impulse);
+            PlaySound(jumpSound);
             isGrounded = false;
             // chase player here
             //Vector3 chaseDirection = player.transform.position - this.transform.position;
@@ -103,7 +111,7 @@ public class FrogGrunt : MonoBehaviour
 
     void AttackPlayer()
     {
-        // Assuming your player has a script with a TakeDamage(int damage) method
+        lastAttackTime = Time.time;
         player.GetComponent<ThirdPController>().takeDamage(attackDamage);
         animation.Play("Attack1");  // Updated to use Animation.Play with animation name
         PlaySound(attackSound);

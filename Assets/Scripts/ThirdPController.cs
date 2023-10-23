@@ -178,11 +178,15 @@ public class ThirdPController : MonoBehaviour
         if (tookDamage) {
             animator.SetBool("tookDamage", true);
             animator.SetLayerWeight(2, 1);
+            tookDamage = false;
         } else {
-            AnimatorStateInfo damageStateInfo = animator.GetCurrentAnimatorStateInfo(2); 
+            AnimatorStateInfo damageStateInfo = animator.GetCurrentAnimatorStateInfo(2);
             // Check if the damage animation is done playing
+            Debug.Log("Else");
             if (damageStateInfo.IsName("TakeDamage") && damageStateInfo.normalizedTime >= 1 && !animator.IsInTransition(2)) {
+                Debug.Log("Inner Else");
                 animator.SetBool("tookDamage", false);
+                tookDamage = false;
                 animator.SetLayerWeight(2, 0);
             }
         }

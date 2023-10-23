@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class BatGrunt: MonoBehaviour
+public class BatGrunt : MonoBehaviour
 {
     public Transform player;
     public float hoverHeight = 2f;
@@ -20,19 +20,35 @@ public class BatGrunt: MonoBehaviour
     private Animation animation;
     private float originalY;
     private bool canShoot = false;
+    public AudioSource flyingAudioSource;
+    public AudioSource attackAudioSource;
+    public AudioClip attackClip;
+    public AudioClip flyingClip;
 
     void Start()
     {
         animation = GetComponent<Animation>();
         originalY = transform.position.y;
         StartCoroutine(ShootCooldown());
+
+        if (flyingClip != null)
+        {
+            flyingAudioSource.clip = flyingClip;
+            flyingAudioSource.loop = true;  // Set the AudioSource to loop
+        }
     }
 
     void Update()
     {
         float distanceToPlayer = (player.position - transform.position).magnitude;
 
-        if (distanceToPlayer > noticeDistance) return;  // Don't do anything if player is too far away
+        if (distanceToPlayer > noticeDistance)
+        {
+            StopFlyingSound();
+            return;  // Don't do anything if player is too far away
+        }
+
+        PlayFlyingSound();
 
         animation.Play("Idle");
         // Calculate the new y-position for the floating effect
@@ -58,6 +74,7 @@ public class BatGrunt: MonoBehaviour
         if (canShoot && distanceToPlayer < shootDistance)
         {
             canShoot = false;
+            PlaySound(attackClip);
             Shoot();
             StartCoroutine(ShootCooldown());
         }
@@ -71,31 +88,36 @@ public class BatGrunt: MonoBehaviour
 
     private void Shoot()
     {
-        //float theta = 360f / numProjectiles;
-        //Quaternion spawnRotation = transform.rotation;
-        //for (int i = 0; i < numProjectiles; i++)
-        //{
-        //    GameObject p = Instantiate(projectile, projectileSpawn.position, spawnRotation);
-        //    p.GetComponent<Rigidbody>().velocity = p.transform.forward * projectileSpeed;
-        //    Destroy(p, projectileLifespan);  // Destroy the projectile after a set duration
-        //    spawnRotation *= Quaternion.Euler(0, theta, 0);
-        //}
-        // Calculate the direction to the player
         Vector3 playerCenter = player.position;
-        //Vector3 playerCenter = player.position - new Vector3(0, player.GetComponentInChildren<CapsuleCollider>().height / 2, 0);
         Vector3 directionToPlayer = (playerCenter - projectileSpawn.position).normalized;
-        // Create a projectile
-        GameObject p = Instantiate(
-        projectile,
-        projectileSpawn.position,
-        transform.rotation  // Flip the rotation by 180 degrees
-    );
-
-        // Set the projectile's velocity to move towards the player
+        GameObject p = Instantiate(projectile, projectileSpawn.position, transform.rotation);
         p.GetComponent<Rigidbody>().velocity = directionToPlayer * projectileSpeed;
-
-        // Optionally, destroy the projectile after a set duration
         Destroy(p, projectileLifespan);
+    }
 
+    void PlaySound(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            attackAudioSource.loop = false;
+            attackAudioSource.clip = clip;
+            attackAudioSource.Play();
+        }
+    }
+
+    void PlayFlyingSound()
+    {
+        if (!flyingAudioSource.isPlaying)
+        {
+            flyingAudioSource.Play();  // Only play the sound if it's not already playing
+        }
+    }
+
+    void StopFlyingSound()
+    {
+        if (flyingAudioSource.isPlaying)
+        {
+            flyingAudioSource.Stop();  // Only stop the sound if it's currently playing
+        }
     }
 }
