@@ -50,6 +50,6 @@ MonoBehaviour:
   - {fileID: 0}
   player: {fileID: 0}
   mustTouchAllCheckpoints: 0
-  nextSceneName: 
+  nextSceneName: Level4Placeholder
   loadFromStoredData: 1
   currentLevelIndex: 1

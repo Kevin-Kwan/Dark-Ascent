@@ -2,7 +2,7 @@
  * File: ThirdPController.cs
  * Authors: Kevin Kwan, Akhilesh Sivaganesan, Mehar Johal, Connor Sugasawa, Amal Chaudry
  * Created: 09/18/2022
- * Modified: 10/16/2023
+ * Modified: 10/20/2023
  * Description: This script handles the movement of the player's game object in the third-person perspective.
  * Camera movement is also handled here as well as player animations.
  * Contributions:
@@ -92,6 +92,7 @@ public class ThirdPController : MonoBehaviour
     public float health = 100f;
     public float previousHealth = 100f;
     public float maxHealth = 100f;
+    public float pushPower = 3.0f;
 
     // grounded animation
     private bool grounded = false;
@@ -121,6 +122,7 @@ public class ThirdPController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen.
+        camera = GameObject.Find("Main Camera").transform;
         standingHeight = controller.height;
         cinput = GetComponent<CharacterInputController>();
         if (cinput == null)
@@ -146,8 +148,11 @@ public class ThirdPController : MonoBehaviour
             // unlock the cursor
             Cursor.lockState = CursorLockMode.None;
             // disable this script
-            this.enabled = false;
+            // this.enabled = false;
             return;
+        } else {
+            animator.SetLayerWeight(1, 1);
+            animator.SetBool("isDead", false);
         }
         // attacking animation
         if (Input.GetButtonDown("Fire1") && !inAttack) 
@@ -312,7 +317,7 @@ public class ThirdPController : MonoBehaviour
                     }
                 }
         }
-
+        
         if (Input.GetButton("Slide"))
         {
             controller.height = crouchedHeight;
@@ -401,6 +406,18 @@ public class ThirdPController : MonoBehaviour
             // can be modified to take in an enemy object and get the damage from that
             takeDamage(10f);
         }
+        // handle pushable objects
+        if (hit.gameObject.tag == "Pushable") 
+        {
+            Rigidbody rb = hit.collider.attachedRigidbody;
+            if (rb != null && !rb.isKinematic)
+            {
+                Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+                float effectivePushPower = pushPower / rb.mass;
+                effectivePushPower = currentSpeed/speed * effectivePushPower;
+                rb.velocity = pushDirection * effectivePushPower;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -411,7 +428,7 @@ public class ThirdPController : MonoBehaviour
             Debug.Log("trigger entered");
             currentPlatform = other.transform;
             controller.transform.SetParent(currentPlatform);
-          }
+        }
     }
 
     private void OnTriggerExit(Collider other)
