@@ -9,6 +9,9 @@ TagManager:
   - MovingPlatform
   - Elevator
   - Hazard
+  - Water
+  - Void
+  - Pushable
   layers:
   - Default
   - TransparentFX
