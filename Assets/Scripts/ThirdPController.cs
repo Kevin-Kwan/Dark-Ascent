@@ -464,7 +464,8 @@ public class ThirdPController : MonoBehaviour
         wallJumpAudio.Play();
     }
 
-    void takeDamage(float damage) {
+    public void takeDamage(float damage) {
+        Debug.Log("Took damage");
         if (Time.time - previousDamageTime > invincibilityTime) {
             health -= damage;
             previousDamageTime = Time.time;

@@ -2,117 +2,72 @@
 using System.Collections;
 using UnityEngine.AI;
 
-public class DemonMovement : MonoBehaviour {
-    //	private Animator anim;
-    //	int hIdles;
-    //	int hAngry;
-    //	int hAttack;
-    //	int hGrabs;
-    //	int hThumbsUp;
-
-    //	// Use this for initialization
-    //	void Start () {
-    //		anim = GetComponent<Animator> ();
-    //		hIdles = Animator.StringToHash("Idles");
-    //		hAngry = Animator.StringToHash("Angry");
-    //		hAttack = Animator.StringToHash("Attack");
-    //		hGrabs = Animator.StringToHash("Grabs");
-    //		hThumbsUp = Animator.StringToHash("ThumbsUp");
-    //	}
-
-    //	// Update is called once per frame
-    //	void Update () {
-    //	        if (Input.GetKeyDown(KeyCode.W)) {
-    //			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idles")) {
-    //				anim.SetBool(hIdles, false);
-    //				anim.SetBool(hAngry, true);
-    //	             }
-    //	        } else if (Input.GetKeyDown(KeyCode.S)) {
-    //			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idles")) {
-    //				anim.SetBool(hIdles, false);
-    //				anim.SetBool(hAttack, true);
-    //			    }
-    //	        } else if (Input.GetKeyDown(KeyCode.A)) {
-    //			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idles")) {
-    //				anim.SetBool(hIdles, false);
-    //				anim.SetBool(hGrabs, true);
-    //			    }
-    //			} else if (Input.GetKeyDown(KeyCode.D)) {
-    //			if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idles")) {
-    //				anim.SetBool(hIdles, false);
-    //				anim.SetBool(hThumbsUp, true);
-    //			    }
-    //		    } else {
-    //			if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Idles")) {
-    //				anim.SetBool(hIdles, true);
-    //				anim.SetBool(hAngry, false);
-    //				anim.SetBool(hAttack, false);
-    //				anim.SetBool(hGrabs, false);
-    //				anim.SetBool(hThumbsUp, false);
-    //			}
-    //		}
-    //	}
-    //public Transform player;  // Reference to the player's transform
-    //public float chaseSpeed = 3.5f;  // Speed at which the warden chases player
-    //public float verticalSpeed = 2.0f;  // Speed at which the warden adjusts height
-    //public float heightThreshold = 2.0f;  // Minimum difference in height to trigger vertical movement
-    //private NavMeshAgent navMeshAgent;
-    //private float lerpTime = 0;
-
-    //private void Start()
-    //{
-    //    navMeshAgent = GetComponent<NavMeshAgent>();
-    //}
-
-    //private void Update()
-    //{
-    //    // Check for null references to avoid runtime errors
-    //    if (navMeshAgent == null || player == null) return;
-
-    //    // Horizontal movement handled by NavMeshAgent
-    //    navMeshAgent.speed = chaseSpeed;
-
-
-    //    // Manual vertical adjustment
-    //    float heightDifference = player.position.y - transform.position.y;
-    //    Debug.Log(heightDifference);
-    //    if (Mathf.Abs(heightDifference) > heightThreshold)
-    //    {
-    //        Debug.Log("Adjusting Height");
-    //        navMeshAgent.enabled = false;
-    //        lerpTime += Time.deltaTime * verticalSpeed;
-    //        float newY = Mathf.Lerp(transform.position.y, player.position.y, lerpTime);
-    //        Vector3 newPosition = new Vector3(transform.position.x, newY, transform.position.z);
-    //        transform.position = newPosition;
-    //    }
-    //    else
-    //    {
-    //        lerpTime = 0;  // Reset lerpTime when not adjusting height
-    //        navMeshAgent.enabled = true;
-    //        navMeshAgent.SetDestination(player.position);
-    //    }
-    //}
+public class DemonMovement : MonoBehaviour
+{
     public Transform player;
-    public float maxSpeed = 30.0f;  // Increased speed
-    public float maxForce = 60.0f;  // Increased force
+    public float maxSpeed = 30.0f;
+    public float maxForce = 60.0f;
     public float heightTolerance = 1.0f;
-    public float rotationSpeed = 2.0f; // Speed of rotation towards the player
+    public float rotationSpeed = 2.0f;
+    public float attackDistance = 3.0f;  // Distance at which the warden attacks
+    public float stunDuration = 2.0f;  // Duration for which the warden is stunned
     private Rigidbody rb;
+    private Animator anim;
+    private float stunEndTime = 0f;  // Time at which stun ends
+
+    private enum State { Chasing, Attacking, Stunned }
+    private State currentState = State.Chasing;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        switch (currentState)
+        {
+            case State.Chasing:
+                if (distanceToPlayer <= attackDistance)
+                {
+                    currentState = State.Attacking;
+                    anim.SetBool("Attack", true);
+                }
+                else
+                {
+                    SeekAndFacePlayer();
+                }
+                break;
+
+            case State.Attacking:
+                if (distanceToPlayer > attackDistance)
+                {
+                    currentState = State.Chasing;
+                    anim.SetBool("Attack", false);
+                }
+                player.GetComponent<ThirdPController>().takeDamage(10);
+                break;
+
+            case State.Stunned:
+                anim.SetBool("Angry", true);
+                if (Time.time >= stunEndTime)
+                {
+                    currentState = State.Chasing;
+                    anim.SetBool("Angry", false);
+                }
+                break;
+        }
+    }
+
+    void SeekAndFacePlayer()
+    {
         Vector3 steerForce = Seek(player.position);
         AdjustHeight(player.position);
-
         rb.AddForce(steerForce, ForceMode.Force);
         LimitSpeed();
-
-        FaceTarget(player.position); // Face towards the player
+        FaceTarget(player.position);
     }
 
     Vector3 Seek(Vector3 target)
@@ -142,14 +97,20 @@ public class DemonMovement : MonoBehaviour {
     void FaceTarget(Vector3 target)
     {
         Vector3 directionToFace = target - transform.position;
-        directionToFace.y = 0;  // Maintain current elevation level
+        directionToFace.y = 0;
         Quaternion targetRotation = Quaternion.LookRotation(directionToFace);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
 
-        // Ensure the warden stays upright.
         if (transform.rotation.x != 0 || transform.rotation.z != 0)
         {
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         }
+    }
+
+    // Assume this is called when the warden is hit by an attack that stuns
+    public void GetStunned()
+    {
+        currentState = State.Stunned;
+        stunEndTime = Time.time + stunDuration;
     }
 }
