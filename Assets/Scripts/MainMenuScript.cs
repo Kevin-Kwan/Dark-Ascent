@@ -67,6 +67,35 @@ public class MainMenuScript : MonoBehaviour
         }
     }
 
+    public void showMainMenu() {
+        mainMenuPanel.SetActive(true);
+        mainMenu.SetActive(true);
+        settingsMenu.SetActive(false);
+        creditsMenu.SetActive(false);
+        quitConfirmationMenu.SetActive(false);
+    }
+    public void showSettingsMenu() {
+        mainMenuPanel.SetActive(true);
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+        creditsMenu.SetActive(false);
+        quitConfirmationMenu.SetActive(false);
+    }
+    public void showCreditsMenu() {
+        mainMenuPanel.SetActive(false);
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        creditsMenu.SetActive(true);
+        quitConfirmationMenu.SetActive(false);
+    }
+    public void showQuitConfirmationMenu() {
+        mainMenuPanel.SetActive(true);
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        creditsMenu.SetActive(false);
+        quitConfirmationMenu.SetActive(true);
+    }
+
     public void QuitGame()
     {
         Application.Quit();
