@@ -2,7 +2,7 @@
  * File: ThirdPController.cs
  * Authors: Kevin Kwan, Akhilesh Sivaganesan, Mehar Johal, Connor Sugasawa, Amal Chaudry
  * Created: 09/18/2022
- * Modified: 10/20/2023
+ * Modified: 10/27/2023
  * Description: This script handles the movement of the player's game object in the third-person perspective.
  * Camera movement is also handled here as well as player animations.
  * Contributions:
@@ -12,6 +12,7 @@
  *     - Using Scripting, Mechanim, and Animator Layers, Blend Trees, States, and Transitions:
  *       - Implemented animations for walking, running, sliding, jumping, and falling
  *       - Implemented animations for attacking, taking damage, and death
+ *     - Added boolean flags for main menu display purposes
  *   Akhilesh Sivaganesan:
  *     - Implemented wall jumping
  *     - Character switches direction when wall jumping
