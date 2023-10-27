@@ -117,11 +117,17 @@ public class ThirdPController : MonoBehaviour
     public AudioSource wallJumpAudio;
     public AudioSource swingAudio;
 
+    // main menu stuff
+    public bool lockMouseOnStart = true;
+    public bool allowPlayerClick = true;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen.
+        if (lockMouseOnStart) {
+            Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen.
+        }
         camera = GameObject.Find("Main Camera").transform;
         standingHeight = controller.height;
         cinput = GetComponent<CharacterInputController>();
@@ -155,7 +161,7 @@ public class ThirdPController : MonoBehaviour
             animator.SetBool("isDead", false);
         }
         // attacking animation
-        if (Input.GetButtonDown("Fire1") && !inAttack) 
+        if (Input.GetButtonDown("Fire1") && !inAttack && allowPlayerClick) 
         {
             inAttack = true;
             // enable the weapon
