@@ -1,10 +1,12 @@
 /*
  * File: MainMenuScript.cs
  * Authors: Kevin Kwan
- * Created: 09/18/2022
+ * Created: 10/27/2023
  * Modified: 10/27/2023
  * Description: This script handles the main menu of the game and all button interactions.
- *
+ * This script also handles the loading of the first level of the game if the player hasn't played before.
+ * This script also handles the loading of the last level that the player has reached if the player has played before.
+ * The main menu includes the loading and unloading of screens such as the settings menu, credits menu, and quit confirmation menu.
  */
 
 
@@ -98,6 +100,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void QuitGame()
     {
+        Debug.Log("Quitting game...");
         Application.Quit();
     }
 }
