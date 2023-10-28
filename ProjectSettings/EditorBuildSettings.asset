@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Slide.unity
     guid: 03866de4d65c4844d815e024015f2020
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 167c04838f42f4c40b7d0827aef276cb
+  - enabled: 1
     path: Assets/Scenes/Level2Placeholder.unity
     guid: 9f5af8a8fd1dbc64f85a73d71a01dd9b
   - enabled: 1
     path: Assets/Scenes/Level3.unity
-    guid: 167c04838f42f4c40b7d0827aef276cb
+    guid: aaf37b07bd5532c4c98b97a9ec98c11e
   - enabled: 1
     path: Assets/Scenes/Level4Placeholder.unity
     guid: ffb0afc0f9bc6be4aa7f2c0cdac74bb8

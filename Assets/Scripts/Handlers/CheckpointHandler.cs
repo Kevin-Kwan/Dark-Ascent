@@ -115,6 +115,13 @@ public class CheckpointHandler : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            // clear all playerprefs, debugging purposes only
+            PlayerPrefs.DeleteAll();
+            Debug.Log("PlayerPrefs cleared!");
+        }
+
         // clear all playerprefs, debugging purposes only
         if (Input.GetKeyDown(KeyCode.O))
         {

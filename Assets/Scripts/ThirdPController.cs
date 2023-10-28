@@ -2,7 +2,7 @@
  * File: ThirdPController.cs
  * Authors: Kevin Kwan, Akhilesh Sivaganesan, Mehar Johal, Connor Sugasawa, Amal Chaudry
  * Created: 09/18/2022
- * Modified: 10/20/2023
+ * Modified: 10/27/2023
  * Description: This script handles the movement of the player's game object in the third-person perspective.
  * Camera movement is also handled here as well as player animations.
  * Contributions:
@@ -12,6 +12,7 @@
  *     - Using Scripting, Mechanim, and Animator Layers, Blend Trees, States, and Transitions:
  *       - Implemented animations for walking, running, sliding, jumping, and falling
  *       - Implemented animations for attacking, taking damage, and death
+ *     - Added boolean flags for main menu display purposes
  *   Akhilesh Sivaganesan:
  *     - Implemented wall jumping
  *     - Character switches direction when wall jumping
@@ -117,11 +118,17 @@ public class ThirdPController : MonoBehaviour
     public AudioSource wallJumpAudio;
     public AudioSource swingAudio;
 
+    // main menu stuff
+    public bool lockMouseOnStart = true;
+    public bool allowPlayerClick = true;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen.
+        if (lockMouseOnStart) {
+            Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen.
+        }
         camera = GameObject.Find("Main Camera").transform;
         standingHeight = controller.height;
         cinput = GetComponent<CharacterInputController>();
@@ -155,7 +162,7 @@ public class ThirdPController : MonoBehaviour
             animator.SetBool("isDead", false);
         }
         // attacking animation
-        if (Input.GetButtonDown("Fire1") && !inAttack) 
+        if (Input.GetButtonDown("Fire1") && !inAttack && allowPlayerClick) 
         {
             inAttack = true;
             // enable the weapon
