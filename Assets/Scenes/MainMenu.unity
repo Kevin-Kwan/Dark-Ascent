@@ -12519,7 +12519,7 @@ MonoBehaviour:
   settingsMenu: {fileID: 186586402}
   creditsMenu: {fileID: 1896201706}
   quitConfirmationMenu: {fileID: 510768634}
-  firstLevelName: Level3
+  firstLevelName: Level1
   startGameButton: {fileID: 38495400}
   settingsButton: {fileID: 623703256}
   creditsButton: {fileID: 688849884}

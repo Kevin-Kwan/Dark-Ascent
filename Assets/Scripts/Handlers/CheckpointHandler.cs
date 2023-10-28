@@ -22,6 +22,8 @@ public class CheckpointHandler : MonoBehaviour
     public GameObject endCheckpoint;
     public GameObject[] checkpoints;
     public GameObject player;
+    public GameObject deathScreenPanel;
+
     // boolean flag not implemented because i don't think it's a good idea to force the player to touch all checkpoints
     // if the player finds a creative way to skip a checkpoint, they should be able to do so
     public bool mustTouchAllCheckpoints;
@@ -115,13 +117,6 @@ public class CheckpointHandler : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            // clear all playerprefs, debugging purposes only
-            PlayerPrefs.DeleteAll();
-            Debug.Log("PlayerPrefs cleared!");
-        }
-
         // clear all playerprefs, debugging purposes only
         if (Input.GetKeyDown(KeyCode.O))
         {
@@ -144,5 +139,8 @@ public class CheckpointHandler : MonoBehaviour
         player.GetComponent<CharacterController>().enabled = true;
         player.GetComponent<ThirdPController>().tookDamage = false; // reset the damage flag
         Cursor.lockState = CursorLockMode.Locked;
+
+        deathScreenPanel.SetActive(false);
+
     }
 }
