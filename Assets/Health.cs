@@ -16,7 +16,6 @@ public class Health : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-
         if (damageEffect != null)
         {
             Instantiate(damageEffect, transform.position, Quaternion.identity);

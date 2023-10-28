@@ -11,14 +11,21 @@ public class Projectile : MonoBehaviour
     private ParticleSystem onDeathParticles;
 
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
-        var hp = collision.gameObject.GetComponentInParent<ThirdPController>();
-        if (hp && hp.enabled)
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log(hp);
-            hp.takeDamage(damage);
-            Destroy(gameObject);    //destroy this projectile after 
+            // Assume the player has a method called TakeDamage
+            collision.gameObject.GetComponent<ThirdPController>().takeDamage(damage);
+
+            // Optionally, destroy the rock upon hitting the player
+            Destroy(gameObject);
+        }
+        else if (!collision.gameObject.CompareTag("Frog Grunt") && !collision.gameObject.CompareTag("Ground"))  // Assuming the frog has a tag "RockThrowingFrog"
+        {
+            // Optionally, destroy the rock if it hits anything else (not the player or the frog)
+            Destroy(gameObject);
         }
     }
 }

@@ -182,7 +182,6 @@ public class ThirdPController : MonoBehaviour
         } else {
             AnimatorStateInfo damageStateInfo = animator.GetCurrentAnimatorStateInfo(2);
             // Check if the damage animation is done playing
-            Debug.Log("Else");
             if (damageStateInfo.IsName("TakeDamage") && damageStateInfo.normalizedTime >= 1 && !animator.IsInTransition(2)) {
                 Debug.Log("Inner Else");
                 animator.SetBool("tookDamage", false);

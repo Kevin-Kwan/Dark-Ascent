@@ -22,7 +22,6 @@ public class PlayerAttack : MonoBehaviour
         // Process each overlapped enemy
         foreach (Collider hitEnemy in hitEnemies)
         {
-            Debug.Log("HEYA");
             // Assuming each enemy has a script with a TakeDamage method
             Health enemyScript = hitEnemy.GetComponent<Health>();
             if (enemyScript != null)

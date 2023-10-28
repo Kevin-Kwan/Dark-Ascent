@@ -36,6 +36,9 @@ public class BatGrunt : MonoBehaviour
             flyingAudioSource.clip = flyingClip;
             flyingAudioSource.loop = true;  // Set the AudioSource to loop
         }
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
     }
 
     void Update()
@@ -88,8 +91,9 @@ public class BatGrunt : MonoBehaviour
 
     private void Shoot()
     {
+
         Vector3 playerCenter = player.position;
-        Vector3 directionToPlayer = (playerCenter - projectileSpawn.position).normalized;
+        Vector3 directionToPlayer = (player.transform.position - projectileSpawn.position).normalized;
         GameObject p = Instantiate(projectile, projectileSpawn.position, transform.rotation);
         p.GetComponent<Rigidbody>().velocity = directionToPlayer * projectileSpeed;
         Destroy(p, projectileLifespan);
