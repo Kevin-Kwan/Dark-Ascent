@@ -1176,7 +1176,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 186586403}
-  - component: {fileID: 186586404}
   m_Layer: 5
   m_Name: SettingsObjects
   m_TagString: Untagged
@@ -1215,26 +1214,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1105.798, y: 728.699}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &186586404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 186586402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2ded181777489746a9a82052eb23d09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  masterSlider: {fileID: 2003789769}
-  musicSlider: {fileID: 1141422207}
-  sfxSlider: {fileID: 258164940}
-  mixer: {fileID: 24100000, guid: e7e0abb58828f634694f0c98cbf2f7c4, type: 2}
-  multiplier: 30
-  masterVolumeParameter: MasterVolume
-  musicVolumeParameter: MusicVolume
-  sfxVolumeParameter: SFXVolume
 --- !u!1001 &186975054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12137,6 +12116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1924480927}
+  - component: {fileID: 1924480928}
   m_Layer: 5
   m_Name: MainMenuObjects
   m_TagString: Untagged
@@ -12169,6 +12149,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1924480928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924480926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ded181777489746a9a82052eb23d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterSlider: {fileID: 2003789769}
+  musicSlider: {fileID: 1141422207}
+  sfxSlider: {fileID: 258164940}
+  mixer: {fileID: 24100000, guid: e7e0abb58828f634694f0c98cbf2f7c4, type: 2}
+  multiplier: 30
+  masterVolumeParameter: MasterVolume
+  musicVolumeParameter: MusicVolume
+  sfxVolumeParameter: SFXVolume
 --- !u!1001 &1942633454
 PrefabInstance:
   m_ObjectHideFlags: 0

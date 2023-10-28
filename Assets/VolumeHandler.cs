@@ -44,6 +44,9 @@ public class VolumeHandler : MonoBehaviour
         masterSlider.value = PlayerPrefs.HasKey(masterVolumeParameter) ? PlayerPrefs.GetFloat(masterVolumeParameter) : 0.8f;
         musicSlider.value = PlayerPrefs.HasKey(musicVolumeParameter) ? PlayerPrefs.GetFloat(musicVolumeParameter) : 1f;
         sfxSlider.value = PlayerPrefs.HasKey(sfxVolumeParameter) ? PlayerPrefs.GetFloat(sfxVolumeParameter) : 1f;
+        mixer.SetFloat(masterVolumeParameter, Mathf.Log10(masterSlider.value) * multiplier);
+        mixer.SetFloat(musicVolumeParameter, Mathf.Log10(musicSlider.value) * multiplier);
+        mixer.SetFloat(sfxVolumeParameter, Mathf.Log10(sfxSlider.value) * multiplier);
         masterSlider.onValueChanged.AddListener(MasterSliderValueChanged);
         musicSlider.onValueChanged.AddListener(MusicSliderValueChanged);
         sfxSlider.onValueChanged.AddListener(SFXSliderValueChanged);
