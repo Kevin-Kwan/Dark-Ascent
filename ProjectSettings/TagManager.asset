@@ -12,6 +12,9 @@ TagManager:
   - Water
   - Void
   - Pushable
+  - Destructible
+  - Rock
+  - Frog Grunt
   layers:
   - Default
   - TransparentFX
@@ -23,7 +26,7 @@ TagManager:
   - Ground
   - Player
   - Trigger
-  - 
+  - Enemy
   - 
   - 
   - 
