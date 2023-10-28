@@ -1,8 +1,8 @@
 /*
  * File: ThirdPController.cs
- * Authors: Kevin Kwan, Akhilesh Sivaganesan, Mehar Johal, Connor Sugasawa, Amal Chaudry
+ * Authors: Kevin Kwan, Akhilesh Sivaganesan, Mehar Johal, Connor Sugasawara, Amal Chaudry
  * Created: 09/18/2022
- * Modified: 10/27/2023
+ * Modified: 10/28/2023
  * Description: This script handles the movement of the player's game object in the third-person perspective.
  * Camera movement is also handled here as well as player animations.
  * Contributions:
@@ -20,10 +20,12 @@
  *     - Implemented double jumping
  *     - Player can jump multiple times in the air based on maxJumps
  *     - Player jumps reset when they land on the ground
- *   Connor Sugasawa:
+ *   Connor Sugasawara:
  *     - Implemented sliding
  *     - Sliding speed decays over time
  *     - Sliding makes hitbox smaller
+ *     - Implemented audio cues for walking, running, sliding, jumping, walljumping
+ *     - Implemented audio cues for attacking
  *   Amal Chaudry:
  *    - Implemented elevator interaction with the player controller
  *    - Player can now stand on moving platforms and move with them
@@ -88,6 +90,7 @@ public class ThirdPController : MonoBehaviour
     // death animation (temporary)
     public GameObject ghostBody;
     public float floatingSpeed = 0.25f;
+    public GameObject deathScreenPanel; 
 
     // player stats
     public float health = 100f;
@@ -156,6 +159,7 @@ public class ThirdPController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             // disable this script
             // this.enabled = false;
+            deathScreenPanel.SetActive(true);
             return;
         } else {
             animator.SetLayerWeight(1, 1);
@@ -187,10 +191,9 @@ public class ThirdPController : MonoBehaviour
             animator.SetLayerWeight(2, 1);
             tookDamage = false;
         } else {
-            AnimatorStateInfo damageStateInfo = animator.GetCurrentAnimatorStateInfo(2);
+            AnimatorStateInfo damageStateInfo = animator.GetCurrentAnimatorStateInfo(2); 
             // Check if the damage animation is done playing
             if (damageStateInfo.IsName("TakeDamage") && damageStateInfo.normalizedTime >= 1 && !animator.IsInTransition(2)) {
-                Debug.Log("Inner Else");
                 animator.SetBool("tookDamage", false);
                 tookDamage = false;
                 animator.SetLayerWeight(2, 0);
@@ -492,7 +495,6 @@ public class ThirdPController : MonoBehaviour
     }
 
     public void takeDamage(float damage) {
-        Debug.Log("Took damage");
         if (Time.time - previousDamageTime > invincibilityTime) {
             health -= damage;
             previousDamageTime = Time.time;
