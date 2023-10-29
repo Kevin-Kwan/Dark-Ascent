@@ -14,6 +14,7 @@
  *       - Implemented animations for attacking, taking damage, and death
  *     - Added boolean flags for main menu display purposes
  *     - Implemented player health and damage taking
+ *     - Camera now spawns facing whereever the player is facing on start of scene.
  *   Akhilesh Sivaganesan:
  *     - Implemented wall jumping
  *     - Character switches direction when wall jumping
@@ -144,6 +145,9 @@ public class ThirdPController : MonoBehaviour
             Debug.Log("CharacterInput could not be found");
         weapon.SetActive(false);
         animator.SetBool("isDead", false);
+        // freeLookCamera.m_YAxis.Value = transform.eulerAngles.x;
+        freeLookCamera.m_XAxis.Value = transform.eulerAngles.y;
+
 
     }
 
@@ -198,9 +202,11 @@ public class ThirdPController : MonoBehaviour
             tookDamage = false;
             damageAudio.Play();
         } else {
-            AnimatorStateInfo damageStateInfo = animator.GetCurrentAnimatorStateInfo(2); 
+            AnimatorStateInfo damageStateInfo = animator.GetCurrentAnimatorStateInfo(2);
             // Check if the damage animation is done playing
+           // Debug.Log("Else");
             if (damageStateInfo.IsName("TakeDamage") && damageStateInfo.normalizedTime >= 1 && !animator.IsInTransition(2)) {
+               // Debug.Log("Inner Else");
                 animator.SetBool("tookDamage", false);
                 tookDamage = false;
                 animator.SetLayerWeight(2, 0);

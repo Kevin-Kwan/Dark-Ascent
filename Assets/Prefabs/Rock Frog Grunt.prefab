@@ -329,8 +329,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  damageEffect: {fileID: 8438642069737353946, guid: 250a38cc552a6fd4792c47d0c6c6b703, type: 3}
-  deathEffect: {fileID: 8438642069737353946, guid: 250a38cc552a6fd4792c47d0c6c6b703, type: 3}
+  damageEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0, type: 3}
+  deathEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0, type: 3}
 --- !u!114 &5585948740693916909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81140d2d848c4c49a0f0a0e0b1d89a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   noticeDistance: 10
   attackDistance: 2
   walkSpeed: 2
@@ -354,8 +355,10 @@ MonoBehaviour:
   walkAudioSource: {fileID: 5585948740774805013}
   attackSound: {fileID: 8300000, guid: 8401456349c492a489ed90469e317e43, type: 3}
   walkSound: {fileID: 8300000, guid: a58e438b7cfa445498120af0e6169082, type: 3}
+  meleeSound: {fileID: 8300000, guid: a3580a1ee22584351953b4e55b422139, type: 3}
   throwOrigin: {fileID: 5585948740555638668}
   animation: {fileID: 0}
+  attackDamage: 10
   projectileLifespan: 3
 --- !u!1 &5585948740693817959
 GameObject:
