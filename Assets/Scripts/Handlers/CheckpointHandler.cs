@@ -37,6 +37,9 @@ public class CheckpointHandler : MonoBehaviour
     {
         Debug.Log(PlayerPrefs.GetInt("CurrentLevelIndex", 1));
         Debug.Log(PlayerPrefs.GetInt("CurrentCheckpointIndex", 0));
+        if (currentCheckpointIndex == 0) {
+            Debug.Log("on start");
+        }
         // player = GameObject.FindGameObjectWithTag("Player");
         player = GameObject.Find("3rdPPlayer");
 
