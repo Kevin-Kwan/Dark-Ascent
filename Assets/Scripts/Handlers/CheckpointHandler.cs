@@ -25,6 +25,8 @@
  *    - Warden Respawning
  *   Connor Sugasawara:
  *    - Integrated with Unity Input System
+ *   Akhilesh Sivganesan:
+ *    - Add death screen and respawn functionality
  */
 
 using UnityEngine;

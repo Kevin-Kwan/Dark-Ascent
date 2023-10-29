@@ -1,3 +1,14 @@
+/*
+ * File: CheckpointManager.cs
+ * Author: Akhilesh Sivaganesan
+ * Created: 10/16/2023
+ * Modified: 10/29/2023
+ * Description: Proximity trigger used to trigger ui panels in the ui canvas
+ * 
+ * Contributions:
+ *   Akhilesh Sivganesan:
+ *    - SetActive given popup panel when in zone
+ */
 using UnityEngine;
 
 public class ProximityTrigger : MonoBehaviour
