@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level2.unity
     guid: 6480d08136dac6746a5dabb5c96618fd
   - enabled: 1
+    path: Assets/Scenes/Warden Cutscene.unity
+    guid: 12aa8d07132114347a93918808d0fb4c
+  - enabled: 1
     path: Assets/Scenes/Level3.unity
     guid: aaf37b07bd5532c4c98b97a9ec98c11e
   - enabled: 1

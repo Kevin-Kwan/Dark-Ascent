@@ -4701,7 +4701,7 @@ PrefabInstance:
       objectReference: {fileID: 1044415454}
     - target: {fileID: 1085536942304218185, guid: 6cbddbc19f4db78439542c53e4447125, type: 3}
       propertyPath: nextSceneName
-      value: Level3
+      value: Warden Cutscene
       objectReference: {fileID: 0}
     - target: {fileID: 1085536942304218185, guid: 6cbddbc19f4db78439542c53e4447125, type: 3}
       propertyPath: startCheckpoint

@@ -6410,6 +6410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CheckpointHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 1085536942304218184, guid: 6cbddbc19f4db78439542c53e4447125, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1085536942304218185, guid: 6cbddbc19f4db78439542c53e4447125, type: 3}
       propertyPath: player
       value: 
