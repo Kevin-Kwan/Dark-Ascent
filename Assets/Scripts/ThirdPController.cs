@@ -1,8 +1,8 @@
 /*
  * File: ThirdPController.cs
  * Authors: Kevin Kwan, Akhilesh Sivaganesan, Mehar Johal, Connor Sugasawara, Amal Chaudry
- * Created: 09/18/2022
- * Modified: 10/28/2023
+ * Created: 09/18/2023
+ * Modified: 10/29/2023
  * Description: This script handles the movement of the player's game object in the third-person perspective.
  * Camera movement is also handled here as well as player animations.
  * Contributions:
@@ -13,6 +13,7 @@
  *       - Implemented animations for walking, running, sliding, jumping, and falling
  *       - Implemented animations for attacking, taking damage, and death
  *     - Added boolean flags for main menu display purposes
+ *     - Implemented player health and damage taking
  *   Akhilesh Sivaganesan:
  *     - Implemented wall jumping
  *     - Character switches direction when wall jumping
@@ -160,7 +161,7 @@ public class ThirdPController : MonoBehaviour
             // we prevent the player from moving after death
             // unlock the cursor
             Cursor.lockState = CursorLockMode.None;
-            deathAudio.Play();
+            // deathAudio.Play(); performing temp fix by having death audio on the death screen panel
             // disable this script
             // this.enabled = false;
             deathScreenPanel.SetActive(true);
