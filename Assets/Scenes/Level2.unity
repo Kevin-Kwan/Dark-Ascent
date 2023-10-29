@@ -134,6 +134,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock Frog Grunt
       objectReference: {fileID: 0}
+    - target: {fileID: 5585948740693916882, guid: 473b3d9f47e90ee4896a8fda9f73db26, type: 3}
+      propertyPath: deathEffect
+      value: 
+      objectReference: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0, type: 3}
+    - target: {fileID: 5585948740693916882, guid: 473b3d9f47e90ee4896a8fda9f73db26, type: 3}
+      propertyPath: damageEffect
+      value: 
+      objectReference: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0, type: 3}
     - target: {fileID: 5585948740694304325, guid: 473b3d9f47e90ee4896a8fda9f73db26, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -1357,6 +1365,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock Frog Grunt (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5585948740693916882, guid: 473b3d9f47e90ee4896a8fda9f73db26, type: 3}
+      propertyPath: deathEffect
+      value: 
+      objectReference: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0, type: 3}
+    - target: {fileID: 5585948740693916882, guid: 473b3d9f47e90ee4896a8fda9f73db26, type: 3}
+      propertyPath: damageEffect
+      value: 
+      objectReference: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0, type: 3}
     - target: {fileID: 5585948740694304325, guid: 473b3d9f47e90ee4896a8fda9f73db26, type: 3}
       propertyPath: m_RootOrder
       value: 17
