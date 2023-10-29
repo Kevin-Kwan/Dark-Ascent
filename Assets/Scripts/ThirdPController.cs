@@ -14,9 +14,11 @@
  *       - Implemented animations for attacking, taking damage, and death
  *     - Added boolean flags for main menu display purposes
  *     - Implemented player health and damage taking
+ *     - Camera now spawns facing whereever the player is facing on start of scene.
  *   Akhilesh Sivaganesan:
  *     - Implemented wall jumping
  *     - Character switches direction when wall jumping
+ *     - Add death screen panel
  *   Mehar Johal:
  *     - Implemented double jumping
  *     - Player can jump multiple times in the air based on maxJumps
@@ -143,6 +145,9 @@ public class ThirdPController : MonoBehaviour
             Debug.Log("CharacterInput could not be found");
         weapon.SetActive(false);
         animator.SetBool("isDead", false);
+        // freeLookCamera.m_YAxis.Value = transform.eulerAngles.x;
+        freeLookCamera.m_XAxis.Value = transform.eulerAngles.y;
+
 
     }
 

@@ -2983,6 +2983,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
       objectReference: {fileID: 343954203505359248}
+    - target: {fileID: 226822235, guid: 7514793d28269ff4ba2f29091d5cc27d, type: 3}
+      propertyPath: m_text
+      value: Restart
+      objectReference: {fileID: 0}
     - target: {fileID: 760849641, guid: 7514793d28269ff4ba2f29091d5cc27d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

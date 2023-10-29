@@ -181,4 +181,10 @@ public class CheckpointHandler : MonoBehaviour
         GameObject triggerArea = currentWardenSpawnpoint.transform.Find("TriggerArea").gameObject;
         warden.transform.position = triggerArea.transform.position;
     }
+
+    // intended use for Boss Fight
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
