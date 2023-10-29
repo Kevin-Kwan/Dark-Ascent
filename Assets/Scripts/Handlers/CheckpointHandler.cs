@@ -2,7 +2,7 @@
  * File: CheckpointHandler.cs
  * Author: Kevin Kwan
  * Created: 10/16/2023
- * Modified: 10/28/2023
+ * Modified: 10/29/2023
  * Description: This script handles the loading and storage of player's checkpoints in the game.
  * The last checkpoint that the player has reached is stored in PlayerPrefs to be loaded whenever the player continues the game.
  * The last level that the player has reached is also stored in PlayerPrefs to be loaded whenever the player continues the game.
@@ -15,6 +15,16 @@
  * The condition for whether a level will contain a Warden is determined by the wardenExists boolean.
  * If this is true, you must have at least one WardenSpawnpoint in the scene.
  * Use the ExampleWardenSpawnpoint Prefab as a template for creating WardenSpawnpoints.
+ * 
+ * Contributions:
+ *   Kevin Kwan:
+ *    - Checkpoint Loading
+ *    - Checkpoint Storage
+ *    - Respawning at Checkpoints
+ *    - Level Progression
+ *    - Warden Respawning
+ *   Connor Sugasawara:
+ *    - Integrated with Unity Input System
  */
 
 using UnityEngine;
@@ -116,11 +126,13 @@ public class CheckpointHandler : MonoBehaviour
             SceneManager.LoadScene(nextSceneName);
         }
 
-        // If the 'R' key is pressed, respawn the player
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RespawnPlayer();
-        }
+        // Debugging Only
+
+        // // If the 'R' key is pressed, respawn the player
+        // if (Input.GetButtonDown("Restart"))
+        // {
+        //     RespawnPlayer();
+        // }
 
         // If the 'P' key is pressed, reset the playerprefs to current level and start checkpoint
         if (Input.GetKeyDown(KeyCode.P))
