@@ -1,4 +1,14 @@
-﻿using UnityEngine;
+﻿/*
+ * File: Demon Movement.cs
+ * Authors: Mehar Johal
+ * Created: 09/18/2023
+ * Modified: 10/28/2023
+ * Description: This script handles the movement and attack and AI for the Warden chasing the player
+ * Contributions:
+ *  Mehar Johal - 
+ *  (Sole contributor)
+ */
+using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 
