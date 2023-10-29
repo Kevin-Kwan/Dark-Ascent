@@ -15,6 +15,16 @@
  * The condition for whether a level will contain a Warden is determined by the wardenExists boolean.
  * If this is true, you must have at least one WardenSpawnpoint in the scene.
  * Use the ExampleWardenSpawnpoint Prefab as a template for creating WardenSpawnpoints.
+ * 
+ * Contributions:
+ *   Kevin Kwan:
+ *    - Checkpoint Loading
+ *    - Checkpoint Storage
+ *    - Respawning at Checkpoints
+ *    - Level Progression
+ *    - Warden Respawning
+ *   Connor Sugasawara:
+ *    - Integrated with Unity Input System
  */
 
 using UnityEngine;
@@ -117,7 +127,7 @@ public class CheckpointHandler : MonoBehaviour
         }
 
         // If the 'R' key is pressed, respawn the player
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetButtonDown("Restart"))
         {
             RespawnPlayer();
         }

@@ -24,8 +24,9 @@
  *     - Implemented sliding
  *     - Sliding speed decays over time
  *     - Sliding makes hitbox smaller
+ *     - Integrated with Unity Input System
  *     - Implemented audio cues for walking, running, sliding, jumping, walljumping
- *     - Implemented audio cues for attacking
+ *     - Implemented audio cues for attacking, taking damage, and death
  *   Amal Chaudry:
  *    - Implemented elevator interaction with the player controller
  *    - Player can now stand on moving platforms and move with them
@@ -120,6 +121,8 @@ public class ThirdPController : MonoBehaviour
     public AudioSource jumpAudio;
     public AudioSource wallJumpAudio;
     public AudioSource swingAudio;
+    public AudioSource damageAudio;
+    public AudioSource deathAudio;
 
     // main menu stuff
     public bool lockMouseOnStart = true;
@@ -157,6 +160,7 @@ public class ThirdPController : MonoBehaviour
             // we prevent the player from moving after death
             // unlock the cursor
             Cursor.lockState = CursorLockMode.None;
+            deathAudio.Play();
             // disable this script
             // this.enabled = false;
             deathScreenPanel.SetActive(true);
@@ -190,6 +194,7 @@ public class ThirdPController : MonoBehaviour
             animator.SetBool("tookDamage", true);
             animator.SetLayerWeight(2, 1);
             tookDamage = false;
+            damageAudio.Play();
         } else {
             AnimatorStateInfo damageStateInfo = animator.GetCurrentAnimatorStateInfo(2); 
             // Check if the damage animation is done playing
