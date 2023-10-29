@@ -193,7 +193,7 @@ BoxCollider:
   m_GameObject: {fileID: 4947942142033416127}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.8092325, y: 0.7363045, z: 0.8813668}
   m_Center: {x: 0.000000047751225, y: -0.014935469, z: 0.4568052}
@@ -210,9 +210,10 @@ GameObject:
   - component: {fileID: 682005843865979444}
   - component: {fileID: 7587026554253548176}
   - component: {fileID: 6467176796483651718}
+  - component: {fileID: 1969601365}
   m_Layer: 10
   m_Name: Bat Grunt
-  m_TagString: Untagged
+  m_TagString: Frog Grunt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,7 +225,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4948251936368287893}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0.0000029802318}
+  m_LocalRotation: {x: -0, y: -1, z: 0, w: -0.0000001872535}
   m_LocalPosition: {x: 0.94, y: 4.6, z: 73.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -266,8 +267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  damageEffect: {fileID: 8438642069737353946, guid: 250a38cc552a6fd4792c47d0c6c6b703, type: 3}
-  deathEffect: {fileID: 8438642069737353946, guid: 250a38cc552a6fd4792c47d0c6c6b703, type: 3}
+  damageEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0, type: 3}
+  deathEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0, type: 3}
 --- !u!114 &7587026554253548176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,7 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  hoverHeight: 2
+  hoverHeight: 1
   floatSpeed: 1
   floatAmplitude: 0.5
   moveSpeed: 2
@@ -314,6 +315,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1969601365
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4948251936368287893}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &4949032447032552830
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +480,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4949032447663003524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.145, z: 0.436}
+  m_LocalPosition: {x: -0, y: 0.301, z: 0.477}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

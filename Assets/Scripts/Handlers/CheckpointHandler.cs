@@ -2,7 +2,7 @@
  * File: CheckpointHandler.cs
  * Author: Kevin Kwan
  * Created: 10/16/2023
- * Modified: 10/20/2023
+ * Modified: 10/28/2023
  * Description: This script handles the loading and storage of player's checkpoints in the game.
  * The last checkpoint that the player has reached is stored in PlayerPrefs to be loaded whenever the player continues the game.
  * The last level that the player has reached is also stored in PlayerPrefs to be loaded whenever the player continues the game.
@@ -11,6 +11,10 @@
  * When the player reaches the last checkpoint, the player will be respawned at the first checkpoint of the next level.
  * Use the ExampleCheckpointPrefab as a template for creating checkpoints.
  * Start and end checkpoints are required for the script to work. These are treated as checkpoints as well.
+ * Every time the player respawns, the Warden is also respawned at their own associating spawnpoint.
+ * The condition for whether a level will contain a Warden is determined by the wardenExists boolean.
+ * If this is true, you must have at least one WardenSpawnpoint in the scene.
+ * Use the ExampleWardenSpawnpoint Prefab as a template for creating WardenSpawnpoints.
  */
 
 using UnityEngine;
@@ -18,6 +22,7 @@ using UnityEngine.SceneManagement;
 
 public class CheckpointHandler : MonoBehaviour
 {
+    // Player Checkpoints
     public GameObject startCheckpoint; // starts at index 0
     public GameObject endCheckpoint;
     public GameObject[] checkpoints;
@@ -33,6 +38,11 @@ public class CheckpointHandler : MonoBehaviour
 
     private int currentCheckpointIndex = 0;
 
+    // Warden Spawnpoints
+    public bool wardenExists = false;
+    public GameObject[] wardenSpawnpoints;
+    public GameObject warden;
+
     private void Start()
     {
         Debug.Log(PlayerPrefs.GetInt("CurrentLevelIndex", 1));
@@ -42,6 +52,9 @@ public class CheckpointHandler : MonoBehaviour
         }
         // player = GameObject.FindGameObjectWithTag("Player");
         player = GameObject.Find("3rdPPlayer");
+        if (wardenExists) {
+            warden = GameObject.Find("Warden");
+        }
 
         // Add the start and end checkpoints to the checkpoints array
         GameObject[] tempArray = new GameObject[checkpoints.Length + 2];
@@ -87,7 +100,7 @@ public class CheckpointHandler : MonoBehaviour
             {
                 currentCheckpointIndex = i;
                 PlayerPrefs.SetInt("CurrentCheckpointIndex", currentCheckpointIndex);
-                Debug.Log("Checkpoint " + currentCheckpointIndex + " reached!");
+                // Debug.Log("Checkpoint " + currentCheckpointIndex + " reached!");
                 break;
             }
         }
@@ -144,6 +157,19 @@ public class CheckpointHandler : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         deathScreenPanel.SetActive(false);
+        Debug.Log("Respawning Player");
+        if (wardenExists) {
+            RespawnWarden();
+        }
 
+    }
+
+    public void RespawnWarden()
+    {
+        Debug.Log("Respawning Warden");
+        // Respawn the warden at the current wardenspawnpoint's TriggerArea
+        GameObject currentWardenSpawnpoint = wardenSpawnpoints[currentCheckpointIndex];
+        GameObject triggerArea = currentWardenSpawnpoint.transform.Find("TriggerArea").gameObject;
+        warden.transform.position = triggerArea.transform.position;
     }
 }
