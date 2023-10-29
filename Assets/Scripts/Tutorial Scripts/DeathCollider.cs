@@ -1,3 +1,16 @@
+/*
+ * File: CheckpointManager.cs
+ * Author: Akhilesh Sivaganesan
+ * Created: 10/16/2023
+ * Modified: 10/29/2023
+ * Description: Death collider designed to be used with old lava, trigger 
+ * 
+ * Contributions:
+ *   Akhilesh Sivganesan:
+ *    - Add respawn player
+ *    - Add death screen panel
+ *    - Add trigger enter and include debug statements 
+ */
 using UnityEngine;
 using UnityEngine.UI;
 

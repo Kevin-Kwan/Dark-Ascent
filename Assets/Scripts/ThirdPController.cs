@@ -17,6 +17,7 @@
  *   Akhilesh Sivaganesan:
  *     - Implemented wall jumping
  *     - Character switches direction when wall jumping
+ *     - Add death screen panel
  *   Mehar Johal:
  *     - Implemented double jumping
  *     - Player can jump multiple times in the air based on maxJumps

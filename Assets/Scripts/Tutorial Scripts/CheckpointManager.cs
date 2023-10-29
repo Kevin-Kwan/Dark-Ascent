@@ -1,3 +1,14 @@
+/*
+ * File: CheckpointManager.cs
+ * Author: Akhilesh Sivaganesan
+ * Created: 10/16/2023
+ * Modified: 10/29/2023
+ * Description: Old checkpoint manager used to test respawning in tutorial level. 
+ * 
+ * Contributions:
+ *   Akhilesh Sivganesan:
+ *    - Add respawn player 
+ */
 using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
