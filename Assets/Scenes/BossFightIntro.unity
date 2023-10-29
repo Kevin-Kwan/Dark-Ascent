@@ -1979,6 +1979,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6037483639426748717, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+      propertyPath: m_TagString
+      value: PlayerWeapon
+      objectReference: {fileID: 0}
     - target: {fileID: 9062273657160759104, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -11168,7 +11172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 1972446368}
   fadeDuration: 1
-  sceneToLoad: Boss Fight
+  sceneToLoad: Level5
   delayBeforeFade: 7
   player: {fileID: 0}
   cutsceneAudio: {fileID: 0}

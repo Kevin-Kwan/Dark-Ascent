@@ -2922,7 +2922,7 @@ MonoBehaviour:
   fadeImage: {fileID: 938967718}
   fadeDuration: 0.5
   sceneToLoad: MainMenu
-  delayBeforeFade: 3
+  delayBeforeFade: 7
   player: {fileID: 985098704}
   cutsceneAudio: {fileID: 0}
   warden: {fileID: 295952522}

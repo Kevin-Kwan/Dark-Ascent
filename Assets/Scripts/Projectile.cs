@@ -1,3 +1,13 @@
+/*
+ * File: Projectile.cs
+ * Authors: Mehar Johal
+ * Created: 09/18/2023
+ * Modified: 10/28/2023
+ * Description: This script handles projectiles for the Bat Grunt
+ * Contributions:
+ *  Mehar Johal - 
+ *  (Sole contributor)
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

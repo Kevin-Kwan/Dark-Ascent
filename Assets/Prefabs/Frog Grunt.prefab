@@ -863,8 +863,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  damageEffect: {fileID: 8438642069737353946, guid: 250a38cc552a6fd4792c47d0c6c6b703, type: 3}
-  deathEffect: {fileID: 8438642069737353946, guid: 250a38cc552a6fd4792c47d0c6c6b703, type: 3}
+  damageEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0, type: 3}
+  deathEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0, type: 3}
 --- !u!1 &3469806208567639391
 GameObject:
   m_ObjectHideFlags: 0
