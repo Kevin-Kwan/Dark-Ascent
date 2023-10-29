@@ -8,8 +8,12 @@ public class PauseManager : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true; // Make the cursor visible
+        // Kevin: This interferes with the cursor lock state in the PlayerController script
+        // On start, the cursor should be locked and invisible.
+        // The cursor only becomes visible when the game is paused or the player has died.
+        
+        // Cursor.lockState = CursorLockMode.None;
+        // Cursor.visible = true; // Make the cursor visible
         // Make sure the pause menu is initially inactive
         pauseMenu.SetActive(false);
     }
