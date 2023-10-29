@@ -2,7 +2,7 @@
  * File: CheckpointHandler.cs
  * Author: Kevin Kwan
  * Created: 10/16/2023
- * Modified: 10/28/2023
+ * Modified: 10/29/2023
  * Description: This script handles the loading and storage of player's checkpoints in the game.
  * The last checkpoint that the player has reached is stored in PlayerPrefs to be loaded whenever the player continues the game.
  * The last level that the player has reached is also stored in PlayerPrefs to be loaded whenever the player continues the game.
@@ -126,11 +126,13 @@ public class CheckpointHandler : MonoBehaviour
             SceneManager.LoadScene(nextSceneName);
         }
 
-        // If the 'R' key is pressed, respawn the player
-        if (Input.GetButtonDown("Restart"))
-        {
-            RespawnPlayer();
-        }
+        // Debugging Only
+
+        // // If the 'R' key is pressed, respawn the player
+        // if (Input.GetButtonDown("Restart"))
+        // {
+        //     RespawnPlayer();
+        // }
 
         // If the 'P' key is pressed, reset the playerprefs to current level and start checkpoint
         if (Input.GetKeyDown(KeyCode.P))
