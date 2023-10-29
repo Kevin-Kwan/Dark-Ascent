@@ -198,7 +198,6 @@ GameObject:
   - component: {fileID: 20503035}
   - component: {fileID: 20503034}
   - component: {fileID: 20503039}
-  - component: {fileID: 20503040}
   - component: {fileID: 20503041}
   m_Layer: 5
   m_Name: UICanvas
@@ -305,27 +304,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseManager: {fileID: 1131837782}
---- !u!114 &20503040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 20503033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4584636e63a39dd45a21d42d7e732352, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startCheckpoint: {fileID: 705530837}
-  endCheckpoint: {fileID: 1044415454}
-  checkpoints: []
-  player: {fileID: 345685253}
-  deathScreenPanel: {fileID: 868499769}
-  mustTouchAllCheckpoints: 0
-  nextSceneName: 
-  loadFromStoredData: 0
-  currentLevelIndex: 1
 --- !u!114 &20503041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2842,7 +2820,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071879028}
-  m_LocalRotation: {x: 0.02337799, y: -0.000000035051976, z: 8.1966867e-10, w: 0.9997267}
+  m_LocalRotation: {x: 0.02337799, y: 0.00000003502494, z: -8.1903645e-10, w: 0.9997267}
   m_LocalPosition: {x: -6.7877007, y: 2, z: -5.1095133}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4826,15 +4804,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3202918796349368375, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.023036527
+      value: -0.023036525
       objectReference: {fileID: 0}
     - target: {fileID: 3202918796349368375, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17024292
+      value: 0.17024289
       objectReference: {fileID: 0}
     - target: {fileID: 3202918796349368375, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0039810245
+      value: -0.003981023
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3202918795698466907, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
@@ -4877,7 +4855,7 @@ PrefabInstance:
     - target: {fileID: 4223462803063318078, guid: 1a0a4d949a20de243a2398c088160c50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 20503040}
+      objectReference: {fileID: 0}
     - target: {fileID: 4223462803063318078, guid: 1a0a4d949a20de243a2398c088160c50, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RespawnPlayer
