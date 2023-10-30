@@ -1,8 +1,8 @@
 /*
  * File: ThirdPController.cs
  * Authors: Kevin Kwan, Akhilesh Sivaganesan, Mehar Johal, Connor Sugasawara, Amal Chaudry
- * Created: 09/18/2022
- * Modified: 10/28/2023
+ * Created: 09/18/2023
+ * Modified: 10/29/2023
  * Description: This script handles the movement of the player's game object in the third-person perspective.
  * Camera movement is also handled here as well as player animations.
  * Contributions:
@@ -13,9 +13,12 @@
  *       - Implemented animations for walking, running, sliding, jumping, and falling
  *       - Implemented animations for attacking, taking damage, and death
  *     - Added boolean flags for main menu display purposes
+ *     - Implemented player health and damage taking
+ *     - Camera now spawns facing whereever the player is facing on start of scene.
  *   Akhilesh Sivaganesan:
  *     - Implemented wall jumping
  *     - Character switches direction when wall jumping
+ *     - Add death screen panel
  *   Mehar Johal:
  *     - Implemented double jumping
  *     - Player can jump multiple times in the air based on maxJumps
@@ -24,8 +27,9 @@
  *     - Implemented sliding
  *     - Sliding speed decays over time
  *     - Sliding makes hitbox smaller
+ *     - Integrated with Unity Input System
  *     - Implemented audio cues for walking, running, sliding, jumping, walljumping
- *     - Implemented audio cues for attacking
+ *     - Implemented audio cues for attacking, taking damage, and death
  *   Amal Chaudry:
  *    - Implemented elevator interaction with the player controller
  *    - Player can now stand on moving platforms and move with them
@@ -120,6 +124,8 @@ public class ThirdPController : MonoBehaviour
     public AudioSource jumpAudio;
     public AudioSource wallJumpAudio;
     public AudioSource swingAudio;
+    public AudioSource damageAudio;
+    public AudioSource deathAudio;
 
     // main menu stuff
     public bool lockMouseOnStart = true;
@@ -139,6 +145,9 @@ public class ThirdPController : MonoBehaviour
             Debug.Log("CharacterInput could not be found");
         weapon.SetActive(false);
         animator.SetBool("isDead", false);
+        // freeLookCamera.m_YAxis.Value = transform.eulerAngles.x;
+        freeLookCamera.m_XAxis.Value = transform.eulerAngles.y;
+
 
     }
 
@@ -157,6 +166,7 @@ public class ThirdPController : MonoBehaviour
             // we prevent the player from moving after death
             // unlock the cursor
             Cursor.lockState = CursorLockMode.None;
+            // deathAudio.Play(); performing temp fix by having death audio on the death screen panel
             // disable this script
             // this.enabled = false;
             deathScreenPanel.SetActive(true);
@@ -190,10 +200,13 @@ public class ThirdPController : MonoBehaviour
             animator.SetBool("tookDamage", true);
             animator.SetLayerWeight(2, 1);
             tookDamage = false;
+            damageAudio.Play();
         } else {
-            AnimatorStateInfo damageStateInfo = animator.GetCurrentAnimatorStateInfo(2); 
+            AnimatorStateInfo damageStateInfo = animator.GetCurrentAnimatorStateInfo(2);
             // Check if the damage animation is done playing
+           // Debug.Log("Else");
             if (damageStateInfo.IsName("TakeDamage") && damageStateInfo.normalizedTime >= 1 && !animator.IsInTransition(2)) {
+               // Debug.Log("Inner Else");
                 animator.SetBool("tookDamage", false);
                 tookDamage = false;
                 animator.SetLayerWeight(2, 0);

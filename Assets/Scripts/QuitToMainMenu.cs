@@ -1,3 +1,15 @@
+/*
+ * File: CheckpointManager.cs
+ * Author: Akhilesh Sivaganesan
+ * Created: 10/27/2023
+ * Modified: 10/29/2023
+ * Description: Simple function for quitting to main menu from pause menu
+ * 
+ * Contributions:
+ *   Akhilesh Sivganesan:
+ *    - Add on click function
+ *    - Cursor should be not locked when going to main menu
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

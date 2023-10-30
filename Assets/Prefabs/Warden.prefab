@@ -1158,14 +1158,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd81e0e1d8995924dacc4424c8f49141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 3202918795698466886, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
   maxSpeed: 15
   maxForce: 30
   heightTolerance: 1
   rotationSpeed: 2
   attackDistance: 3
   stunDuration: 2
-  chaseAudioSource: {fileID: 0}
+  chaseAudioSource: {fileID: 208715865083942727}
   attackAudioSource: {fileID: 208715865765187856}
   attackSound: {fileID: 8300000, guid: b53223d7e944741748f65d8f89550ce5, type: 3}
 --- !u!1 &3927555733457337745
