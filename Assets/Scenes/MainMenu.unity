@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.020121071, g: 0.014858857, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.019978836, g: 0.0147787295, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11111,8 +11111,11 @@ MonoBehaviour:
     Grunt Model: https://assetstore.unity.com/packages/3d/characters/free-monster-bat-158125\nNormal
     Grunt Model: \nLava Pool/Lake Model and Shader: https://www.patreon.com/posts/unity-shader-32119344\nCinemachine:
     https://unity.com/unity/features/editor/art-and-design/cinemachine\nRock Models:
-    https://assetstore.unity.com/packages/2d/textures-materials/floors/lava-rocks-texture-1-hand-painted-seamless-tileable-232710\nhttps://assetstore.unity.com/packages/3d/environments/low-poly-rock-pack-57874\nhttps://assetstore.unity.com/packages/3d/free-hand-painted-rocks-n-boulders-80634\nhttps://assetstore.unity.com/packages/3d/environments/landscapes/lowpoly-environment-pack-99479\nhttps://assetstore.unity.com/packages/3d/environments/low-poly-free-vegetation-kit-176906\nSounds
-    and Effects:\nhttps://assetstore.unity.com/packages/vfx/particles/spells/magic-effects-free-247933
+    https://assetstore.unity.com/packages/2d/textures-materials/floors/lava-rocks-texture-1-hand-painted-seamless-tileable-232710\nhttps://assetstore.unity.com/packages/3d/environments/low-poly-rock-pack-57874\nhttps://assetstore.unity.com/packages/3d/free-hand-painted-rocks-n-boulders-80634\nhttps://assetstore.unity.com/packages/3d/environments/landscapes/lowpoly-environment-pack-99479\nhttps://assetstore.unity.com/packages/3d/environments/low-poly-free-vegetation-kit-176906\nHeart
+    Graphic: https://assetstore.unity.com/packages/tools/gui/simple-heart-health-system-120676\nSpikes
+    Model:  https://sketchfab.com/3d-models/spike-trap-01-4022678cac214fd2963894aa152fc6f2
+    \nAxe Model: https://sketchfab.com/3d-models/rusty-double-sided-axe-ecd44a606cb646839f66137c34ced762
+    \nSounds and Effects:\nhttps://assetstore.unity.com/packages/vfx/particles/spells/magic-effects-free-247933
     \nhttps://assetstore.unity.com/packages/audio/sound-fx/44-1-general-library-free-sample-pack-145873
     \r\n\rhttps://assetstore.unity.com/packages/audio/sound-fx/horror-sfx-32834 \r\n\rhttps://assetstore.unity.com/packages/tools/camera/camera-path-creator-84074
     \r\n\rhttps://assetstore.unity.com/packages/audio/sound-fx/shooting-sound-177096

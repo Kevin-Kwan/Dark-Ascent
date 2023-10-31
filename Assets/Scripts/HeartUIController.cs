@@ -25,20 +25,23 @@ public class HeartUIController : MonoBehaviour
     {
         player = GameObject.Find("3rdPPlayer");
         playerController = player.GetComponent<ThirdPController>();
-        heartsArray = new Image[maxHearts];
-
-        Transform heartsContainer = transform.Find("HeartContainer");
-        for (int i = 0; i < maxHearts; i++) {
-            heartsArray[i] = heartsContainer.Find("Heart" + (i + 1)).GetComponent<Image>();
-        }
+        
         TakeAwayHeart();
     }
 
     private void TakeAwayHeart() {
-        float displayHearts = playerController.health / damagePerHeart;
+        int displayHearts = (int) (playerController.health / damagePerHeart) - 1;
 
-        for (int i = 0; i < maxHearts; i++) {
+        for (int i = 0; i < heartsArray.Length; i++) {
+            //Debug.Log("health " + playerController.health);
+            Debug.Log("displayhearts " + displayHearts);
+            if (playerController.health == 0) {
+                for (int j = 0; j < heartsArray.Length; j++) {
+                    heartsArray[j].enabled = false;
+                }
+            }
             if (i <= displayHearts) {
+                Debug.Log("i " + i);
                 heartsArray[i].enabled = true;
             }
             else {

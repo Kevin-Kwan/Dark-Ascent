@@ -25,8 +25,8 @@ public class SwingingAxe : MonoBehaviour
             Debug.Log("axe hit");
             ThirdPController playerController = player.GetComponent<ThirdPController>();
             if (playerController != null) {
-                playerController.health = 0;
-                Debug.Log("dead");
+                playerController.takeDamage(20);
+                Debug.Log("hurt");
             }
         }
     }
