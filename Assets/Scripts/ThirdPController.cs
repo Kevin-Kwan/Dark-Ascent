@@ -455,6 +455,15 @@ public class ThirdPController : MonoBehaviour
             currentPlatform = other.transform;
             controller.transform.SetParent(currentPlatform);
         }
+
+        // Check if the character enters the trigger zone of the platform
+        if (other.CompareTag("MovingPlatform"))
+        {
+            // Set the platform as the parent of the character
+            Debug.Log("trigger entered");
+            currentPlatform = other.transform;
+            controller.transform.SetParent(currentPlatform);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -467,7 +476,6 @@ public class ThirdPController : MonoBehaviour
             currentPlatform = null;
         }
     }
-
 
     void Jump() {
         Debug.Log("JUMPED");

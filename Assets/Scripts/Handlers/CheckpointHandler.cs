@@ -59,6 +59,9 @@ public class CheckpointHandler : MonoBehaviour
     {
         Debug.Log(PlayerPrefs.GetInt("CurrentLevelIndex", 1));
         Debug.Log(PlayerPrefs.GetInt("CurrentCheckpointIndex", 0));
+        if (currentCheckpointIndex == 0) {
+            Debug.Log("on start");
+        }
         // player = GameObject.FindGameObjectWithTag("Player");
         player = GameObject.Find("3rdPPlayer");
         if (wardenExists) {
@@ -137,19 +140,19 @@ public class CheckpointHandler : MonoBehaviour
         // }
 
         // If the 'P' key is pressed, reset the playerprefs to current level and start checkpoint
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            PlayerPrefs.SetInt("CurrentLevelIndex", currentLevelIndex);
-            PlayerPrefs.SetInt("CurrentCheckpointIndex", 0);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        // if (Input.GetKeyDown(KeyCode.P))
+        // {
+        //     PlayerPrefs.SetInt("CurrentLevelIndex", currentLevelIndex);
+        //     PlayerPrefs.SetInt("CurrentCheckpointIndex", 0);
+        //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // }
 
-        // clear all playerprefs, debugging purposes only
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            PlayerPrefs.DeleteAll();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        // // clear all playerprefs, debugging purposes only
+        // if (Input.GetKeyDown(KeyCode.O))
+        // {
+        //     PlayerPrefs.DeleteAll();
+        //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // }
     }
 
     public void RespawnPlayer()
