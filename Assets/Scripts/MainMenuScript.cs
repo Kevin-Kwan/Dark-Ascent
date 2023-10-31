@@ -55,12 +55,12 @@ public class MainMenuScript : MonoBehaviour
     {
 
         // debugging dev tool
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            // clear all playerprefs, debugging purposes only
-            PlayerPrefs.DeleteAll();
-            Debug.Log("PlayerPrefs cleared!");
-        }
+        // if (Input.GetKeyDown(KeyCode.I))
+        // {
+        //     // clear all playerprefs, debugging purposes only
+        //     PlayerPrefs.DeleteAll();
+        //     Debug.Log("PlayerPrefs cleared!");
+        // }
     }
 
     public void ContinueGame() {
