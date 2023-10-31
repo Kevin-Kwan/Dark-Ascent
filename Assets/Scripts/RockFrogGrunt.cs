@@ -48,7 +48,7 @@ public class RockFrogGrunt : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(currentState);
+        // Debug.Log(currentState);
         switch (currentState)
         {
             case State.Idle:
