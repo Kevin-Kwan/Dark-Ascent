@@ -131,6 +131,9 @@ public class ThirdPController : MonoBehaviour
     public bool lockMouseOnStart = true;
     public bool allowPlayerClick = true;
 
+    // dark level stuff
+    public Material touchMaterial;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -423,6 +426,18 @@ public class ThirdPController : MonoBehaviour
     // }
     private void OnControllerColliderHit(ControllerColliderHit hit) {
         // Debug.Log("Controller collision detected");
+
+        if (hit.collider.CompareTag("GlowOnTouch"))
+        {
+            Renderer objectRenderer = hit.collider.GetComponent<Renderer>();
+
+            if (objectRenderer != null)
+            {
+                // Change the material of the collided object
+                objectRenderer.material = touchMaterial;
+            }
+        }
+
         if (!controller.isGrounded && hit.collider.CompareTag("Wall")) {
             wallNormal = hit.normal;
             canWallJump = true;
