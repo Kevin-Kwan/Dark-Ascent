@@ -17,6 +17,7 @@ TagManager:
   - Frog Grunt
   - PlayerWeapon
   - FinalBoss
+  - GlowOnTouch
   layers:
   - Default
   - TransparentFX

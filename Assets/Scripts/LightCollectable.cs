@@ -13,7 +13,7 @@ public class LightCollectable : MonoBehaviour
 
     void Start()
     {
-        initialPosition = transform.position;
+        //initialPosition = transform.position;
     }
 
     void Update()
@@ -23,8 +23,8 @@ public class LightCollectable : MonoBehaviour
 
     void Hover()
     {
-        float yOffset = hoverAmplitude * Mathf.Sin(hoverFrequency * Time.time);
-        transform.position = initialPosition + new Vector3(0, yOffset, 0);
+        // float yOffset = hoverAmplitude * Mathf.Sin(hoverFrequency * Time.time);
+        // transform.position += new Vector3(0, yOffset, 0);
     }
     private void OnTriggerEnter(Collider other)
     {
