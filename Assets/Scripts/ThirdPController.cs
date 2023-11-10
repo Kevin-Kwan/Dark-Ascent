@@ -64,6 +64,7 @@ public class ThirdPController : MonoBehaviour
     public float jumpHeight = 1.0f;
     public float jumpAdjustment = -2.0f;
     public float gravity = -9.81f;
+    public float gravityFactor = 2.0f;
     private int jumpCount = 0;
     public int maxJumps = 2;
     public Vector3 playerVelocity;
@@ -403,7 +404,7 @@ public class ThirdPController : MonoBehaviour
         currentVelY = Mathf.Lerp(currentVelY, targetVelY, speedChangeRate);
         animator.SetFloat("velY", currentVelY);
 
-        playerVelocity.y += Physics.gravity.y * Time.deltaTime;
+        playerVelocity.y += gravityFactor * gravity * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
@@ -482,7 +483,7 @@ public class ThirdPController : MonoBehaviour
         if (playerVelocity.y < 0) {
             playerVelocity.y = 0f;
         }
-        playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpAdjustment * gravity);
+        playerVelocity.y += Mathf.Sqrt(jumpHeight * jumpAdjustment * gravityFactor * gravity);
         animator.SetBool("isJumping", true);
         jumpAudio.Play();
     }
