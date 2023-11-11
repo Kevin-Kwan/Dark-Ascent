@@ -10,6 +10,8 @@ public class ObjectSpawner : MonoBehaviour
     public float maxRandomForce = 15f; // Maximum random force magnitude
     public float inactivityThreshold = 1.0f; // Time in seconds to consider an object as inactive
     private float lowVelocityThreshold = 0.1f;
+    public float randomSizeRangeMin = 0.5f; // Minimum random size
+    public float randomSizeRangeMax = 2.0f; // Maximum random size
     private List<SpawnedObject> spawnedObjects = new List<SpawnedObject>();
     public Material objectMaterial; // Reference to the material to assign
 
@@ -61,6 +63,10 @@ public class ObjectSpawner : MonoBehaviour
         {
             rb = newObject.AddComponent<Rigidbody>(); // Add Rigidbody component if not already present
         }
+
+        // Random Size for objects
+        float randomSize = Random.Range(randomSizeRangeMin, randomSizeRangeMax);
+        newObject.transform.localScale = new Vector3(randomSize, randomSize, randomSize);
 
         // Apply a force to make the object flow down the ramp
         Vector3 randomForce = new Vector3(0, 0, Random.Range(minRandomForce, maxRandomForce));
