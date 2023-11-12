@@ -53,6 +53,9 @@ public class ThirdPController : MonoBehaviour
     public CinemachineFreeLook freeLookCamera;
     public float speed = 6.0f;
     public float runSpeed = 12.0f;
+    // public bool mustHoldRightClick = false;
+    public bool invertMouseY = false;
+    public bool invertMouseX = false;
 
     private float currentSpeed = 0.0f;
 
@@ -217,13 +220,30 @@ public class ThirdPController : MonoBehaviour
         // We are using GetAxisRaw in case the player is using a controller.
         // Not tested yet.
         // if holding right click
-        if (Input.GetButton("Fire2")) {
+        // move camera with mouse
+        if (Application.isFocused) {
             freeLookCamera.m_XAxis.m_InputAxisName = "Mouse X";
             freeLookCamera.m_YAxis.m_InputAxisName = "Mouse Y";
-        } else {
-            freeLookCamera.m_XAxis.m_InputAxisName = "";
-            freeLookCamera.m_YAxis.m_InputAxisName = "";
         }
+        // apply inversion based on booleans
+        if (invertMouseY) {
+            freeLookCamera.m_YAxis.m_InvertInput = true;
+        } else {
+            freeLookCamera.m_YAxis.m_InvertInput = false;
+        }
+        if (invertMouseX) {
+            freeLookCamera.m_XAxis.m_InvertInput = true;
+        } else {
+            freeLookCamera.m_XAxis.m_InvertInput = false;
+        }
+
+        // if (Input.GetButton("Fire2")) {
+        //     freeLookCamera.m_XAxis.m_InputAxisName = "Mouse X";
+        //     freeLookCamera.m_YAxis.m_InputAxisName = "Mouse Y";
+        // } else {
+        //     freeLookCamera.m_XAxis.m_InputAxisName = "";
+        //     freeLookCamera.m_YAxis.m_InputAxisName = "";
+        // }
         if (controller.isGrounded && playerVelocity.y < 0) {
             grounded = true;
             animator.SetBool("isGrounded", true);
