@@ -2623,6 +2623,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1071879032}
     - target: {fileID: 3202918795698466904, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+      propertyPath: invertMouseX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202918795698466904, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: jumpHeightScale
       value: 4.5
       objectReference: {fileID: 0}
