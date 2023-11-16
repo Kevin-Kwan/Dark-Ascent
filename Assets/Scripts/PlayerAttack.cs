@@ -33,9 +33,12 @@ public class PlayerAttack : MonoBehaviour
         foreach (Collider hitEnemy in hitEnemies)
         {
             // Assuming each enemy has a script with a TakeDamage method
+            HealthSystemForDummies healthSystem = hitEnemy.GetComponent<HealthSystemForDummies>();
+
             Health enemyScript = hitEnemy.GetComponent<Health>();
             if (enemyScript != null)
             {
+                healthSystem.AddToCurrentHealth(-10);
                 enemyScript.TakeDamage(10);  // Assuming a damage value of 10
             }
         }
