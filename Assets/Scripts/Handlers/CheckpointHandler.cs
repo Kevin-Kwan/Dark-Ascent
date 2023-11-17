@@ -110,14 +110,19 @@ public class CheckpointHandler : MonoBehaviour
 
             if (Physics.CheckBox(checkpoint.transform.position, boxSize, checkpoint.transform.rotation, 1 << LayerMask.NameToLayer("Player")))
             {
-                currentCheckpointIndex = i;
-                PlayerPrefs.SetInt("CurrentCheckpointIndex", currentCheckpointIndex);
-                // Debug.Log("Checkpoint " + currentCheckpointIndex + " reached!");
-                if (wardenExists) {
-                    RespawnWarden();
+                if (currentCheckpointIndex != i)
+                {
+                    currentCheckpointIndex = i;
+                    PlayerPrefs.SetInt("CurrentCheckpointIndex", currentCheckpointIndex);
+                    // Debug.Log("Checkpoint " + currentCheckpointIndex + " reached!");
+                    if (wardenExists & currentCheckpointIndex != checkpoints.Length - 1)
+                    {
+                        RespawnWarden();
+                    }
+                    break;
                 }
-                break;
             }
+            
         }
 
         if (currentCheckpointIndex == checkpoints.Length - 1)
