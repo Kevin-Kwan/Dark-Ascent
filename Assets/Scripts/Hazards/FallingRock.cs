@@ -21,6 +21,8 @@ public class FallingRock : MonoBehaviour
 
     public float shakeDuration = 2.0f; //how long it shakes
     public float shakeTimer;
+    public float respawnTime = 5.0f;
+    private float respawnTimer;
 
     private Vector3 initialPosition;
 
@@ -28,7 +30,7 @@ public class FallingRock : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("3rdPPlayer");
-        rock = GameObject.Find("FallingRock");
+        //rock = GameObject.Find("FallingRock");
         anim = rock.GetComponent<Animator>();
         rockRigidbody = rock.GetComponent<Rigidbody>();
         rockRigidbody.isKinematic = true;
@@ -43,6 +45,14 @@ public class FallingRock : MonoBehaviour
             if (shakeTimer >= shakeDuration) {
                 rockRigidbody.isKinematic = false;
                 rockRigidbody.useGravity = true;
+            }
+        }
+        if (!rockRigidbody.isKinematic && transform.parent.position.y < initialPosition.y)
+        {
+            respawnTimer += Time.deltaTime;
+            if (respawnTimer >= respawnTime)
+            {
+                RespawnRock();
             }
         }
     }
@@ -64,5 +74,16 @@ public class FallingRock : MonoBehaviour
             Debug.Log("player left rock");
             onRock = false;
         }
+    }
+
+    private void RespawnRock()
+    {
+        // Reset the rock's position and other properties
+        transform.parent.position = initialPosition;
+        rockRigidbody.isKinematic = true;
+        rockRigidbody.useGravity = false;
+        shakeTimer = 0;
+        respawnTimer = 0;
+        anim.SetBool("onRock", false);
     }
 }

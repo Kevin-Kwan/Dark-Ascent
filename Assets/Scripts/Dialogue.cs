@@ -1,3 +1,15 @@
+/*
+ * File: Dialogue.cs
+ * Authors: Mehar Johal
+ * Created: 10/27/2023
+ * Modified: 10/27/2023
+ * Description: This script handles the dialogue of the game
+ * 
+ *  * Contributions:
+ *   Mehar Johal:
+ *    - Did script
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
