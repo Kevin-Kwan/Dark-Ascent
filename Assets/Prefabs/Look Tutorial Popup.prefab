@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Right Click to pan around
+  m_text: 'Move mouse to pan around
 
     surroundings'
   m_isRightToLeft: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ab9dba69f81d424499017e6060000727, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6c45418653253d4ab53f5b750b10fc1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
