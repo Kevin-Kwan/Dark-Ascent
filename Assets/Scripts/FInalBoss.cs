@@ -430,7 +430,8 @@ public class FInalBoss : MonoBehaviour
     private IEnumerator TransitionToNextScene()
     {
         yield return new WaitForSeconds(2f);  // Wait for 2 seconds or for however long you want
-
+        // clear PlayerPrefs for CurrentLevelIndex to allow for restart progress
+        PlayerPrefs.DeleteKey("CurrentLevelIndex");
         SceneManager.LoadScene(nextSceneName);  // Load the next scene
     }
 }

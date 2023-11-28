@@ -77,7 +77,7 @@ public class ThirdPController : MonoBehaviour
     // parameters for wall jumping
     private bool canWallJump;
     private Vector3 wallNormal;
-    public float jumpHeightScale = 4.5f;
+    public float jumpHeightScale = 9f;
 
     // parameters for sliding
     public float maxWalkDrift = 4f;

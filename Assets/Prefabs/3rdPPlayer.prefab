@@ -824,7 +824,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3202918795354553255}
-  m_LocalRotation: {x: 0.0052376455, y: -2.6902663e-10, z: 1.4090854e-12, w: 0.9999863}
+  m_LocalRotation: {x: 0.0052376455, y: 2.6884603e-10, z: -1.4081396e-12, w: 0.9999863}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -987,14 +987,17 @@ MonoBehaviour:
   freeLookCamera: {fileID: 3202918794709557853}
   speed: 6
   runSpeed: 12
+  invertMouseY: 0
+  invertMouseX: 0
   turnSmoothingTime: 0.1
   jumpHeight: 1
   jumpAdjustment: -2
   gravity: -9.81
+  gravityFactor: 2
   maxJumps: 2
   playerVelocity: {x: 0, y: 0, z: 0}
   bhopEnabled: 1
-  jumpHeightScale: 4.5
+  jumpHeightScale: 9
   maxWalkDrift: 4
   maxSprintDrift: 1
   driftDecay: 0.02
@@ -1026,6 +1029,7 @@ MonoBehaviour:
   deathAudio: {fileID: 3544041130405750755}
   lockMouseOnStart: 1
   allowPlayerClick: 1
+  touchMaterial: {fileID: 0}
 --- !u!54 &3202918795698466907
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1404,7 +1408,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3202918796349368373}
-  m_LocalRotation: {x: 0.023377996, y: -0.000000017179765, z: 4.0173828e-10, w: 0.9997267}
+  m_LocalRotation: {x: 0.023377996, y: -0.000000017168148, z: 4.014666e-10, w: 0.9997267}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
