@@ -34,6 +34,7 @@
  *    - Implemented elevator interaction with the player controller
  *    - Player can now stand on moving platforms and move with them
  *    - Player can jump off of moving platforms
+      - Health bar displays player's current health
  */ 
 
 using System.Collections.Generic;
@@ -106,6 +107,9 @@ public class ThirdPController : MonoBehaviour
     public float maxHealth = 100f;
     public float pushPower = 3.0f;
 
+    // health bar UI
+    public HealthBar healthBar;
+
     // grounded animation
     private bool grounded = false;
     // attack animation
@@ -155,13 +159,17 @@ public class ThirdPController : MonoBehaviour
         // freeLookCamera.m_YAxis.Value = transform.eulerAngles.x;
         freeLookCamera.m_XAxis.Value = transform.eulerAngles.y;
 
+        // set health bar to max health
+        healthBar.SetMaxHealth(maxHealth);
 
     }
 
     // Update is called once per frame
     void Update() {
+        healthBar.SetHealth(health);
         // death animation
         if (health <=0) {
+            healthBar.SetHealth(0);
             Debug.Log("Player is dead");
             animator.SetLayerWeight(1, 0);
             animator.SetLayerWeight(2, 0);
@@ -554,6 +562,7 @@ public class ThirdPController : MonoBehaviour
     public void takeDamage(float damage) {
         if (Time.time - previousDamageTime > invincibilityTime) {
             health -= damage;
+            healthBar.SetHealth(health);
             previousDamageTime = Time.time;
             Debug.Log(health);
             tookDamage = true;
