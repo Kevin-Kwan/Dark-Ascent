@@ -1,3 +1,11 @@
+/*
+ * File: HeartUIController.cs
+ * Author: Amal Chaudry
+ * Created: 11/05/2023
+ * Modified: 11/30/2023
+ * Description: This script controls the heart Health UI. It removes hearts when the player's health decreases.
+ */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
