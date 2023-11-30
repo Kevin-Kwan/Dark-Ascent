@@ -246,8 +246,8 @@ GameObject:
   - component: {fileID: 8459761256327841955}
   - component: {fileID: 8459761256327841952}
   - component: {fileID: 8459761256327841953}
-  - component: {fileID: 4185705908281677169}
   - component: {fileID: 2079898391}
+  - component: {fileID: 2491782860220492715}
   m_Layer: 5
   m_Name: HealthBarCanvas
   m_TagString: Untagged
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &8459761256327841953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,20 +339,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4185705908281677169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8459761256327841958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac1fd0b714982a24ba784c3ba7a9ad5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isBillboarded: 1
-  shouldShowHealthNumbers: 1
 --- !u!114 &2079898391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,3 +352,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+--- !u!114 &2491782860220492715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8459761256327841958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e58dae1cb2a07945bc42e9716be0bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBillboarded: 1
+  shouldShowHealthNumbers: 1

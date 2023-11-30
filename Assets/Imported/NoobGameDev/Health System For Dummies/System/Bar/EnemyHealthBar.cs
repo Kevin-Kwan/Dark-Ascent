@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(FollowCameraRotation))]
-public class HealthBar : MonoBehaviour
+public class EnemyHealthBar : MonoBehaviour
 {
     [SerializeField] bool isBillboarded = true;
     [SerializeField] bool shouldShowHealthNumbers = true;

@@ -2859,11 +2859,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795354553273, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -5.3769206e-10
+      value: 5.3769206e-10
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795354553273, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 2.8162817e-12
+      value: -2.8162817e-12
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795698466886, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_Name
@@ -3590,6 +3590,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2d7d77df4449b24fb2fffe6ca115874, type: 3}
+--- !u!1 &589909001 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 652532892827725579, guid: 0edb11795ebb055429ae70f9befa6ff8, type: 3}
+  m_PrefabInstance: {fileID: 1129951308}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &592588128
 GameObject:
   m_ObjectHideFlags: 0
@@ -5801,6 +5806,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.477
       objectReference: {fileID: 0}
+    - target: {fileID: 6016118215465883222, guid: 0edb11795ebb055429ae70f9befa6ff8, type: 3}
+      propertyPath: HealthBarPrefabToSpawn
+      value: 
+      objectReference: {fileID: 589909001}
     - target: {fileID: 6467176796483651718, guid: 0edb11795ebb055429ae70f9befa6ff8, type: 3}
       propertyPath: m_IsKinematic
       value: 1
