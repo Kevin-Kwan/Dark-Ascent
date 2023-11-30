@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.019978836, g: 0.0147787295, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.020121071, g: 0.014858857, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -463,11 +463,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795354553273, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0000000013442298
+      value: 0.0000000013442303
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795354553273, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 7.0407e-12
+      value: -7.0407022e-12
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795698466886, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_Name
@@ -1269,6 +1269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat Grunt (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7587026554253548176, guid: 0edb11795ebb055429ae70f9befa6ff8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1746473085}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0edb11795ebb055429ae70f9befa6ff8, type: 3}
 --- !u!1 &888816748
@@ -3195,6 +3199,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3202918795698466886, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
   m_PrefabInstance: {fileID: 493886818}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1746473085 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3202918795698466887, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+  m_PrefabInstance: {fileID: 493886818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1794096085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3672,6 +3681,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat Grunt (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7587026554253548176, guid: 0edb11795ebb055429ae70f9befa6ff8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1746473085}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0edb11795ebb055429ae70f9befa6ff8, type: 3}
 --- !u!114 &2088763664 stripped
