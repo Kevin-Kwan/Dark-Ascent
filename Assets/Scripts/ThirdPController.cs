@@ -145,6 +145,10 @@ public class ThirdPController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(healthBar);
+        // set health bar to max health
+        healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetHealth(maxHealth);
         controller = GetComponent<CharacterController>();
         if (lockMouseOnStart) {
             Cursor.lockState = CursorLockMode.Locked; // Lock the cursor to the center of the screen.
@@ -159,8 +163,8 @@ public class ThirdPController : MonoBehaviour
         // freeLookCamera.m_YAxis.Value = transform.eulerAngles.x;
         freeLookCamera.m_XAxis.Value = transform.eulerAngles.y;
 
-        // set health bar to max health
-        healthBar.SetMaxHealth(maxHealth);
+
+        
 
     }
 
