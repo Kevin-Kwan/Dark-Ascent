@@ -123,6 +123,7 @@ public class ThirdPController : MonoBehaviour
     public float invincibilityTime = 1f;
     public float previousDamageTime = 0f;
     public bool tookDamage = false;
+    public GameObject FloatingTextPrefab;
 
     // audio
     public AudioSource walkAudio;
@@ -565,6 +566,10 @@ public class ThirdPController : MonoBehaviour
 
     public void takeDamage(float damage) {
         if (Time.time - previousDamageTime > invincibilityTime) {
+            if(FloatingTextPrefab)
+            {
+                ShowFloatingText(damage);
+            }
             health -= damage;
             healthBar.SetHealth(health);
             previousDamageTime = Time.time;
@@ -573,5 +578,11 @@ public class ThirdPController : MonoBehaviour
         } else {
             tookDamage = false;
         }
+    }
+
+    public void ShowFloatingText(float damage)
+    {
+        var text = Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity, transform);
+        text.GetComponent<TextMesh>().text = damage.ToString();
     }
 }

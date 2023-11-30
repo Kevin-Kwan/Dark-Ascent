@@ -30,7 +30,7 @@ public class MainMenuScript : MonoBehaviour
     public GameObject creditsMenu;
     public GameObject quitConfirmationMenu;
     public GameObject resetConfirmationMenu;
-    public string firstLevelName = "Level1";
+    public string firstLevelName = "StoryIntro";
     // start game button
     public GameObject startGameButton;
     public GameObject settingsButton;
