@@ -40,6 +40,8 @@ public class MainMenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Unlock the Cursor
+        Cursor.lockState = CursorLockMode.None;
         // This dynamically changes the text of the start game button depending on whether or not the player has saved data
         TextMeshProUGUI startGameButtonText = startGameButton.GetComponentInChildren<TextMeshProUGUI>();
         if (!PlayerPrefs.HasKey("CurrentLevelIndex"))

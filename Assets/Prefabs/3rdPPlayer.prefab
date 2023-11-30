@@ -997,7 +997,7 @@ MonoBehaviour:
   maxJumps: 2
   playerVelocity: {x: 0, y: 0, z: 0}
   bhopEnabled: 1
-  jumpHeightScale: 4.5
+  jumpHeightScale: 9
   maxWalkDrift: 4
   maxSprintDrift: 1
   driftDecay: 0.02
