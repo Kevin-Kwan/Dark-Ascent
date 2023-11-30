@@ -90,6 +90,11 @@ public class ObjectSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(1.0f); // Check velocity every second
 
+            if (rb == null || obj == null)
+            {
+                break; // Exit the coroutine if the object has been destroyed
+            }
+
             if (rb.velocity.magnitude < lowVelocityThreshold)
             {
                 if (inactivityThreshold <= 0f)
