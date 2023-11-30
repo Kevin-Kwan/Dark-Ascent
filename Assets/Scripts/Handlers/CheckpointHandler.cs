@@ -2,7 +2,7 @@
  * File: CheckpointHandler.cs
  * Author: Kevin Kwan
  * Created: 10/16/2023
- * Modified: 10/29/2023
+ * Modified: 11/17/2023
  * Description: This script handles the loading and storage of player's checkpoints in the game.
  * The last checkpoint that the player has reached is stored in PlayerPrefs to be loaded whenever the player continues the game.
  * The last level that the player has reached is also stored in PlayerPrefs to be loaded whenever the player continues the game.
@@ -110,16 +110,24 @@ public class CheckpointHandler : MonoBehaviour
 
             if (Physics.CheckBox(checkpoint.transform.position, boxSize, checkpoint.transform.rotation, 1 << LayerMask.NameToLayer("Player")))
             {
-                currentCheckpointIndex = i;
-                PlayerPrefs.SetInt("CurrentCheckpointIndex", currentCheckpointIndex);
-                // Debug.Log("Checkpoint " + currentCheckpointIndex + " reached!");
-                break;
+                if (currentCheckpointIndex != i)
+                {
+                    currentCheckpointIndex = i;
+                    PlayerPrefs.SetInt("CurrentCheckpointIndex", currentCheckpointIndex);
+                    // Debug.Log("Checkpoint " + currentCheckpointIndex + " reached!");
+                    if (wardenExists & currentCheckpointIndex != checkpoints.Length - 1)
+                    {
+                        RespawnWarden();
+                    }
+                    break;
+                }
             }
+            
         }
 
         if (currentCheckpointIndex == checkpoints.Length - 1)
         {
-            Debug.Log("checking");
+            // Debug.Log("checking");
             // The player has reached the end checkpoint
             PlayerPrefs.SetInt("CurrentLevelIndex", currentLevelIndex + 1);
             // Reset the current checkpoint index
