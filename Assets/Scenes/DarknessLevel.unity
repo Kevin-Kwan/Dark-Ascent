@@ -5648,11 +5648,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3202918795354553273, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -2.6884603e-10
+      value: 2.6884603e-10
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795354553273, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.4081396e-12
+      value: -1.4081396e-12
       objectReference: {fileID: 0}
     - target: {fileID: 3202918795698466886, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_Name
@@ -25392,7 +25392,7 @@ PrefabInstance:
       objectReference: {fileID: 1637886453}
     - target: {fileID: 1085536942304218185, guid: 6cbddbc19f4db78439542c53e4447125, type: 3}
       propertyPath: nextSceneName
-      value: Level7
+      value: Level6
       objectReference: {fileID: 0}
     - target: {fileID: 1085536942304218185, guid: 6cbddbc19f4db78439542c53e4447125, type: 3}
       propertyPath: startCheckpoint

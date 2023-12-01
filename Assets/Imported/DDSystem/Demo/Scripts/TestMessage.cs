@@ -51,6 +51,7 @@ public class TestMessage : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         // Start the fade and scene transition
         StartCoroutine(FadeAndLoad(sceneName));
+        PlayerPrefs.SetInt("CurrentLevelIndex", 1);
     }
 
     private IEnumerator FadeAndLoad(string sceneName)

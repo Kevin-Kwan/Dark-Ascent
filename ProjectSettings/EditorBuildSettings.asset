@@ -45,6 +45,9 @@ EditorBuildSettings:
     path: Assets/Scenes/DarknessLevel.unity
     guid: 322053101ed3eb242a797aa3ca9e9cfb
   - enabled: 1
-    path: Assets/Scenes/StoryIntro.unity
+    path: Assets/Scenes/Level0.unity
     guid: 46a5fca80596dce47b9e174782f9af8a
+  - enabled: 1
+    path: Assets/Scenes/Level6.unity
+    guid: 37527b31770c9314882b1288923ed104
   m_configObjects: {}
