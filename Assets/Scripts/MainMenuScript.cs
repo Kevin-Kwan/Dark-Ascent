@@ -123,7 +123,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void ResetProgress()
     {
-        PlayerPrefs.SetInt("CurrentLevelIndex", 1);
+        PlayerPrefs.SetInt("CurrentLevelIndex", 0);
         PlayerPrefs.SetInt("CurrentCheckpointIndex", 0);
         TextMeshProUGUI startGameButtonText = startGameButton.GetComponentInChildren<TextMeshProUGUI>();
         startGameButtonText.text = "Start New Game";
