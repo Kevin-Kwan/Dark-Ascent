@@ -18,6 +18,8 @@ TagManager:
   - PlayerWeapon
   - FinalBoss
   - GlowOnTouch
+  - Powerup
+  - Axe
   layers:
   - Default
   - TransparentFX

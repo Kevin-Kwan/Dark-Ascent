@@ -190,8 +190,6 @@ public class ThirdPController : MonoBehaviour
             if (ftb != null) {
                 ftb.FadeInTextAndButtons();
             }
-
-
             return;
         } else {
             animator.SetLayerWeight(1, 1);
@@ -505,6 +503,17 @@ public class ThirdPController : MonoBehaviour
             Debug.Log("trigger entered");
             currentPlatform = other.transform;
             controller.transform.SetParent(currentPlatform);
+        }
+        if (other.gameObject.CompareTag("Powerup")) {
+            Debug.Log("health acquired");
+            other.gameObject.SetActive(false);
+            if (health < 100) {
+                health += 5;
+            }
+        }
+        if (other.gameObject.CompareTag("Axe")) {
+            Debug.Log("axe hit");
+            health -= 30;
         }
 
         // Check if the character enters the trigger zone of the platform

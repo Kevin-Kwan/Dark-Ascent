@@ -16,8 +16,9 @@ public class FallingRock : MonoBehaviour
     public GameObject rock;
 
     public Animator anim;
-    public Rigidbody rockRigidbody;
+    private Rigidbody rockRigidbody;
     public bool onRock;
+    public bool isFallen;
 
     public float shakeDuration = 2.0f; //how long it shakes
     public float shakeTimer;
@@ -35,7 +36,8 @@ public class FallingRock : MonoBehaviour
         rockRigidbody = rock.GetComponent<Rigidbody>();
         rockRigidbody.isKinematic = true;
         onRock = false;
-        initialPosition = transform.parent.position;
+        isFallen = false;
+        initialPosition = transform.position;
     }
 
     void Update() {
@@ -45,9 +47,10 @@ public class FallingRock : MonoBehaviour
             if (shakeTimer >= shakeDuration) {
                 rockRigidbody.isKinematic = false;
                 rockRigidbody.useGravity = true;
+                isFallen = true;
             }
         }
-        if (!rockRigidbody.isKinematic && transform.parent.position.y < initialPosition.y)
+        if (isFallen)
         {
             respawnTimer += Time.deltaTime;
             if (respawnTimer >= respawnTime)
@@ -79,7 +82,7 @@ public class FallingRock : MonoBehaviour
     private void RespawnRock()
     {
         // Reset the rock's position and other properties
-        transform.parent.position = initialPosition;
+        transform.position = initialPosition;
         rockRigidbody.isKinematic = true;
         rockRigidbody.useGravity = false;
         shakeTimer = 0;
