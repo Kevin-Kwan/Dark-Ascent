@@ -163,10 +163,6 @@ public class ThirdPController : MonoBehaviour
         animator.SetBool("isDead", false);
         // freeLookCamera.m_YAxis.Value = transform.eulerAngles.x;
         freeLookCamera.m_XAxis.Value = transform.eulerAngles.y;
-
-
-        
-
     }
 
     // Update is called once per frame
@@ -190,6 +186,12 @@ public class ThirdPController : MonoBehaviour
             // disable this script
             // this.enabled = false;
             deathScreenPanel.SetActive(true);
+            FadeToBlack ftb = deathScreenPanel.GetComponent<FadeToBlack>();
+            if (ftb != null) {
+                ftb.FadeInTextAndButtons();
+            }
+
+
             return;
         } else {
             animator.SetLayerWeight(1, 1);
