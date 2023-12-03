@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 186340307}
   m_Layer: 7
   m_Name: Moving Floor
-  m_TagString: Ground
+  m_TagString: Elevator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2294,6 +2294,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &769587487 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1352699126850532083, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
+  m_PrefabInstance: {fileID: 343954203196961684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618348df67d34fe4882434b464d19176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &783798700 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 343954203216341609, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
@@ -2804,7 +2815,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071879028}
-  m_LocalRotation: {x: 0.02337799, y: -0.000000034436987, z: 8.052876e-10, w: 0.9997267}
+  m_LocalRotation: {x: 0.02337799, y: 0.000000034386602, z: -8.0410933e-10, w: 0.9997267}
   m_LocalPosition: {x: 0.015774943, y: 2, z: -22.550007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3512,7 +3523,7 @@ Transform:
   m_GameObject: {fileID: 1363894629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.002, y: 0.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 186340305}
@@ -3529,8 +3540,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.4275578, z: 1}
+  m_Center: {x: 0, y: 0.113778904, z: 0}
 --- !u!1 &1428655205 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 343954204490547185, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
@@ -4583,6 +4594,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6621082611432546239, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6621082611432546239, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856707055086342044, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
 --- !u!1001 &3202918796461632520
@@ -4709,6 +4732,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1071879032}
     - target: {fileID: 3202918795698466904, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 769587487}
+    - target: {fileID: 3202918795698466904, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: deathAudio
       value: 
       objectReference: {fileID: 0}
@@ -4758,15 +4785,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3202918796349368375, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.023377994
+      value: 0.023377996
       objectReference: {fileID: 0}
     - target: {fileID: 3202918796349368375, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000017268839
+      value: 0.000000017168148
       objectReference: {fileID: 0}
     - target: {fileID: 3202918796349368375, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 4.0382112e-10
+      value: -4.014666e-10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3202918795698466907, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
