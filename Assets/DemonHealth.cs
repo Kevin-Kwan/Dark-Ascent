@@ -12,11 +12,11 @@ public class DemonHealth : MonoBehaviour
 
     private void Start()
     {
-        slider.gameObject.SetActive(false);
-        string currentSceneName = SceneManager.GetActiveScene().name;
-        if (currentSceneName == "Level7") {
-            slider.gameObject.SetActive(true);
-        }
+        //der.gameObject.SetActive(false);
+        //ring currentSceneName = SceneManager.GetActiveScene().name;
+        //if (currentSceneName == "Level7") {
+         //   slider.gameObject.SetActive(true);
+        //}
         fullHealthColor = new Color(1f, 0f, 0f, 1f); // Store the original color when the health bar initializes
     }
 

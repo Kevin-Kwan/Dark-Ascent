@@ -284,7 +284,7 @@ public class FInalBoss : MonoBehaviour
     public int health;
     public float projectileSpeed = 10f;
     public Transform player;
-    public int maxHealth = 2;
+    public int maxHealth = 100;
     public float attackDuration = 3f;
     public float angryDuration = 1f;
     public float movementCooldown = 5f;
@@ -295,6 +295,7 @@ public class FInalBoss : MonoBehaviour
     public AudioSource spawnAudioSource;
     public AudioSource damagedAudioSource;
     public AudioSource teleportAudioSource;
+    public DemonHealth bossHealthBar;
 
     private int currentLocationIndex = 0;
     private float lastAttackTime;
@@ -312,6 +313,9 @@ public class FInalBoss : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         StartCoroutine(Move());
+        bossHealthBar.SetMaxHealth(100);
+        bossHealthBar.SetHealth(100);
+
     }
 
     private void Update()
@@ -387,7 +391,8 @@ public class FInalBoss : MonoBehaviour
 
     public void TakeDamage()
     {
-        health--;
+        health-=34;
+        bossHealthBar.SetHealth(health);
         if (health <= 0)
         {
             Die();
