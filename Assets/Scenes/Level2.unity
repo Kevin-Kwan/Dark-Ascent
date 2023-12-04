@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 186340307}
   m_Layer: 7
   m_Name: Moving Floor
-  m_TagString: Ground
+  m_TagString: Elevator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3837,8 +3837,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.8323542, z: 1}
+  m_Center: {x: 0, y: 0.31617707, z: 0}
 --- !u!4 &1394745242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4244113901689226, guid: 836ca07fc69b4184ca14265c7d24030d, type: 3}
@@ -4738,6 +4738,10 @@ PrefabInstance:
       value: PauseManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6500850790033412914, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500850790033412914, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -4778,6 +4782,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6500850791058260169, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500850791058260169, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -4808,6 +4816,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 618348df67d34fe4882434b464d19176, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1972874628 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1775881211845881442, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
+  m_PrefabInstance: {fileID: 1972874626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1972874629 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3513991459783468708, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
+  m_PrefabInstance: {fileID: 1972874626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1982989267 stripped
@@ -5190,6 +5220,14 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1071879032}
+    - target: {fileID: 3202918795698466904, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+      propertyPath: cameraX
+      value: 
+      objectReference: {fileID: 1972874629}
+    - target: {fileID: 3202918795698466904, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+      propertyPath: cameraY
+      value: 
+      objectReference: {fileID: 1972874628}
     - target: {fileID: 3202918795698466904, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: healthBar
       value: 

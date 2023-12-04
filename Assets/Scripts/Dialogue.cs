@@ -42,7 +42,7 @@ public class Dialogue : MonoBehaviour
         //{
         //    ThirdPersonCamera.followPlayer = true;
         //}
-        if (Input.GetKeyDown(KeyCode.Return))//PauseMenuScript.pause
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))//PauseMenuScript.pause
         {
             if (textComponent.text == lines[index])
             {

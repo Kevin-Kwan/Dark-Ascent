@@ -35,11 +35,13 @@
  *    - Player can now stand on moving platforms and move with them
  *    - Player can jump off of moving platforms
       - Health bar displays player's current health
+      - Camera inversion toggling
  */ 
 
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 // This script is used to control the player's game object in the third-person perspective.
 public class ThirdPController : MonoBehaviour
@@ -55,6 +57,8 @@ public class ThirdPController : MonoBehaviour
     public float speed = 6.0f;
     public float runSpeed = 12.0f;
     // public bool mustHoldRightClick = false;
+    // public Toggle cameraX;
+    // public Toggle cameraY;
     public bool invertMouseY = false;
     public bool invertMouseX = false;
 
@@ -163,15 +167,16 @@ public class ThirdPController : MonoBehaviour
         animator.SetBool("isDead", false);
         // freeLookCamera.m_YAxis.Value = transform.eulerAngles.x;
         freeLookCamera.m_XAxis.Value = transform.eulerAngles.y;
-
-
-        
-
+        // invertMouseX = cameraX.isOn;
+        // invertMouseY = cameraY.isOn;
+        //Debug.Log(cameraX.isOn);
     }
 
     // Update is called once per frame
     void Update() {
         healthBar.SetHealth(health);
+        // invertMouseX = cameraX.isOn;
+        // invertMouseY = cameraY.isOn;
         // death animation
         if (health <=0) {
             healthBar.SetHealth(0);
@@ -190,6 +195,10 @@ public class ThirdPController : MonoBehaviour
             // disable this script
             // this.enabled = false;
             deathScreenPanel.SetActive(true);
+            FadeToBlack ftb = deathScreenPanel.GetComponent<FadeToBlack>();
+            if (ftb != null) {
+                ftb.FadeInTextAndButtons();
+            }
             return;
         } else {
             animator.SetLayerWeight(1, 1);
@@ -243,6 +252,7 @@ public class ThirdPController : MonoBehaviour
             freeLookCamera.m_YAxis.m_InputAxisName = "Mouse Y";
         }
         // apply inversion based on booleans
+        Debug.Log(invertMouseY);
         if (invertMouseY) {
             freeLookCamera.m_YAxis.m_InvertInput = true;
         } else {
@@ -503,6 +513,17 @@ public class ThirdPController : MonoBehaviour
             Debug.Log("trigger entered");
             currentPlatform = other.transform;
             controller.transform.SetParent(currentPlatform);
+        }
+        if (other.gameObject.CompareTag("Powerup")) {
+            Debug.Log("health acquired");
+            other.gameObject.SetActive(false);
+            if (health < 100) {
+                health += 5;
+            }
+        }
+        if (other.gameObject.CompareTag("Axe")) {
+            Debug.Log("axe hit");
+            health -= 30;
         }
 
         // Check if the character enters the trigger zone of the platform
