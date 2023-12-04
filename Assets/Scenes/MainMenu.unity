@@ -11370,7 +11370,10 @@ MonoBehaviour:
     \nhttps://assetstore.unity.com/packages/audio/sound-fx/44-1-general-library-free-sample-pack-145873
     \r\n\rhttps://assetstore.unity.com/packages/audio/sound-fx/horror-sfx-32834 \r\n\rhttps://assetstore.unity.com/packages/tools/camera/camera-path-creator-84074
     \r\n\rhttps://assetstore.unity.com/packages/audio/sound-fx/shooting-sound-177096
-    \nhttps://assetstore.unity.com/packages/vfx/particles/fire-explosions/inferno-vfx-50735\nhttps://assetstore.unity.com/packages/tools/gui/d-dialogue-system-167312"
+    \nhttps://assetstore.unity.com/packages/vfx/particles/fire-explosions/inferno-vfx-50735\nhttps://assetstore.unity.com/packages/tools/gui/d-dialogue-system-167312\nBlood
+    Splatter Designs: https://imarvintpa.com/Mapping/Overlays/Blood/\nDonut Model:
+    https://sketchfab.com/3d-models/donut-free-download-8655b5bf7d4e4398b6cdd1dd90b0bb4a\nHealth
+    Bar: https://github.com/Brackeys/Health-Bar/tree/master\nFont: https://ggbot.itch.io/helpme-font#google_vignette\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
