@@ -6372,6 +6372,7 @@ MonoBehaviour:
   spawnAudioSource: {fileID: 696312038}
   damagedAudioSource: {fileID: 696312038}
   teleportAudioSource: {fileID: 1215501068}
+  bossHealthBar: {fileID: 0}
   attacksPerCycle: 3
   winAudioSource: {fileID: 157080502}
   nextSceneName: WinScene
@@ -8147,11 +8148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 851088564519016908, guid: 5c1f90e0bf82bb946b3deca15f98a162, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 851088564519016908, guid: 5c1f90e0bf82bb946b3deca15f98a162, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 851088564519016908, guid: 5c1f90e0bf82bb946b3deca15f98a162, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -8267,7 +8268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 851088565275068181, guid: 5c1f90e0bf82bb946b3deca15f98a162, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4821283394817520768, guid: 5c1f90e0bf82bb946b3deca15f98a162, type: 3}
       propertyPath: m_Enabled
@@ -12559,6 +12560,10 @@ PrefabInstance:
     - target: {fileID: 343954203216341613, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
       propertyPath: m_Name
       value: UICanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 343954204348772102, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6500850790033412914, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
       propertyPath: m_AnchorMax.x
