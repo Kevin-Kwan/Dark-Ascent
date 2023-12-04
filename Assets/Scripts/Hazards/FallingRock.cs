@@ -53,8 +53,12 @@ public class FallingRock : MonoBehaviour
         if (isFallen)
         {
             respawnTimer += Time.deltaTime;
+            Debug.Log("Hmm " + respawnTimer);
+            Debug.Log("HMM " + respawnTime);
             if (respawnTimer >= respawnTime)
             {
+
+                Debug.Log("RESPAWNING ROCK");
                 RespawnRock();
             }
         }

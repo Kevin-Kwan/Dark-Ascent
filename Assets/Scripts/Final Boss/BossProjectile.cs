@@ -66,7 +66,7 @@ public class BossProjectile : MonoBehaviour
         else if (!isReflected && other.CompareTag("Player"))
         {
             // If the reflected projectile hits the Warden's eye, inform the eye
-            other.GetComponent<ThirdPController>().takeDamage(10);
+            other.GetComponent<ThirdPController>().takeDamage(10f);
             Destroy(gameObject);  // Destroy the projectile
         }
     }
