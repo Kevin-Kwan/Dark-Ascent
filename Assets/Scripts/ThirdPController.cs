@@ -35,11 +35,13 @@
  *    - Player can now stand on moving platforms and move with them
  *    - Player can jump off of moving platforms
       - Health bar displays player's current health
+      - Camera inversion toggling
  */ 
 
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 // This script is used to control the player's game object in the third-person perspective.
 public class ThirdPController : MonoBehaviour
@@ -55,6 +57,8 @@ public class ThirdPController : MonoBehaviour
     public float speed = 6.0f;
     public float runSpeed = 12.0f;
     // public bool mustHoldRightClick = false;
+    public Toggle cameraX;
+    public Toggle cameraY;
     public bool invertMouseY = false;
     public bool invertMouseX = false;
 
@@ -163,11 +167,16 @@ public class ThirdPController : MonoBehaviour
         animator.SetBool("isDead", false);
         // freeLookCamera.m_YAxis.Value = transform.eulerAngles.x;
         freeLookCamera.m_XAxis.Value = transform.eulerAngles.y;
+        invertMouseX = cameraX.isOn;
+        invertMouseY = cameraY.isOn;
+        Debug.Log(cameraX.isOn);
     }
 
     // Update is called once per frame
     void Update() {
         healthBar.SetHealth(health);
+        invertMouseX = cameraX.isOn;
+        invertMouseY = cameraY.isOn;
         // death animation
         if (health <=0) {
             healthBar.SetHealth(0);

@@ -1,5 +1,5 @@
 /*
- * File: HeartUIController.cs
+ * File: HealthBar.cs
  * Author: Amal Chaudry
  * Created: 11/05/2023
  * Modified: 11/30/2023

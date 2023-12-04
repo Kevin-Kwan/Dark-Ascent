@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.020121071, g: 0.014858857, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.019978836, g: 0.0147787295, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -528,6 +528,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3202918795698466904, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+      propertyPath: cameraX
+      value: 
+      objectReference: {fileID: 1455188982}
+    - target: {fileID: 3202918795698466904, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+      propertyPath: cameraY
+      value: 
+      objectReference: {fileID: 821727255}
     - target: {fileID: 3202918795698466904, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
       propertyPath: healthBar
       value: 
@@ -1321,6 +1329,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+--- !u!114 &821727255 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1775881211845881442, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
+  m_PrefabInstance: {fileID: 525028928}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &859977688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2913,6 +2932,17 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 3b0466ae98c849440a7ab11e89b75723, type: 2}
+--- !u!114 &1455188982 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3513991459783468708, guid: f5de7c8245a305a4fb8806c4a0a70f21, type: 3}
+  m_PrefabInstance: {fileID: 525028928}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1460431515 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1371598241635088, guid: 3a33ce58c20826a4ea7253f84444654b, type: 3}
