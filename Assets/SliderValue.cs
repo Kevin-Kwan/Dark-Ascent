@@ -27,8 +27,8 @@ public class SliderValue : MonoBehaviour
     void ShowSliderValue()
     {
          if (sliderText != null && slider != null) {
-            int sliderInt = Mathf.RoundToInt(slider.value);
-            sliderText.text = sliderInt.ToString();
+            float sliderInt = slider.value;
+            sliderText.text = sliderInt.ToString("F1");
         }
     }
 

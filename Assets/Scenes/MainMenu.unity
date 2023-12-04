@@ -4911,6 +4911,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 409994, guid: 48333a5aa700be24c963813c82ef05d9, type: 3}
   m_PrefabInstance: {fileID: 1971257998}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &635886424 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5648379910904526385, guid: 6e6f1551f1923804794a38e81f970024, type: 3}
+  m_PrefabInstance: {fileID: 1486531396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &637793359
 GameObject:
   m_ObjectHideFlags: 0
@@ -6695,6 +6706,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: b58e7fdfb89fbc549b36a69243aee4c0, type: 3}
+--- !u!114 &866239854 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5648379910629436517, guid: 6e6f1551f1923804794a38e81f970024, type: 3}
+  m_PrefabInstance: {fileID: 1486531396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &873592743 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 147072, guid: 48333a5aa700be24c963813c82ef05d9, type: 3}
@@ -8930,6 +8952,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1247816534}
   m_CullTransparentMesh: 1
+--- !u!114 &1250525467 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5648379911743066051, guid: 6e6f1551f1923804794a38e81f970024, type: 3}
+  m_PrefabInstance: {fileID: 1486531396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1256529113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13543,9 +13576,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ded181777489746a9a82052eb23d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterSlider: {fileID: 2003789769}
-  musicSlider: {fileID: 1141422207}
-  sfxSlider: {fileID: 258164940}
+  masterSlider: {fileID: 866239854}
+  musicSlider: {fileID: 1250525467}
+  sfxSlider: {fileID: 635886424}
   mixer: {fileID: 24100000, guid: e7e0abb58828f634694f0c98cbf2f7c4, type: 2}
   multiplier: 30
   masterVolumeParameter: MasterVolume
