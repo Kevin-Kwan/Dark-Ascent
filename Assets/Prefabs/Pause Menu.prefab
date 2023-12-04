@@ -392,6 +392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7792432903777666360}
   - component: {fileID: 4797067889227909698}
+  - component: {fileID: 1746999851458138397}
   m_Layer: 5
   m_Name: Toggle (1)
   m_TagString: Untagged
@@ -469,6 +470,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &1746999851458138397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308783739518513629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76c68d1940d54b4f979f21363bb62db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraX: {fileID: 7706676855581409924}
+  cameraY: {fileID: 4797067889227909698}
+  player: {fileID: 3202918795698466886, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+  playerController: {fileID: 0}
 --- !u!1 &1714544865788648245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1609,6 +1626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7598998177776412663}
   - component: {fileID: 7706676855581409924}
+  - component: {fileID: 962913190956835406}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -1686,6 +1704,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &962913190956835406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7442980697223312261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76c68d1940d54b4f979f21363bb62db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraX: {fileID: 7706676855581409924}
+  cameraY: {fileID: 4797067889227909698}
+  player: {fileID: 3202918795698466886, guid: 8345927da4cb2eb4a9761f91a8897865, type: 3}
+  playerController: {fileID: 0}
 --- !u!1 &8081828793151176439
 GameObject:
   m_ObjectHideFlags: 0

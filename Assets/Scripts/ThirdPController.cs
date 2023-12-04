@@ -57,8 +57,8 @@ public class ThirdPController : MonoBehaviour
     public float speed = 6.0f;
     public float runSpeed = 12.0f;
     // public bool mustHoldRightClick = false;
-    public Toggle cameraX;
-    public Toggle cameraY;
+    // public Toggle cameraX;
+    // public Toggle cameraY;
     public bool invertMouseY = false;
     public bool invertMouseX = false;
 
@@ -167,16 +167,16 @@ public class ThirdPController : MonoBehaviour
         animator.SetBool("isDead", false);
         // freeLookCamera.m_YAxis.Value = transform.eulerAngles.x;
         freeLookCamera.m_XAxis.Value = transform.eulerAngles.y;
-        invertMouseX = cameraX.isOn;
-        invertMouseY = cameraY.isOn;
-        Debug.Log(cameraX.isOn);
+        // invertMouseX = cameraX.isOn;
+        // invertMouseY = cameraY.isOn;
+        //Debug.Log(cameraX.isOn);
     }
 
     // Update is called once per frame
     void Update() {
         healthBar.SetHealth(health);
-        invertMouseX = cameraX.isOn;
-        invertMouseY = cameraY.isOn;
+        // invertMouseX = cameraX.isOn;
+        // invertMouseY = cameraY.isOn;
         // death animation
         if (health <=0) {
             healthBar.SetHealth(0);
@@ -252,6 +252,7 @@ public class ThirdPController : MonoBehaviour
             freeLookCamera.m_YAxis.m_InputAxisName = "Mouse Y";
         }
         // apply inversion based on booleans
+        Debug.Log(invertMouseY);
         if (invertMouseY) {
             freeLookCamera.m_YAxis.m_InvertInput = true;
         } else {
