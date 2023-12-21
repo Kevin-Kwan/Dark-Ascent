@@ -26,7 +26,7 @@ Left Click when mouse cursor is visible to interact with UI elements (buttons, m
 
 General Game Idea: 
 
- It’s a 3D platformer, you start on the tutorial level with some pop ups to hint you on the controls and get a feel for how the game plays. There are 4 platforming levels including two levels for tutorial, a third level introducing AI enemies such as the Warden and some grunts as well as physics interactions needed to complete the level, and a fourth level implementing game hazards, as well as continuing the use of AI. Starting from the 3rd level you are chased by the Warden (better run quick). After completing 4 levels, with as many tries and checkpoint resets as you need, you are faced with the final boss fight. Attack the boss by swinging (left click or fire) to reflect projectiles back at the boss, watch out for teleportation and summoned enemies, and hit the boss 3 times to win! 
+It’s a 3D platformer, you start on the tutorial level with some pop ups to hint you on the controls and get a feel for how the game plays. There are 4 platforming levels including two levels for tutorial, a third level introducing AI enemies such as the Warden and some grunts as well as physics interactions needed to complete the level, and a fourth level implementing game hazards, as well as continuing the use of AI. Starting from the 3rd level you are chased by the Warden (better run quick). After completing 4 levels, with as many tries and checkpoint resets as you need, you are faced with the final boss fight. Attack the boss by swinging (left click or fire) to reflect projectiles back at the boss, watch out for teleportation and summoned enemies, and hit the boss 3 times to win! 
 
 Known Problem Areas: 
 
