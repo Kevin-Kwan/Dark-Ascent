@@ -1,3 +1,0 @@
-# Dark Ascent
-
-A Platformer :)
