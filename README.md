@@ -41,9 +41,11 @@ Worked on UI design for the tutorial level. There is a UICanvas, comprised of se
 
 CheckpointHandler.cs, CheckpointManager.cs, CheckpointTrigger.cs, DeathCollider.cs, PauseManager.cs, ProximityTrigger.cs, ResumeButtonScript.cs, QuitToMainMenu.cs, ThirdPController.cs 
 
-### Prefabs: Pause Menu.prefab, Death Screen.prefab, Tutorial Popup.prefab 
+### Prefabs:
+Pause Menu.prefab, Death Screen.prefab, Tutorial Popup.prefab 
 
-### Scenes: Level1.unity 
+### Scenes:
+Level1.unity 
 
 
 
@@ -67,7 +69,8 @@ FallingRockController.cs: Impemented a controller for the shaking animation stat
 
 ThirdPController.cs: Implemented elevator and moving platform functionality. When the player jumps on an elevator/moving platform, they trigger the event where they become a child of the elevator/moving platform so that the player and platform move together as one. 
 
-### Prefabs: Spikes.prefab, SwingingAxe.prefab, HeartContainer.prefab, FallingRock.prefab 
+### Prefabs:
+Spikes.prefab, SwingingAxe.prefab, HeartContainer.prefab, FallingRock.prefab 
 
 ### Scenes:  
 
@@ -135,4 +138,5 @@ BatGrunt.cs, BossIntroCutscene.cs, BossProjectile.cs, CutScene.cs, FInalBoss.cs,
 
 Bat Grunt, Boss TP Particle, CutScene_Warden, Final Boss Projectile, Final Boss.prfab, Frog Grunt, Rock Frog Grunt, Projectile, Thrown Rock, Warden 
 
-### Scenes: WinCutscene, Level5, BossFightIntro, WardenCutscene 
+### Scenes:
+WinCutscene, Level5, BossFightIntro, WardenCutscene 
