@@ -1,70 +1,59 @@
-Pixel Pioneers Present: Dark Ascent 
+# Pixel Pioneers Present: Dark Ascent
 
-Team Members: Akhilesh Sivaganesan, Amal Chaudry, Connor Sugasawara, Kevin Kwan, Mehar Johal 
+## Team Members:
+- Akhilesh Sivaganesan
+- Amal Chaudry
+- Connor Sugasawara
+- Kevin Kwan
+- Mehar Johal
 
-How to Play: 
+## How to Play:
 
-Start Scene File: MainMenu.unity 
+**Start Scene File:** MainMenu.unity
 
-Controls/How-to-Play: 
+### Controls/How-to-Play:
+- WASD/Arrow keys to move
+- Hold Right mouse to control camera (right click and drag around)
+- Left Click to attack
+- Ctrl to slide
+- Shift to sprint
+- Space to jump and double jump
+- Space when close to a Wall-jumpable wall to perform Wall Jumping between walls
+- Left Click when mouse cursor is visible to interact with UI elements (buttons, menus, etc.)
 
-WASD/Arrow keys to move 
+## General Game Idea:
+It’s a 3D platformer, you start on the tutorial level with some pop ups to hint you on the controls and get a feel for how the game plays. There are 4 platforming levels including two levels for tutorial, a third level introducing AI enemies such as the Warden and some grunts as well as physics interactions needed to complete the level, and a fourth level implementing game hazards, as well as continuing the use of AI. Starting from the 3rd level you are chased by the Warden (better run quick). After completing 4 levels, with as many tries and checkpoint resets as you need, you are faced with the final boss fight. Attack the boss by swinging (left click or fire) to reflect projectiles back at the boss, watch out for teleportation and summoned enemies, and hit the boss 3 times to win!
 
-Hold Right mouse to control camera (right click and drag around) 
+## Known Problem Areas:
+- Checkpoint audio retriggers
+- Damage audio locked to animation speed
+- Shifted player hitbox on Boss Fight Level
 
-Left Click to attack 
+# Individual Team Member Contributions: 
 
-Ctrl to slide 
+## Akhilesh Sivaganesan: 
 
-Shift to sprint 
-
-Space to jump and double jump 
-
-Space when close to a Wall-jumpable wall to perform Wall Jumping between walls 
-
-Left Click when mouse cursor is visible to interact with UI elements (buttons, menus, etc.) 
-
-General Game Idea: 
-
-It’s a 3D platformer, you start on the tutorial level with some pop ups to hint you on the controls and get a feel for how the game plays. There are 4 platforming levels including two levels for tutorial, a third level introducing AI enemies such as the Warden and some grunts as well as physics interactions needed to complete the level, and a fourth level implementing game hazards, as well as continuing the use of AI. Starting from the 3rd level you are chased by the Warden (better run quick). After completing 4 levels, with as many tries and checkpoint resets as you need, you are faced with the final boss fight. Attack the boss by swinging (left click or fire) to reflect projectiles back at the boss, watch out for teleportation and summoned enemies, and hit the boss 3 times to win! 
-
-Known Problem Areas: 
-
-Checkpoint audio retriggers, damage audio locked to animation speed, shifted player hitbox on Boss Fight Level 
-
- 
-
- 
-
- 
-
- 
-
-Individual Team Member Contributions: 
-
-Akhilesh Sivaganesan: 
-
-Overview:  
+### Overview:  
 
 Worked on UI design for the tutorial level. There is a UICanvas, comprised of several panels. These panels are activated by a script that detects entering the matching trigger zone. Since this game is primarily for mouse and keyboard, the controls featured in the tutorial involve keyboard sprites. The pause and death menus follow a simple design with the appropriate buttons, used throughout the game. Also integrated the checkpoint system developed by Kevin into the tutorial level, creating a custom emission material for those checkpoint bases. Collected textures and assets from unity asset store: JohnFarmer Keyboard Keys & Mouse sprites, LowlyPoly Rock Textures, BG Studio Free HDR Skybox, Rob Luo Stylized Lava Materials. There is a wall jump mechanic that I implemented as well. 
 
-Script Contributions: 
+### Script Contributions: 
 
 CheckpointHandler.cs, CheckpointManager.cs, CheckpointTrigger.cs, DeathCollider.cs, PauseManager.cs, ProximityTrigger.cs, ResumeButtonScript.cs, QuitToMainMenu.cs, ThirdPController.cs 
 
-Prefabs: Pause Menu.prefab, Death Screen.prefab, Tutorial Popup.prefab 
+### Prefabs: Pause Menu.prefab, Death Screen.prefab, Tutorial Popup.prefab 
 
-Scenes: Level1.unity 
+### Scenes: Level1.unity 
 
 
 
-Amal Chaudry:  
+## Amal Chaudry:  
 
-Overview: 
+### Overview: 
 
 Worked on Level design for the demo level and Level4. Worked on elevator and moving platform implementation, allowing the player to utilize elevators to reach different areas of the level. Implemented different hazards for the player to avoid which will damage their health. Implemented HealthUI system using heart graphics which indicate the character’s health level to the player. 
 
-Script Contributions:  
+### Script Contributions:  
 
 SpikeHazard.cs: Worked on spikes prefab to use as a hazard for the player, when they jump on it it will kill them instantly.  
 
@@ -78,15 +67,15 @@ FallingRockController.cs: Impemented a controller for the shaking animation stat
 
 ThirdPController.cs: Implemented elevator and moving platform functionality. When the player jumps on an elevator/moving platform, they trigger the event where they become a child of the elevator/moving platform so that the player and platform move together as one. 
 
-Prefabs: Spikes.prefab, SwingingAxe.prefab, HeartContainer.prefab, FallingRock.prefab 
+### Prefabs: Spikes.prefab, SwingingAxe.prefab, HeartContainer.prefab, FallingRock.prefab 
 
-Scenes:  
+### Scenes:  
 
 DemoLevel.unity: Designed the demo level and served as the basis for Level1 implemented by Akhilesh 
 
 Level4.unity: Designed and implemented Level4, including spikes, swinging axes, and falling rock hazards. In this level the player must escape from the AI Warden and also fight AI grunts. 
 
-Imported Assets Used:  
+### Imported Assets Used:  
 
 Swinging Axe: https://sketchfab.com/3d-models/rusty-double-sided-axe-ecd44a606cb646839f66137c34ced762 
 
@@ -96,7 +85,7 @@ Heart Graphic: https://assetstore.unity.com/packages/tools/gui/simple-heart-heal
 
  
 
-Kevin Kwan:  
+## Kevin Kwan:  
 
 3rdPPlayer.prefab, ThirdPController.cs: Worked on implementing basic character controller script featuring walking, running, and jumping while allowing for smooth, responsive input. Also implemented 3rd Person Camera control similar to Roblox’s (holding down right click and moving the mouse around). Used https://assetstore.unity.com/packages/3d/characters/little-ghost-free-229325 to serve as our player model. Used Autodesk Maya 2024 and keyframe animation to create custom animations for our character such as running, sliding, jumping, falling. Then, created Mechanim animation state machines, animator layers, and blend trees to blend the movement animations together for our player. The ThirdPController.cs was changed to account for this. Animations implemented include walking, running, sliding, jumping, falling, attacking, taking damage, and dying. Added functionality for the player to visually attack, take damage, and also die as well. 
 
@@ -108,7 +97,7 @@ Level3.unity (scene), LavaPool.prefab, Pushable.cs, LavaHitbox.cs, ActivationCol
 
 
 
-Connor Sugasawara:  
+## Connor Sugasawara:  
 
 ThirdPPlayer.prefab, ThirdPController.cs: Implemented sliding for the player character. Sliding lowers the player’s hitbox and gradually reduces their speed. Tested a version of sliding that provides a temporary boost of speed for more advanced movement/platforming options (currently not implemented). Updated player input to use Unity’s Input Manager (unable to test but hopefully allowing for controller support). Added audio to 3rdPPlayer.prefab and implemented appropriate and unique audio cues for walking, running, jumping, wall jumping, sliding, attacking, taking damage, and dying. 
 
@@ -122,7 +111,7 @@ Created original music for the game using FL Studio. All sound effect audio ment
 
  
 
-Mehar Johal: 
+## Mehar Johal: 
 
 Implemented the AI for the game, from the enemies to the boss fight as well as polish on their sound effects, particles, and animations. Added cutscenes to the game introducing the warden initially, and then the boss fight as well. Also implemented player attacking and enemies dying, along with particles associated. Animation controlling logic done as well as particles and audio, but animations, models, audio fx, and some particles utilized asset store materials, and credited as such in the game. Made the scene as well for the boss fight (level 5) 
 
@@ -138,12 +127,12 @@ Bat Grunt: A flying enemy who shoots projectiles at the player, hovering and fla
 
 Final Boss: The final warden boss detailed a bit above with some interesting teleportation and fun mechanics for you, the player to figure out. Can summon frog grunts as well to assist when it gets injured. 
 
-Scripts Implemented:  
+### Scripts Implemented:  
 
 BatGrunt.cs, BossIntroCutscene.cs, BossProjectile.cs, CutScene.cs, FInalBoss.cs, FinalCutScene.cs, FrogGrunt.cs, Health.cs, PlayerAttack.cs, Projectile.cs, RockFrogGrunt.cs,  ThirdPController.cs (did double jumping for the player) 
 
-Prefabs:  
+### Prefabs:  
 
 Bat Grunt, Boss TP Particle, CutScene_Warden, Final Boss Projectile, Final Boss.prfab, Frog Grunt, Rock Frog Grunt, Projectile, Thrown Rock, Warden 
 
-Scenes: WinCutscene, Level5, BossFightIntro, WardenCutscene 
+### Scenes: WinCutscene, Level5, BossFightIntro, WardenCutscene 
